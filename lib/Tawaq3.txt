@@ -1,0 +1,12 @@
+// Payment
+https://tawaq3.com/expectations/api/payment
+
+// Packages
+https://tawaq3.com/expectations/api/packages
+
+// Subscription
+body => package_id  2 => payment_id  1
+https://tawaq3.com/expectations/api/order/store
+
+// order
+https://tawaq3.com/expectations/api/order

@@ -40,10 +40,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiRequests {
-  // static String _baseUrl = 'https://cp.tawaq3.com/api';
-  // static String imageUrl = 'https://cp.tawaq3.com/';
-  static String _baseUrl = 'https://tawaq3.com/expectations/api';
-  static String imageUrl = 'https://tawaq3.com/expectations/';
+  static String _baseUrl = 'https://cp.tawaq3.com/api';
+  static String imageUrl = 'https://cp.tawaq3.com/';
+  // static String _baseUrl = 'https://tawaq3.com/expectations/api';
+  // static String imageUrl = 'https://tawaq3.com/expectations/';
   static String _urlToken =
       'https://agora-node-tokenserver.ahmetmandil.repl.co/access_token';
   static var _client = http.Client();

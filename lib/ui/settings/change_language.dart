@@ -6,8 +6,8 @@ import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../shared/components/constants.dart';
-import '../../../shared/style/colors.dart';
+import '../../shared/components/constants.dart';
+import '../../shared/style/colors.dart';
 
 class ChangeLanguagee extends StatefulWidget {
   const ChangeLanguagee({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _ChangeLanguageeState extends State<ChangeLanguagee> {
                 EdgeInsets.only(top: size.height / 6, bottom: size.height / 9),
             child: Center(
               child: Image.asset(
-                'assets/icons/logo3.png',
+                'assets/icons/logo4.png',
                 height: size.height / 4,
               ),
             ),

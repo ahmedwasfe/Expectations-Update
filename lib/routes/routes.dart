@@ -31,7 +31,7 @@ import 'package:expectations/utils/bindings/register_binding.dart';
 import 'package:expectations/utils/bindings/winners_binding.dart';
 import 'package:get/get.dart';
 
-import '../ui/home/pages/change_language.dart';
+import '../ui/settings/change_language.dart';
 
 class AppRoutes {
   static final routesPages = [

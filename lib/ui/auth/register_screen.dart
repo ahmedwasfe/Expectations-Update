@@ -41,7 +41,7 @@ class RegisterScreen extends GetView<RegisterController> {
                   Container(
                     margin: EdgeInsets.only(top: 65),
                     child: Image.asset(
-                      'assets/icons/logo3.png',
+                      'assets/icons/logo4.png',
                       width: 133,
                       height: 121.6,
                     ),

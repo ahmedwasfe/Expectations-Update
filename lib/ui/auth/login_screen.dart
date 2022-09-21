@@ -36,7 +36,7 @@ class LoginScreen extends GetView<LoginController> {
                 Container(
                   margin: EdgeInsets.only(top: 65),
                   child: Image.asset(
-                    'assets/icons/logo3.png',
+                    'assets/icons/logo4.png',
                     width: 150,
                     height: 150,
                   ),

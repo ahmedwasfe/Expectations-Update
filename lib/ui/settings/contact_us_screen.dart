@@ -56,10 +56,10 @@ class ContactUsScreen extends GetView<ContactUsController> {
                       width: 100,
                       height: 100,
                       margin: EdgeInsets.only(top: 20),
-                      child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage('assets/icons/logo.png')),
                       decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/icons/logo4.png'),
+                              fit: BoxFit.contain),
                           borderRadius: BorderRadius.circular(50),
                           border: Border.all(
                               color: HexColor(AppColors.defualtColor))),

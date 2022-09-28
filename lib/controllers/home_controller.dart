@@ -5,11 +5,14 @@ import 'package:expectations/controllers/live_controller.dart';
 import 'package:expectations/model/ads.dart';
 import 'package:expectations/model/match.dart';
 import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
+import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/ui/live/live_screen.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -20,12 +23,19 @@ class HomeController extends GetxController {
 
   void getCurrenNavIndex({required int navIndex, BuildContext? context}) async {
     if (navIndex == 2) {
-      // Get.toNamed(Routes.live);
-      await joinLive(context!,
-          isBroadcaster: true, userType: Const.KEY_BROADCASTER);
+      if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+        AppHelper.showLoginDialog(context!);
+      else{
+        await joinLive(context!,
+            isBroadcaster: true, userType: Const.KEY_BROADCASTER);
+      }
+
       update();
     } else {
-      this.navIndex = navIndex;
+      if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+        AppHelper.showLoginDialog(context!);
+      else
+        this.navIndex = navIndex;
       update();
     }
   }

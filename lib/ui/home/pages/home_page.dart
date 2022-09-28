@@ -67,7 +67,12 @@ class _HomePageState extends State<HomePage> {
                     height: 28,
                     width: 28,
                   ),
-                  onTap: () => Get.toNamed(Routes.allLive),
+                  onTap: () {
+                    if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+                      AppHelper.showLoginDialog(context);
+                    else
+                      Get.toNamed(Routes.allLive);
+                  },
                 ),
                 Spacer(),
                 Text(
@@ -82,14 +87,24 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                     child: SvgPicture.asset('assets/icons/search.svg',
                         height: 20, width: 20),
-                    onTap: () => Get.toNamed(Routes.search)),
+                    onTap: () {
+                      if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+                        AppHelper.showLoginDialog(context);
+                      else
+                        Get.toNamed(Routes.search);
+                    } ),
                 SizedBox(
                   width: 20,
                 ),
                 GetBuilder<HomeController>(
                     builder: (home) => InkWell(
                           child: SvgPicture.asset('assets/icons/menu.svg'),
-                          onTap: () => home.getCurrenNavIndex(navIndex: 4),
+                          onTap: () {
+                            if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+                              AppHelper.showLoginDialog(context);
+                            else
+                              home.getCurrenNavIndex(navIndex: 4);
+                          },
                         )),
                 SizedBox(
                   width: 20,

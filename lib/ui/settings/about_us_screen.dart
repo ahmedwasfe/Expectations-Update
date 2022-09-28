@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsScreen extends GetView<BoardingsController> {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -54,10 +55,10 @@ class AboutUsScreen extends GetView<BoardingsController> {
                     width: 100,
                     height: 100,
                     margin: EdgeInsets.only(top: 20),
-                    child: CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage('assets/icons/logo.png')),
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/icons/logo4.png'),
+                            fit: BoxFit.contain),
                         borderRadius: BorderRadius.circular(50),
                         border: Border.all(
                             color: HexColor(AppColors.defualtColor))),
@@ -248,18 +249,36 @@ class AboutUsScreen extends GetView<BoardingsController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SvgPicture.asset('assets/icons/facebook.svg',
-                            height: 30, width: 30),
-                        SvgPicture.asset('assets/icons/twitter.svg',
-                            height: 30, width: 30),
-                        SvgPicture.asset('assets/icons/linkedin.svg',
-                            height: 34, width: 34),
-                        SvgPicture.asset('assets/icons/whatsapp.svg',
-                            height: 38, width: 38),
-                        SvgPicture.asset('assets/icons/instagram.svg',
-                            height: 30, width: 30),
-                        SvgPicture.asset('assets/icons/snapchat.svg',
-                            height: 30, width: 30),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/facebook.svg',
+                              height: 30, width: 30),
+                          onTap: () => launchUrl(Uri.parse('https://www.facebook.com')),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/twitter.svg',
+                              height: 30, width: 30),
+                          onTap: () => launchUrl(Uri.parse('https://www.twitter.com')),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/linkedin.svg',
+                              height: 34, width: 34),
+                          onTap: () => launchUrl(Uri.parse('https://www.linkedin.com')),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/whatsapp.svg',
+                              height: 38, width: 38),
+                          onTap: () => launchUrl(Uri.parse('https://www.whatsapp.com')),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/instagram.svg',
+                              height: 30, width: 30),
+                          onTap: () => launchUrl(Uri.parse('https://www.instagram.com')),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset('assets/icons/snapchat.svg',
+                              height: 30, width: 30),
+                          onTap: () => launchUrl(Uri.parse('https://www.snapchat.com')),
+                        ),
                       ],
                     ),
                   ),

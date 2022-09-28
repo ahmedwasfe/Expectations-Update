@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: HexColor(AppColors.defualtColor)));
-print('HOME TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');
+  print('HOME TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');
     return GetBuilder<HomeController>(
         builder: (controller) => Scaffold(
               body: SafeArea(

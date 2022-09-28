@@ -20,6 +20,7 @@ class LanguageController extends GetxController {
     Locale locale = Locale(codelang);
     AppHelper.saveAppData(key: Const.KEY_LANGUAGE, value: codelang);
     Get.updateLocale(locale);
+    update();
   }
 
 

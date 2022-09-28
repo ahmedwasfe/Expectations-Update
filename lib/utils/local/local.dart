@@ -153,6 +153,7 @@ class MyLocal implements Translations {
           'join': 'إنضمام',
           'ip_address_taken': 'لا يمكن إنشاء حساب على نفس الجهاز مرتين',
           'name_taken': 'الاسم مأخوذ من قبل مستخدم أخر',
+          "please_login": "الرجاء تسجيل الدخول أولاً للمتابعة \n لأنك الآن في وضع الضيف",
         },
         "en": {
           "English": "English",
@@ -306,6 +307,7 @@ class MyLocal implements Translations {
           'join': 'Join',
           'ip_address_taken': 'It is not possible to create an account on the same device twice',
           'name_taken': 'The name has already been taken.',
+          "please_login": "Please login first to continue \nBecause you are now in guest mode",
         }
       };
 }

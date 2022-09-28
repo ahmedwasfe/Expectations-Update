@@ -21,8 +21,7 @@ class SplashController extends GetxController {
     // Future.delayed(Duration(seconds: 8), () => Get.offAndToNamed('/boarding'));
     if (boarding != null) {
       if (AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
-        return Future.delayed(
-            Duration(seconds: 5), () {
+        return Future.delayed(Duration(seconds: 5), () {
               if(AppHelper.getExpiredDate() != null && AppHelper.getExpiredDate() != ""){
                 if(AppHelper.getDateTody() == AppHelper.getExpiredDate())
                   Get.offAndToNamed(Routes.packages);

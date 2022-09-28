@@ -4,9 +4,13 @@ import 'package:expectations/api/api_requests.dart';
 import 'package:expectations/model/match.dart';
 import 'package:expectations/model/register.dart';
 import 'package:expectations/model/user.dart';
+import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
+import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -307,5 +311,36 @@ class AppHelper extends GetxService {
         textColor: Colors.white,
         fontSize: 16.0
     );
+  }
+
+  static void showLoginDialog(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+          content: Container(
+            height: 200,
+            child: Column(
+              children: [
+                SizedBox(height: 16),
+                Text(
+                  'please_login'.tr,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: Const.appFont),
+                ),
+                Container(
+                    margin: EdgeInsets.only(top: 50),
+                    child: CustomButton(
+                        radius: 8,
+                        background: HexColor(AppColors.defualtColor),
+                        text: 'login'.tr,
+                        click: () => Get.offAndToNamed(Routes.login))
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

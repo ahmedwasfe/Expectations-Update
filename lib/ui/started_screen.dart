@@ -1,4 +1,5 @@
 import 'package:expectations/controllers/boarding_controller.dart';
+import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
@@ -59,7 +60,7 @@ class StartedScreen extends GetView<BoardingsController> {
                     fontfamily: '${Const.appFont}',
                     radius: 8,
                     background: HexColor(AppColors.defualtColor),
-                    click: () => Get.toNamed('/register')),
+                    click: () => Get.toNamed(Routes.register)),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -84,10 +85,22 @@ class StartedScreen extends GetView<BoardingsController> {
                             fontWeight: FontWeight.w400,
                             fontFamily: Const.appFont),
                       ),
-                      onTap: () => Get.toNamed('/login'),
+                      onTap: () => Get.toNamed(Routes.login),
                     ),
                   ],
                 ),
+              ),
+              SizedBox(height: 50),
+              InkWell(
+                child: Text(
+                  'skip'.tr,
+                  style: TextStyle(
+                      color: HexColor(AppColors.blackColor),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: Const.appFont),
+                ),
+                onTap: () => Get.toNamed(Routes.home),
               ),
             ],
           ),

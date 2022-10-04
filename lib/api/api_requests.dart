@@ -6,6 +6,7 @@ import 'package:expectations/model/ads.dart';
 import 'package:expectations/model/awards.dart';
 import 'package:expectations/model/boarding.dart';
 import 'package:expectations/model/contact_us.dart';
+import 'package:expectations/model/delete_account.dart';
 import 'package:expectations/model/delete_favorite.dart';
 import 'package:expectations/model/favorite.dart';
 import 'package:expectations/model/forget_password.dart';
@@ -762,6 +763,22 @@ class ApiRequests {
       var body = jsonDecode(response.body);
       Logout logout = Logout.fromJson(body);
       return logout;
+    } else {
+      print('Error: ${response.body}');
+      return null;
+    }
+  }
+
+  static Future<DeleteAccount?> deleteAccount({required String token}) async {
+    http.Response response = await _client.post(
+      Uri.parse('$_baseUrl/delete'),
+      headers: {'Content-type': 'application/json', 'Authorization': token},
+    );
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      DeleteAccount deleteAccount = DeleteAccount.fromJson(body);
+      print('SUCCES: ${jsonEncode(deleteAccount)}');
+      return deleteAccount;
     } else {
       print('Error: ${response.body}');
       return null;

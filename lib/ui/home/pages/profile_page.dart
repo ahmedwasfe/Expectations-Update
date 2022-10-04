@@ -294,6 +294,34 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
+                        top: 40, right: 24, left: 24),
+                    child: InkWell(
+                      child: Row(
+                        children: [
+                          SvgPicture.asset('assets/icons/delete.svg',
+                              height: 24,
+                              width: 24,
+                              color: HexColor(AppColors.defualtColor)),
+                          SizedBox(width: 20),
+                          Text(
+                            'delete_account'.tr,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: Const.appFont,
+                            ),
+                          ),
+                          Spacer(),
+                          SvgPicture.asset('assets/icons/arrow.svg',
+                              width: 14, height: 14),
+                        ],
+                      ),
+                      onTap: () => deleteAccount(context),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
                         top: 40, right: 24, left: 24, bottom: 50),
                     child: InkWell(
                       child: Row(
@@ -324,6 +352,146 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
     );
+  }
+
+  void changelangauge(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+          content: GetBuilder<LanguageController>(
+            builder: (controller) => Container(
+              width: double.infinity,
+              height: 150,
+              child: Column(
+                children: [
+                  SizedBox(height: 16),
+                  Text(
+                    'Are you want to change language'.tr,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: Const.appFont),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          child: Text(
+                            'English',
+                            style: TextStyle(
+                                color: HexColor(AppColors.defualtColor),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: Const.appFont),
+                          ),
+                          onPressed: () {
+                            controller.saveLang("en");
+                            Navigator.pop(context);
+                          },
+                        ),
+                        TextButton(
+                            child: Text(
+                              'العربية',
+                              style: TextStyle(
+                                  color: HexColor(AppColors.blackColor),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: Const.appFont),
+                            ),
+                            onPressed: () {
+                              controller.saveLang("ar");
+                              Navigator.pop(context);
+                            }),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
+  }
+
+  void deleteAccount(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+          content: Container(
+            width: double.infinity,
+            height: 180,
+            child: Column(
+              children: [
+                SizedBox(height: 16),
+                Text(
+                  'delete_account'.tr,
+                  style: TextStyle(
+                      color: HexColor(AppColors.defualtColor),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: Const.appFont),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'delete_account_confirmation'.tr,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: Const.appFont),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(
+                          child: Text(
+                            'Yes'.tr,
+                            style: TextStyle(
+                                color: HexColor(AppColors.defualtColor),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: Const.appFont),
+                          ),
+                          onPressed: () {
+                            HomeController controller = Get.find();
+                            ApiRequests.deleteAccount(
+                                token: AppHelper.getCurrentUserToken())
+                                .then((value) {
+                              AppHelper.clearData(key: Const.KEY_USER_TOKEN)
+                                  .then((value) {
+                                AppHelper.clearData(
+                                    key: Const.KEY_USER_DATA)
+                                    .then((value) {
+                                  Get.offAndToNamed(Routes.login);
+                                  controller.navIndex = 0;
+                                  controller.getCurrenNavIndex(navIndex: 0);
+                                });
+                              });
+                            }).catchError((error) {
+                              print('catchError: $error');
+                            });
+                          }),
+                      TextButton(
+                          child: Text(
+                            'No'.tr,
+                            style: TextStyle(
+                                color: HexColor(AppColors.blackColor),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: Const.appFont),
+                          ),
+                          onPressed: () => Navigator.pop(context)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 
   void logout(BuildContext context) {
@@ -405,64 +573,4 @@ class _ProfilePageState extends State<ProfilePage> {
             ));
   }
 
-  void changelangauge(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (con) => AlertDialog(
-              content: GetBuilder<LanguageController>(
-                builder: (controller) => Container(
-                  width: double.infinity,
-                  height: 150,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 16),
-                      Text(
-                        'Are you want to change language'.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: Const.appFont),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            TextButton(
-                              child: Text(
-                                'English',
-                                style: TextStyle(
-                                    color: HexColor(AppColors.defualtColor),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: Const.appFont),
-                              ),
-                              onPressed: () {
-                                controller.saveLang("en");
-                                Navigator.pop(context);
-                              },
-                            ),
-                            TextButton(
-                                child: Text(
-                                  'العربية',
-                                  style: TextStyle(
-                                      color: HexColor(AppColors.blackColor),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
-                                ),
-                                onPressed: () {
-                                  controller.saveLang("ar");
-                                  Navigator.pop(context);
-                                }),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ));
-  }
 }

@@ -28,14 +28,14 @@ class _PackagesScreenState extends State<PackagesScreen> {
       body: Column(
         children: [
           Container(
-            height: 100,
+            height: 120,
             decoration: BoxDecoration(
                 color: HexColor(AppColors.defualtColor),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10))),
             child: Container(
-              margin: EdgeInsets.only(top: 28),
+              margin: EdgeInsets.only(top: 40),
               child: Row(
                 children: [
                   Expanded(

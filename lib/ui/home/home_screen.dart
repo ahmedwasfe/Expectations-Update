@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'pages/expections_page.dart';
@@ -50,8 +51,8 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: HexColor(AppColors.bottomNavColor),
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20))),
+                        topRight: Radius.circular(20.r),
+                        topLeft: Radius.circular(20.r))),
               ),
             ));
   }

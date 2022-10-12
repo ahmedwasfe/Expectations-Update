@@ -7,6 +7,7 @@ import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class StartedScreen extends GetView<BoardingsController> {
@@ -26,44 +27,45 @@ class StartedScreen extends GetView<BoardingsController> {
             children: [
               Image.asset(
                 'assets/icons/logo4.png',
-                width: 200,
-                height: 200,
+                width: 200.w,
+                height: 200.h,
               ),
               SizedBox(height: 20),
               Text(
                 AppHelper.getAppLanguage() == "ar" ? '${controller.listBoardings[3].title}' : '${controller.listBoardings[7].title}',
                 style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.w600,
                     fontFamily: '${Const.appFont}'),
               ),
               SizedBox(height: 14),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 40).r,
                 child: Text(
                     AppHelper.getAppLanguage() == "ar" ? '${controller.listBoardings[3].description}' : '${controller.listBoardings[7].description}',
                     style: TextStyle(
                       color: HexColor(AppColors.subTextColor),
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily: '${Const.appFont}',
                     ),
                     textAlign: TextAlign.center),
               ),
               Container(
-                margin: EdgeInsets.only(top: 40, left: 30, right: 30),
+                margin: EdgeInsets.only(top: 40.r, left: 30.r, right: 30.r),
                 child: CustomButton(
+                  height: 48.h,
                     text: 'start now'.tr,
                     textColor: HexColor(AppColors.whiteColor),
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                     fontfamily: '${Const.appFont}',
-                    radius: 8,
+                    radius: 8.r,
                     background: HexColor(AppColors.defualtColor),
                     click: () => Get.toNamed(Routes.register)),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 20.r),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,16 +74,17 @@ class StartedScreen extends GetView<BoardingsController> {
                       'Do you have an account?'.tr,
                       style: TextStyle(
                           color: HexColor(AppColors.subTextColor),
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w400,
                           fontFamily: Const.appFont),
                     ),
+                    SizedBox(width: 4.w),
                     InkWell(
                       child: Text(
                         'Login'.tr,
                         style: TextStyle(
                             color: HexColor(AppColors.blackColor),
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
                             fontFamily: Const.appFont),
                       ),
@@ -90,13 +93,13 @@ class StartedScreen extends GetView<BoardingsController> {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 50.h),
               InkWell(
                 child: Text(
                   'skip'.tr,
                   style: TextStyle(
                       color: HexColor(AppColors.blackColor),
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: Const.appFont),
                 ),

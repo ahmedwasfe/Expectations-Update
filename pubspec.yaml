@@ -57,6 +57,7 @@ dependencies:
   url_launcher: ^6.1.5
   rx_permissions: ^1.0.3
   fluttertoast: ^8.0.9
+  flutter_screenutil: ^5.5.4
 
 
 dev_dependencies:

@@ -29,7 +29,6 @@ class HomeController extends GetxController {
         await joinLive(context!,
             isBroadcaster: true, userType: Const.KEY_BROADCASTER);
       }
-
       update();
     } else {
       if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)

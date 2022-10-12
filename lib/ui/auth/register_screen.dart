@@ -6,6 +6,7 @@ import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -16,16 +17,6 @@ class RegisterScreen extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.black));
-
-    // controller.nameController.text = 'Ahmed Wasfe';
-    // controller.birthDateController.text = '1995-02-01';
-    // controller.emailController.text = 'ahmet.mandil@gmail.com';
-    // controller.passwordController.text = '123456';
-    // controller.confirmPasswordController.text = '123456';
-    // controller.addressController.text = 'Gaza';
-    // controller.phoneController.text = '0592435704';
-    // controller.sportsController.text = 'Barcelona';
-
     return Scaffold(
       body: Form(
         key: controller.formKey,
@@ -34,28 +25,28 @@ class RegisterScreen extends GetView<RegisterController> {
           physics: BouncingScrollPhysics(),
           child: Center(
             child: Container(
-              margin: EdgeInsets.only(bottom: 50),
+              margin: EdgeInsets.only(bottom: 50.r),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 65),
+                    margin: EdgeInsets.only(top: 65.r),
                     child: Image.asset(
                       'assets/icons/logo4.png',
-                      width: 133,
-                      height: 121.6,
+                      width: 133.w,
+                      height: 121.6.h,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Text(
                     "Create an account".tr,
                     style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 24.sp,
                         fontWeight: FontWeight.w600,
                         fontFamily: '${Const.appFont}'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(horizontal: 24).r,
                     child: Text(
                         'Please fill out this form to create your account!'.tr,
                         style: TextStyle(
@@ -66,27 +57,28 @@ class RegisterScreen extends GetView<RegisterController> {
                         ),
                         textAlign: TextAlign.center),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   ////////////////////////////////////////////////////////////////////////////////////////////
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "full name".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.r),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: TextFormField(
                                   controller: controller.nameController,
                                   keyboardType: TextInputType.text,
@@ -100,9 +92,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -110,25 +102,26 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "date of birth".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             InkWell(
                               child: Container(
+                                height: 40.h,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
+                                      horizontal: 8.0).r,
                                   child: TextFormField(
                                     controller:
                                         controller.birthDateController,
@@ -149,9 +142,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                   border: Border.all(
-                                      width: 1,
+                                      width: 1.r,
                                       style: BorderStyle.solid,
                                       color:
                                           HexColor(AppColors.blackColor)),
@@ -175,24 +168,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Email Address",
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: TextFormField(
                                   controller: controller.emailController,
                                   keyboardType: TextInputType.emailAddress,
@@ -204,9 +198,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -214,24 +208,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Password".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: GetBuilder<RegisterController>(
                                   builder: (controller) => TextFormField(
                                     controller:
@@ -254,9 +249,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -264,24 +259,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Confirm Password".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: GetBuilder<RegisterController>(
                                   builder: (controller) => TextFormField(
                                     controller: controller
@@ -308,9 +304,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -318,24 +314,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Address".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: TextFormField(
                                   controller: controller.addressController,
                                   keyboardType: TextInputType.streetAddress,
@@ -349,9 +346,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -359,24 +356,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "phone number".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: TextFormField(
                                   controller: controller.phoneController,
                                   keyboardType: TextInputType.phone,
@@ -389,9 +387,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -399,24 +397,25 @@ class RegisterScreen extends GetView<RegisterController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 14),
+                      SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "athletic inclinations".tr,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: '${Const.appFont}'),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Container(
+                              height: 40.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                    horizontal: 8.0).r,
                                 child: TextFormField(
                                   controller: controller.sportsController,
                                   keyboardType: TextInputType.text,
@@ -429,9 +428,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                                 border: Border.all(
-                                    width: 1,
+                                    width: 1.r,
                                     style: BorderStyle.solid,
                                     color: HexColor(AppColors.blackColor)),
                               ),
@@ -442,25 +441,26 @@ class RegisterScreen extends GetView<RegisterController> {
                     ],
                   ),
                   ////////////////////////////////////////////////////////////////////////////////////////////
-                  SizedBox(height: 18),
+                  SizedBox(height: 18.h),
                   Obx(() => controller.isLoading == true
                       ? CircularProgressIndicator()
                       : Container()),
                   Container(
-                    margin: EdgeInsets.only(top: 20, left: 30, right: 30),
+                    height: 48.h,
+                    margin: EdgeInsets.only(top: 20.r, left: 30.r, right: 30.r),
                     child: CustomButton(
                       text: 'Create an account'.tr,
                       textColor: HexColor(AppColors.whiteColor),
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
                       fontfamily: '${Const.appFont}',
-                      radius: 8,
+                      radius: 8.r,
                       background: HexColor(AppColors.defualtColor),
                       click: () => controller.createAccount(),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 16),
+                    margin: EdgeInsets.only(top: 16.r),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -469,16 +469,17 @@ class RegisterScreen extends GetView<RegisterController> {
                           'I already have an account'.tr,
                           style: TextStyle(
                               color: HexColor(AppColors.subTextColor),
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w400,
                               fontFamily: Const.appFont),
                         ),
+                        SizedBox(width: 4.w),
                         InkWell(
                           child: Text(
                             'Login'.tr,
                             style: TextStyle(
                                 color: HexColor(AppColors.blackColor),
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w400,
                                 fontFamily: Const.appFont),
                           ),

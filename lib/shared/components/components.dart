@@ -6,6 +6,7 @@ import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -54,30 +55,31 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
         alignment: Alignment.topCenter,
         children: [
           Container(
+            height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.cover),
+            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 280.0),
+            padding: const EdgeInsets.only(top: 280.0).r,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].title}' : '${listBoardings[4].title}',
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 24.sp,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontFamily: '${Const.appFont}',
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
                     AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].description}' : '${listBoardings[4].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily: '${Const.appFont}',
                     ),
@@ -97,30 +99,31 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
         alignment: Alignment.topCenter,
         children: [
           Container(
+            height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.cover),
+            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 280.0),
+            padding: const EdgeInsets.only(top: 280.0).r,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   AppHelper.getAppLanguage() == "ar" ? '${listBoardings[1].title}' : '${listBoardings[5].title}',
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 24.sp,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontFamily: '${Const.appFont}',
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
                     AppHelper.getAppLanguage() == "ar" ? '${listBoardings[1].description}' : '${listBoardings[5].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily: '${Const.appFont}',
                     ),
@@ -140,30 +143,31 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
         alignment: Alignment.topCenter,
         children: [
           Container(
+            height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.cover),
+            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 280.0),
+            padding: const EdgeInsets.only(top: 280.0).r,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].title}' : '${listBoardings[6].title}',
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 24.sp,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontFamily: '${Const.appFont}',
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
                     AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].description}' : '${listBoardings[6].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily: '${Const.appFont}',
                     ),

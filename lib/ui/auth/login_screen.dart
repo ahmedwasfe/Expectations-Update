@@ -7,6 +7,7 @@ import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -34,52 +35,53 @@ class LoginScreen extends GetView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 65),
+                  margin: EdgeInsets.only(top: 65.r),
                   child: Image.asset(
                     'assets/icons/logo4.png',
-                    width: 150,
-                    height: 150,
+                    width: 150.w,
+                    height: 150.h,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 Text(
                   "Login".tr,
                   style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.w600,
                       fontFamily: '${Const.appFont}'),
                 ),
                 // SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
                       'Log in with the data you entered during registration.'
                           .tr,
                       style: TextStyle(
                         color: HexColor(AppColors.subTextColor),
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
                         fontFamily: '${Const.appFont}',
                       ),
                       textAlign: TextAlign.center),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24).r,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "email".tr,
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             fontFamily: '${Const.appFont}'),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Container(
+                        height: 40.h,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
                           child: TextFormField(
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
@@ -91,9 +93,9 @@ class LoginScreen extends GetView<LoginController> {
                           ),
                         ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.r),
                           border: Border.all(
-                              width: 1,
+                              width: 1.r,
                               style: BorderStyle.solid,
                               color: HexColor(AppColors.blackColor)),
                         ),
@@ -101,23 +103,24 @@ class LoginScreen extends GetView<LoginController> {
                     ],
                   ),
                 ),
-                SizedBox(height: 14),
+                SizedBox(height: 14.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24).r,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Password".tr,
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             fontFamily: '${Const.appFont}'),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Container(
+                        height: 40.h,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
                           child: GetBuilder<LoginController>(
                             builder: (controller) => TextFormField(
                               controller: controller.passwordController,
@@ -136,21 +139,21 @@ class LoginScreen extends GetView<LoginController> {
                           ),
                         ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.r),
                           border: Border.all(
-                              width: 1,
+                              width: 1.r,
                               style: BorderStyle.solid,
                               color: HexColor(AppColors.blackColor)),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: InkWell(
                           child: Text(
                             "Forgot your password?".tr,
                             style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                                 fontFamily: '${Const.appFont}',
                                 decoration: TextDecoration.underline),
@@ -165,20 +168,21 @@ class LoginScreen extends GetView<LoginController> {
                     ? CircularProgressIndicator()
                     : Container()),
                 Container(
-                  margin: EdgeInsets.only(top: 40, left: 30, right: 30),
+                  margin: EdgeInsets.only(top: 40.r, left: 30.r, right: 30.r),
                   child: CustomButton(
+                    height: 48.h,
                     text: 'Login'.tr,
                     textColor: HexColor(AppColors.whiteColor),
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                     fontfamily: '${Const.appFont}',
-                    radius: 8,
+                    radius: 8.r,
                     background: HexColor(AppColors.defualtColor),
                     click: () => controller.login(),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 20),
+                  margin: EdgeInsets.only(top: 20.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -187,16 +191,17 @@ class LoginScreen extends GetView<LoginController> {
                         'Do not have an account?'.tr,
                         style: TextStyle(
                             color: HexColor(AppColors.subTextColor),
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
                             fontFamily: Const.appFont),
                       ),
+                      SizedBox(width: 4.w),
                       InkWell(
                         child: Text(
                           'Create an account'.tr,
                           style: TextStyle(
                               color: HexColor(AppColors.blackColor),
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w400,
                               fontFamily: Const.appFont),
                         ),

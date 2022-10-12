@@ -6,6 +6,7 @@ import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -20,17 +21,17 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
         child: Column(
           children: [
             Container(
-              height: 120,
+              height: 120.h,
               decoration: BoxDecoration(
                   color: HexColor(AppColors.defualtColor),
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(24),
-                      bottomRight: Radius.circular(24))),
+                      bottomLeft: Radius.circular(24.r),
+                      bottomRight: Radius.circular(24.r))),
               child: Container(
-                margin: EdgeInsets.only(top: 25),
+                margin: EdgeInsets.only(top: 25.r),
                 child: Row(
                   children: [
-                    SizedBox(width: 20),
+                    SizedBox(width: 20.w),
                     InkWell(
                         child: SvgPicture.asset('assets/icons/back.svg'),
                         onTap: () => Get.offAndToNamed(Routes.login)),
@@ -40,7 +41,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                         'forgot password'.tr,
                         style: TextStyle(
                             color: HexColor(AppColors.whiteColor),
-                            fontSize: 22,
+                            fontSize: 22.sp,
                             fontWeight: FontWeight.w500,
                             fontFamily: Const.appFont),
                       ),
@@ -55,8 +56,8 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 20, right: 20),
-                      padding: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(top: 20.r, right: 20.r),
+                      padding: EdgeInsets.only(left: 10.r),
                       alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,17 +66,17 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                             'Password Reset'.tr,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 24,
+                                fontSize: 24.sp,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: Const.appFont),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Text(
                             'Enter the email associated with your account and we will send an email with instructions to reset your password.'
                                 .tr,
                             style: TextStyle(
                                 color: HexColor(AppColors.subTextColor),
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w400,
                                 fontFamily: Const.appFont),
                           ),
@@ -83,7 +84,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 20, top: 20),
+                      margin: EdgeInsets.only(right: 20.r, top: 20.r),
                       alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,15 +93,15 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                             'email'.tr,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: Const.appFont),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 20, top: 8),
+                            margin: EdgeInsets.only(left: 20, top: 8).r,
                             child: Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    const EdgeInsets.symmetric(horizontal: 8).r,
                                 child: GetBuilder<ForgetPasswordController>(
                                   builder: (controller) => TextFormField(
                                       controller: controller.emailController,
@@ -108,7 +109,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                                       decoration: InputDecoration(
                                         hintText: 'example@example.com',
                                         hintStyle: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w400,
                                             fontFamily: Const.appFont),
                                         suffixIcon: IconButton(
@@ -122,7 +123,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                                               email: value!)),
                                 )),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8).r,
                               border: Border.all(
                                   width: 1,
                                   style: BorderStyle.solid,
@@ -132,7 +133,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Column(
                       children: [
                         Obx(() => controller.isLoading == true
@@ -140,13 +141,13 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                             : Container()),
                         Container(
                           margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
+                              horizontal: 20.h, vertical: 20.w),
                           child: CustomButton(
                               text: 'send'.tr,
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.w400,
                               fontfamily: Const.appFont,
-                              radius: 8,
+                              radius: 8.r,
                               background: HexColor(AppColors.defualtColor),
                               click: () => controller.forgetPassword()),
                         ),

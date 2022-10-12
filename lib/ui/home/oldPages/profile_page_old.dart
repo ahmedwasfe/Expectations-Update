@@ -182,7 +182,7 @@ class ProfilePageOld extends GetView<ProfilePageController> {
                         ],
                       ),
                       onTap: () {
-                        home.getCurrenNavIndex(navIndex: 2);
+                        home.getCurrenNavIndex(navIndex: 1);
                       },
                     ))
                   ),

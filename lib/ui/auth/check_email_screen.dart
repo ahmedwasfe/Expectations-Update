@@ -4,6 +4,7 @@ import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -16,17 +17,17 @@ class CheckEmailScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 120,
+            height: 120.h,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24))),
             child: Container(
-              margin: EdgeInsets.only(top: 25),
+              margin: EdgeInsets.only(top: 25.r),
               child: Row(
                 children: [
-                  SizedBox(width: 20),
+                  SizedBox(width: 20.w),
                   InkWell(
                       child: SvgPicture.asset(
                         'assets/icons/back.svg',
@@ -44,49 +45,49 @@ class CheckEmailScreen extends StatelessWidget {
                 children: [
                   SvgPicture.asset('assets/icons/check_email.svg'),
                   Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.all(20.r),
                     child: Text(
                       "Verify your email ".tr,
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 24,
+                          fontSize: 24.sp,
                           fontWeight: FontWeight.w500,
                           fontFamily: Const.appFont),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(8.r),
                     child: Text(
                       'We have sent password recovery instructions to your email.'
                           .tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: HexColor(AppColors.subTextColor),
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w500,
                           fontFamily: Const.appFont),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.all(20.r),
                     child: CustomButton(
                         text: 'Open the email app'.tr,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                         fontfamily: Const.appFont,
                         background: HexColor(AppColors.defualtColor),
-                        radius: 8,
+                        radius: 8.r,
                         click: () {}),
                   ),
                   Container(
-                    margin: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(8.r),
                     child: InkWell(
                       child: Text(
                         'Skip, I will confirm later'.tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: HexColor(AppColors.subTextColor),
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w500,
                             fontFamily: Const.appFont),
                       ),
@@ -94,7 +95,7 @@ class CheckEmailScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.all(20.r),
                     child: InkWell(
                       child: RichText(
                         textAlign: TextAlign.center,
@@ -104,7 +105,7 @@ class CheckEmailScreen extends StatelessWidget {
                                     .tr,
                             style: TextStyle(
                                 color: HexColor(AppColors.subTextColor),
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: Const.appFont),
                             children: [
@@ -115,7 +116,7 @@ class CheckEmailScreen extends StatelessWidget {
                                 text: 'Try another email address'.tr,
                                 style: TextStyle(
                                     color: HexColor(AppColors.blackColor),
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w700,
                                     fontFamily: Const.appFont),
                               ),

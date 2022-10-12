@@ -17,6 +17,7 @@ import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -51,21 +52,21 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Container(
-            height: 60,
+            height: 60.h,
             decoration: BoxDecoration(
                 color: HexColor(AppColors.defualtColor),
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10))),
+                    bottomLeft: Radius.circular(10).r,
+                    bottomRight: Radius.circular(10).r)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SizedBox(width: 20),
+                SizedBox(width: 20.w),
                 InkWell(
                   child: SvgPicture.asset(
                     'assets/icons/live.svg',
-                    height: 28,
-                    width: 28,
+                    height: 28.h,
+                    width: 28.w,
                   ),
                   onTap: () {
                     if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
@@ -79,14 +80,14 @@ class _HomePageState extends State<HomePage> {
                   "Main".tr,
                   style: TextStyle(
                       color: HexColor(AppColors.whiteColor),
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.w500,
                       fontFamily: Const.appFont),
                 ),
-                SizedBox(width: 100),
+                SizedBox(width: 100.w),
                 InkWell(
                     child: SvgPicture.asset('assets/icons/search.svg',
-                        height: 20, width: 20),
+                        height: 20.h, width: 20.w),
                     onTap: () {
                       if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
                         AppHelper.showLoginDialog(context);
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                         Get.toNamed(Routes.search);
                     } ),
                 SizedBox(
-                  width: 20,
+                  width: 20.w,
                 ),
                 GetBuilder<HomeController>(
                     builder: (home) => InkWell(
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                           },
                         )),
                 SizedBox(
-                  width: 20,
+                  width: 20.w,
                 ),
               ],
             ),
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                           ConnectionState.done) if (listAds.isNotEmpty)
                         return ImageSlideshow(
                           width: double.infinity,
-                          height: 200,
+                          height: 250.h,
                           initialPage: 0,
                           autoPlayInterval: 3000,
                           isLoop: true,
@@ -132,26 +133,26 @@ class _HomePageState extends State<HomePage> {
                           indicatorBackgroundColor: Colors.transparent,
                           children: listAds
                               .map((element) => Container(
-                                    margin: EdgeInsets.all(10),
+                                    margin: EdgeInsets.all(10.r),
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image: NetworkImage(
                                                 '${Const.baseImagesUrl}${element.image}'),
                                             fit: BoxFit.cover),
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                            BorderRadius.circular(10).r),
                                   ))
                               .toList(),
                         );
                       else
                         return Container(
                           width: double.infinity,
-                          height: 200,
+                          height: 250.h,
                         );
                       else
                         return Container(
                           width: double.infinity,
-                          height: 200,
+                          height: 250.h,
                         );
                     },
                   ),
@@ -164,12 +165,12 @@ class _HomePageState extends State<HomePage> {
                             (day) {
                               return InkWell(
                                 child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: EdgeInsets.all(10).r,
                                   child: Text(
                                     '${day.day}',
                                     style: TextStyle(
                                         color: HexColor(AppColors.blackColor),
-                                        fontSize: 16,
+                                        fontSize: 16.sp,
                                         fontWeight: FontWeight.w400,
                                         fontFamily: Const.appFont),
                                   ),
@@ -188,11 +189,11 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                           ).toList())),
-                  SizedBox(height: 4),
+                  SizedBox(height: 4.h),
                   isLoading == true
                       ? Center(child: CircularProgressIndicator())
                       : Container(),
-                  SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   ListView.builder(
                     primary: false,
                     shrinkWrap: true,

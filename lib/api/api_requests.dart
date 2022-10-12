@@ -150,6 +150,7 @@ class ApiRequests {
     if (response.statusCode == 200 || response.statusCode == 201) {
       var body = jsonDecode(response.body);
       user = User.fromJson(body);
+      print('SUUCCESS: ${jsonEncode(user)}');
       return user;
     } else {
       var body = jsonDecode(response.body);

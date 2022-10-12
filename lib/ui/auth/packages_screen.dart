@@ -8,6 +8,7 @@ import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -28,14 +29,14 @@ class _PackagesScreenState extends State<PackagesScreen> {
       body: Column(
         children: [
           Container(
-            height: 120,
+            height: 120.h,
             decoration: BoxDecoration(
                 color: HexColor(AppColors.defualtColor),
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10))),
+                    bottomLeft: Radius.circular(10.r),
+                    bottomRight: Radius.circular(10.r))),
             child: Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: EdgeInsets.only(top: 40.r),
               child: Row(
                 children: [
                   Expanded(
@@ -44,7 +45,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                       'packages'.tr,
                       style: TextStyle(
                           color: HexColor(AppColors.whiteColor),
-                          fontSize: 22,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.w500,
                           fontFamily: Const.appFont),
                     ),
@@ -75,34 +76,34 @@ class _PackagesScreenState extends State<PackagesScreen> {
 
   Widget buildPackageItem(PackagesData package) => Container(
     width: double.infinity,
-    height: 250,
-    margin: EdgeInsets.all(10),
+    height: 250.h,
+    margin: EdgeInsets.all(10.r),
     child: Card(
       color: HexColor(AppColors.dotColor),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16)
+        borderRadius: BorderRadius.circular(16.r)
       ),
       child: Column(
         children: [
           Container(
             width: 50,
             height: 50,
-            margin: EdgeInsets.only(top: 10, bottom: 10),
+            margin: EdgeInsets.only(top: 10.r, bottom: 10.r),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(100.r),
               image: DecorationImage(image: NetworkImage('${AppHelper.getUrlImage()}${package.image}'), fit: BoxFit.cover)
             ),
           ),
           Text(AppHelper.getAppLanguage() == 'ar' ? '${package.titleAr}' : '${package.titleEn}',
-          style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 16, fontWeight: FontWeight.w800)),
+          style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 16.sp, fontWeight: FontWeight.w800)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('price'.tr,
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
-              SizedBox(width: 10),
+                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14.sp, fontWeight: FontWeight.w600)),
+              SizedBox(width: 10.w),
               Text('${package.price}',
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
+                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14.sp, fontWeight: FontWeight.w600)),
             ],
           ),
           Row(
@@ -110,7 +111,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
             children: [
               Text('days'.tr,
                   style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Text('${package.days}',
                   style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
             ],
@@ -118,14 +119,14 @@ class _PackagesScreenState extends State<PackagesScreen> {
           Spacer(),
           CustomButton(
               text: 'enroll'.tr,
-              width: 200,
-              radius: 8,
+              width: 200.w,
+              radius: 8.r,
               background: HexColor(AppColors.defualtColor),
               borderColor: AppColors.defualtColor,
               click: (){
                 _controller.payment(packageId: package.id!);
               }),
-          SizedBox(height: 16),
+          SizedBox(height: 16.h),
         ],
       ),
     ),

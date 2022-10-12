@@ -6,6 +6,7 @@ import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -24,7 +25,7 @@ class BoardingScreen extends GetView<BoardingsController> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          SizedBox(height: 18),
+          SizedBox(height: 18.h),
           FutureBuilder(
               future: _controller.fetchBoardings(),
               builder: (context, snapshot) {
@@ -80,22 +81,22 @@ class BoardingScreen extends GetView<BoardingsController> {
                 }
               }),
           Container(
-            margin: EdgeInsets.only(top: 100),
+            margin: EdgeInsets.only(top: 100.r),
             child: SmoothPageIndicator(
               controller: pageController,
               count: 3,
               effect: CustomizableEffect(
                 dotDecoration: DotDecoration(
-                  height: 4,
-                  width: 15,
+                  height: 4.h,
+                  width: 15.w,
                   color: HexColor(AppColors.dotColor),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 activeDotDecoration: DotDecoration(
-                  height: 4,
-                  width: 35,
+                  height: 4.h,
+                  width: 35.w,
                   color: HexColor(AppColors.dotActiveColor),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
               ),
               onDotClicked: (index) {
@@ -111,7 +112,7 @@ class BoardingScreen extends GetView<BoardingsController> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 550),
+            margin: EdgeInsets.only(top: 550.r),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,16 +121,16 @@ class BoardingScreen extends GetView<BoardingsController> {
                   child: Text('skip'.tr,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 24,
+                          fontSize: 24.sp,
                           color: Colors.black,
                           fontFamily: '${Const.appFont}',
                           decoration: TextDecoration.underline)),
                   onTap: () => _controller.goToLogin(),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 FloatingActionButton(
                   child: Icon(Icons.arrow_forward, color: Colors.white),
-                  elevation: 16,
+                  elevation: 16.r,
                   backgroundColor: HexColor(AppColors.defualtColor),
                   onPressed: () {
                     if (_controller.isLast.value)

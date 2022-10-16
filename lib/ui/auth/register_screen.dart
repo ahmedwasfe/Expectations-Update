@@ -9,6 +9,7 @@ import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class RegisterScreen extends GetView<RegisterController> {
   RegisterScreen({Key? key}) : super(key: key);
@@ -77,8 +78,9 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: TextFormField(
                                   controller: controller.nameController,
                                   keyboardType: TextInputType.text,
@@ -121,10 +123,10 @@ class RegisterScreen extends GetView<RegisterController> {
                                 height: 40.h,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0).r,
+                                          horizontal: 8.0)
+                                      .r,
                                   child: TextFormField(
-                                    controller:
-                                        controller.birthDateController,
+                                    controller: controller.birthDateController,
                                     keyboardType: TextInputType.datetime,
                                     enabled: false,
                                     decoration: InputDecoration(
@@ -146,8 +148,7 @@ class RegisterScreen extends GetView<RegisterController> {
                                   border: Border.all(
                                       width: 1.r,
                                       style: BorderStyle.solid,
-                                      color:
-                                          HexColor(AppColors.blackColor)),
+                                      color: HexColor(AppColors.blackColor)),
                                 ),
                               ),
                               onTap: () async {
@@ -185,8 +186,9 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: TextFormField(
                                   controller: controller.emailController,
                                   keyboardType: TextInputType.emailAddress,
@@ -225,20 +227,19 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: GetBuilder<RegisterController>(
                                   builder: (controller) => TextFormField(
-                                    controller:
-                                        controller.passwordController,
-                                    keyboardType:
-                                        TextInputType.visiblePassword,
+                                    controller: controller.passwordController,
+                                    keyboardType: TextInputType.visiblePassword,
                                     obscureText: controller.isVisiblePass,
                                     decoration: InputDecoration(
                                         hintText: 'Enter Password'.tr,
                                         suffixIcon: IconButton(
-                                          icon: Icon(
-                                              controller.visiblePassIcon),
+                                          icon:
+                                              Icon(controller.visiblePassIcon),
                                           onPressed: () =>
                                               controller.visiblePassword(),
                                         )),
@@ -276,23 +277,23 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: GetBuilder<RegisterController>(
                                   builder: (controller) => TextFormField(
-                                    controller: controller
-                                        .confirmPasswordController,
-                                    keyboardType:
-                                        TextInputType.visiblePassword,
+                                    controller:
+                                        controller.confirmPasswordController,
+                                    keyboardType: TextInputType.visiblePassword,
                                     obscureText:
                                         controller.isVisibleConfirmPass,
                                     decoration: InputDecoration(
                                       hintText: 'Confirm Password'.tr,
                                       suffixIcon: IconButton(
-                                        icon: Icon(controller
-                                            .visibleConfirmPassIcon),
-                                        onPressed: () => controller
-                                            .visibleConfirmPassword(),
+                                        icon: Icon(
+                                            controller.visibleConfirmPassIcon),
+                                        onPressed: () =>
+                                            controller.visibleConfirmPassword(),
                                       ),
                                     ),
                                     validator: (value) =>
@@ -331,14 +332,14 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: TextFormField(
                                   controller: controller.addressController,
                                   keyboardType: TextInputType.streetAddress,
                                   decoration: InputDecoration(
-                                    hintText:
-                                        'Enter your preferred address'.tr,
+                                    hintText: 'Enter your preferred address'.tr,
                                   ),
                                   validator: (value) =>
                                       AppHelper.validateAddress(
@@ -373,9 +374,47 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
-                                child: TextFormField(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 16.r),
+                                  child: IntlPhoneField(
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.white, width: 0),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      constraints: BoxConstraints(
+                                        maxWidth: 343.w,
+                                        maxHeight: 90.h,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(),
+                                      ),
+                                    ),
+                                    initialCountryCode: 'SA',
+                                    onChanged: (phone) {
+                                      controller.phoneController.text =
+                                          phone.completeNumber;
+                                      print(phone.completeNumber);
+                                      print(controller.phoneController.text);
+                                    },
+                                    validator: (value) =>
+                                        AppHelper.validatePhone(
+                                            phone: value!.completeNumber),
+                                  ),
+                                ),
+
+                                /*TextFormField(
                                   controller: controller.phoneController,
                                   keyboardType: TextInputType.phone,
                                   decoration: InputDecoration(
@@ -384,7 +423,7 @@ class RegisterScreen extends GetView<RegisterController> {
                                   validator: (value) =>
                                       AppHelper.validatePhone(
                                           phone: value!),
-                                ),
+                                ),*/
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.r),
@@ -414,15 +453,15 @@ class RegisterScreen extends GetView<RegisterController> {
                             Container(
                               height: 40.h,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0).r,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0)
+                                        .r,
                                 child: TextFormField(
                                   controller: controller.sportsController,
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
                                     hintText:
-                                        'Enter your athletic inclination'
-                                            .tr,
+                                        'Enter your athletic inclination'.tr,
                                   ),
                                   validator: (value) {},
                                 ),

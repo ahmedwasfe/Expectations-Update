@@ -84,7 +84,7 @@ class RegisterController extends GetxController {
   }
 
   void createAccount() {
-    print("createAccount");
+    print("createAccount: ${phoneController.text}");
     bool isValidate = formKey.currentState!.validate();
     if (isValidate) {
       isLoading(true);

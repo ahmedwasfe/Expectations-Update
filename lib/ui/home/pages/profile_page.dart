@@ -12,6 +12,7 @@ import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -421,7 +422,7 @@ class _ProfilePageState extends State<ProfilePage> {
         builder: (con) => AlertDialog(
           content: Container(
             width: double.infinity,
-            height: 180,
+            height: 200,
             child: Column(
               children: [
                 SizedBox(height: 16),
@@ -429,8 +430,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   'delete_account'.tr,
                   style: TextStyle(
                       color: HexColor(AppColors.defualtColor),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                       fontFamily: Const.appFont),
                 ),
                 SizedBox(height: 16),
@@ -441,9 +442,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       fontFamily: Const.appFont),
+                  textAlign: TextAlign.center,
                 ),
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

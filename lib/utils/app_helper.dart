@@ -184,7 +184,7 @@ class AppHelper extends GetxService {
   }
 
   static String loadImagePath(String imagePath){
-    return 'https://tawaq3.com/expectations/$imagePath';
+    return '${ApiRequests.imageUrl}$imagePath';
   }
 
   static String formatMatchTime(Match match) {

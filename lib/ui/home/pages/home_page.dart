@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                           ConnectionState.done) if (listAds.isNotEmpty)
                         return ImageSlideshow(
                           width: double.infinity,
-                          height: 250.h,
+                          height: 200.h,
                           initialPage: 0,
                           autoPlayInterval: 3000,
                           isLoop: true,

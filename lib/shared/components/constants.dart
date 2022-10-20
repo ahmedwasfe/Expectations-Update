@@ -1,6 +1,5 @@
 class Const {
-  static const String baseImagesUrl = 'https://tawaq3.com/expectations/';
-  static const String baseUrl = 'https://tawaq3.com/expectations/api';
+  static const String baseImagesUrl = 'https://cp.tawaq3.com/';
 
   // static const String baseUrl = 'http://expectations.creativesarea.com/api';
 

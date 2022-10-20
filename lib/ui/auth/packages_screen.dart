@@ -1,5 +1,3 @@
-
-
 import 'package:expectations/controllers/register_controller.dart';
 import 'package:expectations/model/Packages/packages.dart';
 import 'package:expectations/shared/components/components.dart';
@@ -20,7 +18,6 @@ class PackagesScreen extends StatefulWidget {
 }
 
 class _PackagesScreenState extends State<PackagesScreen> {
-
   RegisterController _controller = Get.put(RegisterController());
 
   @override
@@ -57,14 +54,16 @@ class _PackagesScreenState extends State<PackagesScreen> {
           FutureBuilder(
             future: _controller.getPackages(),
             builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.done)
+              if (snapshot.connectionState == ConnectionState.done)
                 return Expanded(
                   child: ListView.builder(
                       itemCount: _controller.listPackages.length,
-                      itemBuilder: (context, index) => buildPackageItem(_controller.listPackages[index])),
+                      itemBuilder: (context, index) =>
+                          buildPackageItem(_controller.listPackages[index])),
                 );
-              else if(snapshot.connectionState == ConnectionState.waiting)
-                return Expanded(child: Center(child: CircularProgressIndicator()));
+              else if (snapshot.connectionState == ConnectionState.waiting)
+                return Expanded(
+                    child: Center(child: CircularProgressIndicator()));
               else
                 return Container();
             },
@@ -75,60 +74,84 @@ class _PackagesScreenState extends State<PackagesScreen> {
   }
 
   Widget buildPackageItem(PackagesData package) => Container(
-    width: double.infinity,
-    height: 250.h,
-    margin: EdgeInsets.all(10.r),
-    child: Card(
-      color: HexColor(AppColors.dotColor),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r)
-      ),
-      child: Column(
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            margin: EdgeInsets.only(top: 10.r, bottom: 10.r),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100.r),
-              image: DecorationImage(image: NetworkImage('${AppHelper.getUrlImage()}${package.image}'), fit: BoxFit.cover)
-            ),
-          ),
-          Text(AppHelper.getAppLanguage() == 'ar' ? '${package.titleAr}' : '${package.titleEn}',
-          style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 16.sp, fontWeight: FontWeight.w800)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        width: double.infinity,
+        height: 250.h,
+        margin: EdgeInsets.all(10.r),
+        child: Card(
+          color: HexColor(AppColors.dotColor),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+          child: Column(
             children: [
-              Text('price'.tr,
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14.sp, fontWeight: FontWeight.w600)),
-              SizedBox(width: 10.w),
-              Text('${package.price}',
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14.sp, fontWeight: FontWeight.w600)),
+              Container(
+                width: 50,
+                height: 50,
+                margin: EdgeInsets.only(top: 10.r, bottom: 10.r),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100.r),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            '${AppHelper.getUrlImage()}${package.image}'),
+                        fit: BoxFit.cover)),
+              ),
+              Text(
+                  AppHelper.getAppLanguage() == 'ar'
+                      ? '${package.titleAr}'
+                      : '${package.titleEn}',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: Const.appFont,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w800)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('price'.tr,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: Const.appFont,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600)),
+                  SizedBox(width: 10.w),
+                  Text('${package.price}',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: Const.appFont,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600)),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('days'.tr,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: Const.appFont,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600)),
+                  SizedBox(width: 10.w),
+                  Text('${package.days}',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: Const.appFont,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600)),
+                ],
+              ),
+              Spacer(),
+              CustomButton(
+                  text: 'enroll'.tr,
+                  width: 200.w,
+                  radius: 8.r,
+                  background: HexColor(AppColors.defualtColor),
+                  borderColor: AppColors.defualtColor,
+                  click: () {
+                    _controller.payNow(package.price!.toDouble());
+                  }),
+              SizedBox(height: 16.h),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('days'.tr,
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
-              SizedBox(width: 10.w),
-              Text('${package.days}',
-                  style: TextStyle(color: Colors.white, fontFamily: Const.appFont, fontSize: 14, fontWeight: FontWeight.w600)),
-            ],
-          ),
-          Spacer(),
-          CustomButton(
-              text: 'enroll'.tr,
-              width: 200.w,
-              radius: 8.r,
-              background: HexColor(AppColors.defualtColor),
-              borderColor: AppColors.defualtColor,
-              click: (){
-                _controller.payment(packageId: package.id!);
-              }),
-          SizedBox(height: 16.h),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

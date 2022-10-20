@@ -117,8 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor),)
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.profile),
@@ -141,8 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.resetPassword),
@@ -165,8 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => changelangauge(context),
@@ -189,8 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.notifications),
@@ -215,22 +211,21 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                     Spacer(),
-                                    SvgPicture.asset('assets/icons/arrow.svg',
-                                        width: 14, height: 14),
+                                    Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                                   ],
                                 ),
                                 onTap: () {
                                   home.getCurrenNavIndex(navIndex: 2);
                                 },
                               ))),
-                  /*Container(
+                  Container(
                     margin: EdgeInsets.only(top: 40, right: 24, left: 24),
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/share_app.svg'),
+                          Image.asset('assets/icons/subscriber.png'),
                           SizedBox(width: 20),
-                          Text('شارك التطبيق',
+                          Text('subscribe'.tr,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -238,13 +233,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontFamily: Const.appFont,
                             ),),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg', width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: (){
-                      },
+                      onTap: () => Get.toNamed(Routes.packages),
                     ),
-                  ),*/
+                  ),
                   Container(
                     margin: EdgeInsets.only(top: 40, right: 24, left: 24),
                     child: InkWell(
@@ -262,8 +256,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.contactUs),
@@ -286,8 +279,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.aboutUs),
@@ -314,8 +306,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => deleteAccount(context),
@@ -339,8 +330,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/arrow.svg',
-                              width: 14, height: 14),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => logout(context),

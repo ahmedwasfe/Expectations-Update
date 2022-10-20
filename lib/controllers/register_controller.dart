@@ -1,11 +1,21 @@
+import 'dart:convert';
+
 import 'package:expectations/api/api_requests.dart';
 import 'package:expectations/model/Packages/packages.dart';
 import 'package:expectations/model/Packages/payment.dart';
 import 'package:expectations/model/register.dart';
+import 'package:expectations/model/user.dart';
 import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paytabs_bridge/BaseBillingShippingInfo.dart';
+import 'package:flutter_paytabs_bridge/IOSThemeConfiguration.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkApms.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkConfigurationDetails.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkLocale.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkTokeniseType.dart';
+import 'package:flutter_paytabs_bridge/flutter_paytabs_bridge.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -130,6 +140,84 @@ class RegisterController extends GetxController {
         listPackages.clear();
         listPackages.addAll(value.data!);
       }
+    });
+  }
+
+  PaymentSdkConfigurationDetails generateConfig(double amount) {
+
+    String username = AppHelper.getUserName();
+    UserData? user = AppHelper.getUserData(key: Const.KEY_USER_DATA);
+    print('username: $username');
+    print('User username: ${user.name}');
+
+    var billingDetails = BillingDetails(
+        "$username",
+        "${user.email}",
+        "${user.phone}", "${user.address}", "", "", "", "12313");
+
+    var shippingDetails = ShippingDetails(
+        "$username",
+        "${user.email}",
+        "${user.phone}", "${user.address}", "", "", "", "12313");
+
+    List<PaymentSdkAPms> apms = [];
+    apms.add(PaymentSdkAPms.AMAN);
+
+    var configuration = PaymentSdkConfigurationDetails(
+        profileId: "91958",
+        serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+        clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+        cartId: "Sample Payment",
+        cartDescription: "Flowers",
+        merchantName: "Flowers Store",
+        screentTitle: "Pay with Card",
+        amount: amount,
+        locale: AppHelper.getAppLanguage() == 'ar' ? PaymentSdkLocale.AR : PaymentSdkLocale.EN,
+        showBillingInfo: true,
+        showShippingInfo: true,
+        forceShippingInfo: false,
+        currencyCode: "SAR",
+        merchantCountryCode: "SA",
+        billingDetails: billingDetails,
+        shippingDetails: shippingDetails,
+        alternativePaymentMethods: apms,
+        linkBillingNameWithCardHolderName: true);
+
+    var theme = IOSThemeConfigurations();
+
+    theme.logoImage = "assets/icons/logo4.png";
+
+    configuration.iOSThemeConfigurations = theme;
+    configuration.tokeniseType = PaymentSdkTokeniseType.MERCHANT_MANDATORY;
+    return configuration;
+  }
+
+  Future<void> payNow(double amount) async {
+
+    FlutterPaytabsBridge.startCardPayment(generateConfig(amount), (event) {
+      if (event["status"] == "success") {
+        // Handle transaction details here.
+        var transactionDetails = event["data"];
+        print('success: $transactionDetails');
+        if (transactionDetails["isSuccess"]) {
+          var transactionDetails = event["data"];
+          print('isSuccess: $transactionDetails');
+        } else {
+          print("failed transaction");
+        }
+      } else if (event["status"] == "error") {
+        // Handle error here.
+        var transactionDetails = event["data"];
+        print('error: $transactionDetails');
+        print('error: ${event["status"]}');
+      } else if (event["status"] == "event") {
+        // Handle events here.
+        var transactionDetails = event["data"];
+        print('event: $transactionDetails');
+      }
+      update();
+    }).then((value) {
+      print('startCardPayment: ${jsonEncode(value)}');
     });
   }
 

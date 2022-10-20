@@ -156,6 +156,7 @@ class MyLocal implements Translations {
           "please_login": "الرجاء تسجيل الدخول أولاً للمتابعة \n لأنك الآن في وضع الضيف",
           "delete_account": "حذف الحساب",
           "delete_account_confirmation": "هل أنت متأكد أنك تريد حذف حسابك؟",
+          "subscribe": "إشتراك",
         },
         "en": {
           "English": "English",
@@ -312,6 +313,7 @@ class MyLocal implements Translations {
           "please_login": "Please login first to continue \nBecause you are now in guest mode",
           "delete_account": "Delete account",
           "delete_account_confirmation": "Are you sure want to delete your account?",
+          "subscribe": "Subscribe",
         }
       };
 }

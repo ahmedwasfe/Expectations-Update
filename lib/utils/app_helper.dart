@@ -281,7 +281,7 @@ class AppHelper extends GetxService {
   }
 
   static String getUrlImage(){
-    return 'https://tawaq3.com/expectations/';
+    return '${Const.baseImagesUrl}';
   }
 
   static String getAppLanguage(){

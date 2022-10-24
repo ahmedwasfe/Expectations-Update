@@ -59,7 +59,7 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_screenutil: ^5.5.4
   intl_phone_field: ^3.1.0
-  flutter_paytabs_bridge: ^2.3.0
+#  flutter_paytabs_bridge: ^2.3.0
 
 
 dev_dependencies:

@@ -167,7 +167,6 @@ class AppHelper extends GetxService {
     return match.teamHome!.image!.replaceAll('\\', '/');
   }
 
-
   static String getTeamAwayImage(Match match) {
     return match.teamAway!.image!.replaceAll('\\', '/');
   }

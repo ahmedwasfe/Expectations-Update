@@ -32,34 +32,7 @@ class _AllLiveScreenState extends State<AllLiveScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            height: 95,
-            margin: EdgeInsets.only(top: 20),
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10))),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(width: 20),
-                InkWell(
-                    child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-                    onTap: () => Get.offAndToNamed(Routes.home)),
-                Spacer(),
-                Text(
-                  'all_live'.tr,
-                  style: TextStyle(
-                      color: HexColor(AppColors.whiteColor),
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: Const.appFont),
-                ),
-                SizedBox(width: 100),
-              ],
-            ),
-          ),
+          MainToolBar(title: 'all_live', isBack: true, route: Routes.home),
           Expanded(
             child: FutureBuilder(
               future: appController.fetchAllLive(),

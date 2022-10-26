@@ -5,6 +5,7 @@ import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -196,6 +197,9 @@ class MainToolBar extends StatelessWidget {
   MainToolBar({required this.title, this.route, this.isBack, this.isProfile});
 
   Widget AppTooBar() => AppBar(
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: HexColor(AppColors.defualtColor)
+    ),
     backgroundColor: HexColor(AppColors.defualtColor),
     toolbarHeight: 60.h,
     title: Text(
@@ -232,7 +236,6 @@ class MainToolBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('LANG: ${AppHelper.getAppLanguage()}');
     return AppTooBar();
      /*
       Container(

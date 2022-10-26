@@ -316,23 +316,36 @@ class AppHelper extends GetxService {
     showDialog(
         context: context,
         builder: (con) => AlertDialog(
+          clipBehavior: Clip.antiAlias,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
           content: Container(
             height: 200,
+            clipBehavior: Clip.antiAlias,
+            padding: EdgeInsetsDirectional.only(top: 10),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
                 SizedBox(height: 16),
-                Text(
-                  'please_login'.tr,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: Const.appFont),
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 8, end: 8),
+                  child: Text(
+                    'please_login'.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: Const.appFont),
+                  ),
                 ),
+                Spacer(),
                 Container(
                     margin: EdgeInsets.only(top: 50),
                     child: CustomButton(
-                        radius: 8,
+                        radius: 0,
                         background: HexColor(AppColors.defualtColor),
                         text: 'login'.tr,
                         click: () => Get.offAndToNamed(Routes.login))

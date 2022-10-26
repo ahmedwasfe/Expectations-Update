@@ -9,13 +9,13 @@ import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_paytabs_bridge/BaseBillingShippingInfo.dart';
-// import 'package:flutter_paytabs_bridge/IOSThemeConfiguration.dart';
-// import 'package:flutter_paytabs_bridge/PaymentSdkApms.dart';
-// import 'package:flutter_paytabs_bridge/PaymentSdkConfigurationDetails.dart';
-// import 'package:flutter_paytabs_bridge/PaymentSdkLocale.dart';
-// import 'package:flutter_paytabs_bridge/PaymentSdkTokeniseType.dart';
-// import 'package:flutter_paytabs_bridge/flutter_paytabs_bridge.dart';
+import 'package:flutter_paytabs_bridge/BaseBillingShippingInfo.dart';
+import 'package:flutter_paytabs_bridge/IOSThemeConfiguration.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkApms.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkConfigurationDetails.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkLocale.dart';
+import 'package:flutter_paytabs_bridge/PaymentSdkTokeniseType.dart';
+import 'package:flutter_paytabs_bridge/flutter_paytabs_bridge.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -144,7 +144,7 @@ class RegisterController extends GetxController {
   }
 
   // TODO Payment
-  /*PaymentSdkConfigurationDetails generateConfig(double amount) {
+  PaymentSdkConfigurationDetails generateConfig(double amount) {
 
     String username = AppHelper.getUserName();
     UserData? user = AppHelper.getUserData(key: Const.KEY_USER_DATA);
@@ -191,35 +191,36 @@ class RegisterController extends GetxController {
     configuration.iOSThemeConfigurations = theme;
     configuration.tokeniseType = PaymentSdkTokeniseType.MERCHANT_MANDATORY;
     return configuration;
-  }*/
+  }
 
   Future<void> payNow(double amount) async {
 
-    // FlutterPaytabsBridge.startCardPayment(generateConfig(amount), (event) {
-    //   if (event["status"] == "success") {
-    //     // Handle transaction details here.
-    //     var transactionDetails = event["data"];
-    //     print('success: $transactionDetails');
-    //     if (transactionDetails["isSuccess"]) {
-    //       var transactionDetails = event["data"];
-    //       print('isSuccess: $transactionDetails');
-    //     } else {
-    //       print("failed transaction");
-    //     }
-    //   } else if (event["status"] == "error") {
-    //     // Handle error here.
-    //     var transactionDetails = event["data"];
-    //     print('error: $transactionDetails');
-    //     print('error: ${event["status"]}');
-    //   } else if (event["status"] == "event") {
-    //     // Handle events here.
-    //     var transactionDetails = event["data"];
-    //     print('event: $transactionDetails');
-    //   }
-    //   update();
-    // }).then((value) {
-    //   print('startCardPayment: ${jsonEncode(value)}');
-    // });
+    FlutterPaytabsBridge.startCardPayment(generateConfig(amount), (event) {
+      if (event["status"] == "success") {
+        // Handle transaction details here.
+        var transactionDetails = event["data"];
+        print('success: $transactionDetails');
+        if (transactionDetails["isSuccess"]) {
+          var transactionDetails = event["data"];
+          print('isSuccess: $transactionDetails');
+          AppHelper.showToast(message: 'done payment successfully'.tr, color: Colors.green);
+        } else {
+          print("failed transaction");
+        }
+      } else if (event["status"] == "error") {
+        // Handle error here.
+        var transactionDetails = event["data"];
+        print('error: $transactionDetails');
+        print('error: ${event["status"]}');
+      } else if (event["status"] == "event") {
+        // Handle events here.
+        var transactionDetails = event["data"];
+        print('event: $transactionDetails');
+      }
+      update();
+    }).then((value) {
+      print('startCardPayment: ${jsonEncode(value)}');
+    });
   }
 
   void payment({required int packageId}) {

@@ -45,7 +45,7 @@ class _AllLiveScreenState extends State<AllLiveScreen> {
               children: [
                 SizedBox(width: 20),
                 InkWell(
-                    child: SvgPicture.asset('assets/icons/back.svg'),
+                    child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
                     onTap: () => Get.offAndToNamed(Routes.home)),
                 Spacer(),
                 Text(

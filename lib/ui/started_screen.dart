@@ -26,7 +26,7 @@ class StartedScreen extends GetView<BoardingsController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/icons/logo4.png',
+                'assets/icons/logo41.png',
                 width: 200.w,
                 height: 200.h,
               ),
@@ -93,13 +93,13 @@ class StartedScreen extends GetView<BoardingsController> {
                   ],
                 ),
               ),
-              SizedBox(height: 50.h),
+              SizedBox(height: 20.h),
               InkWell(
                 child: Text(
                   'skip'.tr,
                   style: TextStyle(
                       color: HexColor(AppColors.blackColor),
-                      fontSize: 16.sp,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: Const.appFont),
                 ),

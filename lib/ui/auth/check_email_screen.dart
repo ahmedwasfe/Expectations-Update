@@ -29,10 +29,7 @@ class CheckEmailScreen extends StatelessWidget {
                 children: [
                   SizedBox(width: 20.w),
                   InkWell(
-                      child: SvgPicture.asset(
-                        'assets/icons/back.svg',
-                        color: Colors.black,
-                      ),
+                      child: Icon(Icons.arrow_back_ios_new_rounded),
                       onTap: () => Get.offAndToNamed(Routes.forgetPassword)),
                 ],
               ),

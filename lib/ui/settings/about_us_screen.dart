@@ -1,5 +1,6 @@
 import 'package:expectations/controllers/boarding_controller.dart';
 import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -16,36 +17,7 @@ class AboutUsScreen extends GetView<BoardingsController> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24))),
-            child: Container(
-              margin: EdgeInsets.only(top: 25),
-              child: Row(
-                children: [
-                  SizedBox(width: 20),
-                  InkWell(
-                      child: SvgPicture.asset('assets/icons/back.svg'),
-                      onTap: () => Get.offAndToNamed(Routes.home)),
-                  Expanded(
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      'About Us'.tr,
-                      style: TextStyle(
-                          color: HexColor(AppColors.whiteColor),
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: Const.appFont),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          MainToolBar(title: 'About Us', isBack: true, route: Routes.home),
           Expanded(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -57,14 +29,12 @@ class AboutUsScreen extends GetView<BoardingsController> {
                     margin: EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/icons/logo4.png'),
+                            image: AssetImage('assets/icons/logo41.png'),
                             fit: BoxFit.contain),
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                            color: HexColor(AppColors.defualtColor))),
+                        ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 20, right: 20),
+                    margin: EdgeInsets.only(top: 30, right: 20),
                     padding: EdgeInsets.only(left: 10),
                     alignment: Alignment.centerRight,
                     child: Column(

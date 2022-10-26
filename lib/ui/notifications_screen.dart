@@ -1,6 +1,7 @@
 import 'package:expectations/controllers/notifications_controller.dart';
 import 'package:expectations/model/notifications.dart';
 import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -9,48 +10,32 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class NotificationsScreen extends GetView<NotificationsController> {
+
+  NotificationsController _controller = Get.put(NotificationsController());
+
   @override
   Widget build(BuildContext context) {
-    controller.fetchNotifications();
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24))),
-            child: Container(
-              margin: EdgeInsets.only(top: 25),
-              child: Row(
-                children: [
-                  SizedBox(width: 20),
-                  InkWell(
-                      child: SvgPicture.asset('assets/icons/back.svg'),
-                      onTap: () => Get.offAndToNamed(Routes.home)),
-                  Expanded(
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      'Notifications'.tr,
-                      style: TextStyle(
-                          color: HexColor(AppColors.whiteColor),
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: Const.appFont),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          MainToolBar(title: 'Notifications'.tr, isBack: true, route: Routes.home),
+          FutureBuilder(
+           future: _controller.fetchNotifications(),
+            builder: (context, snapShot) {
+             if(snapShot.connectionState == ConnectionState.done){
+               return Expanded(
+                   child: ListView.builder(
+                       physics: BouncingScrollPhysics(),
+                       itemCount: _controller.listNotifications.length,
+                       itemBuilder: (context, index) => buildNotificationsItem(
+                           _controller.listNotifications[index])));
+             }else if(snapShot.connectionState == ConnectionState.waiting){
+               return Expanded(child: Center(child: CircularProgressIndicator(color: HexColor(AppColors.defualtColor))));
+             }else {
+               return Container();
+             }
+            },
           ),
-          Expanded(
-              child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  itemCount: controller.listNotifications.length,
-                  itemBuilder: (context, index) => buildNotificationsItem(
-                      controller.listNotifications[index]))),
         ],
       ),
     );

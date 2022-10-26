@@ -17,36 +17,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
         key: controller.formKey,
         child: Column(
           children: [
-            Container(
-              height: 120,
-              decoration: BoxDecoration(
-                  color: HexColor(AppColors.defualtColor),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(24),
-                      bottomRight: Radius.circular(24))),
-              child: Container(
-                margin: EdgeInsets.only(top: 25),
-                child: Row(
-                  children: [
-                    SizedBox(width: 20),
-                    InkWell(
-                        child: SvgPicture.asset('assets/icons/back.svg'),
-                        onTap: () => Get.offAndToNamed(Routes.home)),
-                    Expanded(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'Contact Us'.tr,
-                        style: TextStyle(
-                            color: HexColor(AppColors.whiteColor),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: Const.appFont),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MainToolBar(title: 'Contact Us', isBack: true, route: Routes.home),
             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -55,14 +26,11 @@ class ContactUsScreen extends GetView<ContactUsController> {
                     Container(
                       width: 100,
                       height: 100,
-                      margin: EdgeInsets.only(top: 20),
+                      margin: EdgeInsets.only(top: 30),
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/icons/logo4.png'),
-                              fit: BoxFit.contain),
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(
-                              color: HexColor(AppColors.defualtColor))),
+                              image: AssetImage('assets/icons/logo41.png'),
+                              fit: BoxFit.contain),),
                     ),
                     /*Container(
                       margin: EdgeInsets.only(right: 20, top: 40),

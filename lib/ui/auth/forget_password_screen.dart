@@ -11,13 +11,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
+  ForgetPasswordController _controller = Get.put(ForgetPasswordController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: controller.formKey,
+        key: _controller.formKeyPassword,
         child: Column(
           children: [
             Container(
@@ -33,7 +33,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                   children: [
                     SizedBox(width: 20.w),
                     InkWell(
-                        child: SvgPicture.asset('assets/icons/back.svg'),
+                        child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
                         onTap: () => Get.offAndToNamed(Routes.login)),
                     Expanded(
                       child: Text(
@@ -84,18 +84,21 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 20.r, top: 20.r),
+                      margin: EdgeInsetsDirectional.only(end: 20.r, top: 20.r),
                       alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'email'.tr,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
+                          Container(
+                            child: Text(
+                              'email'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: Const.appFont),
+                            ),
+                            margin: EdgeInsetsDirectional.only(start: 20.r),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 20, top: 8).r,

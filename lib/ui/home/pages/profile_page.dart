@@ -22,7 +22,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   ProfileController _controller = Get.find();
 
   @override
@@ -42,63 +41,69 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   FutureBuilder(
-                    future: _controller.fetchUserData(),
+                      future: _controller.fetchUserData(),
                       builder: (context, snapshot) {
                         // print('PROFILE IPAddress: ${AppHelper.getUserData(key: Const.KEY_USER_DATA).ipAddress}');
                         // print('PROFILE IPAddress: ${AppHelper.getRegisterData(key: Const.KEY_USER_DATA).ipAddress}');
-                      if(snapshot.connectionState == ConnectionState.done)
-                        return Container(
-                          margin: EdgeInsetsDirectional.only(top: 30, start: 20, ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 80,
-                                child: CircleAvatar(
-                                    backgroundColor: Colors.transparent,
-                                    backgroundImage: NetworkImage(
-                                        'https://i.postimg.cc/B6GcTk8F/default-avatar2.png')),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(
-                                        color: HexColor(AppColors.defualtColor))),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '${_controller.profile.name}',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: Const.appFont),
-                                    ),
-                                    Text(
-                                      '${_controller.profile.phone}',
-                                      style: TextStyle(
-                                          color: HexColor(AppColors.greyColor),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: Const.appFont),
-                                    ),
-                                  ],
+                        if (snapshot.connectionState == ConnectionState.done)
+                          return Container(
+                            margin: EdgeInsetsDirectional.only(
+                              top: 30,
+                              start: 20,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  child: CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      backgroundImage: NetworkImage(
+                                          'https://i.postimg.cc/B6GcTk8F/default-avatar2.png')),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                          color: HexColor(
+                                              AppColors.defualtColor))),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      else if(snapshot.connectionState == ConnectionState.waiting)
-                        return Center(
-                          child: Container(
-                            width: 20,
-                              height: 20,
-                              margin: EdgeInsets.only(top: 28),
-                              child: CircularProgressIndicator()),
-                        );
-                      else
-                        return Container();
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        '${_controller.profile.name}',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: Const.appFont),
+                                      ),
+                                      Text(
+                                        '${_controller.profile.phone}',
+                                        style: TextStyle(
+                                            color:
+                                                HexColor(AppColors.greyColor),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: Const.appFont),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        else if (snapshot.connectionState ==
+                            ConnectionState.waiting)
+                          return Center(
+                            child: Container(
+                                width: 20,
+                                height: 20,
+                                margin: EdgeInsets.only(top: 28),
+                                child: CircularProgressIndicator()),
+                          );
+                        else
+                          return Container();
                       }),
                   Container(
                     margin: EdgeInsets.only(top: 48, right: 24, left: 24),
@@ -117,7 +122,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor),)
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: HexColor(AppColors.defualtColor),
+                          )
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.profile),
@@ -140,7 +149,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.resetPassword),
@@ -163,7 +173,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => changelangauge(context),
@@ -186,7 +197,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.notifications),
@@ -211,7 +223,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                     Spacer(),
-                                    Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                                    Icon(Icons.arrow_forward_ios_rounded,
+                                        size: 20,
+                                        color: HexColor(AppColors.defualtColor))
                                   ],
                                 ),
                                 onTap: () {
@@ -225,15 +239,18 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Image.asset('assets/icons/subscriber.png'),
                           SizedBox(width: 20),
-                          Text('subscribe'.tr,
+                          Text(
+                            'subscribe'.tr,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                               fontFamily: Const.appFont,
-                            ),),
+                            ),
+                          ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.packages),
@@ -256,7 +273,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.contactUs),
@@ -279,15 +297,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.aboutUs),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(
-                        top: 40, right: 24, left: 24),
+                    margin: EdgeInsets.only(top: 40, right: 24, left: 24),
                     child: InkWell(
                       child: Row(
                         children: [
@@ -306,7 +324,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => deleteAccount(context),
@@ -330,7 +349,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: HexColor(AppColors.defualtColor))
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
                       onTap: () => logout(context),
@@ -345,154 +365,234 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  static void showLoginDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+              clipBehavior: Clip.antiAlias,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              content: Container(
+                height: 300.h,
+                clipBehavior: Clip.antiAlias,
+                padding: EdgeInsetsDirectional.only(top: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  children: [
+                    SizedBox(height: 16.h),
+                    Container(
+                        margin: EdgeInsets.only(top: 8.r),
+                        height: 150.h,
+                        width: 230.w,
+                        child: Image.asset('assets/images/login.png',
+                            fit: BoxFit.cover)),
+                    Spacer(),
+                    Container(
+                        child: CustomButton(
+                            height: 52,
+                            background: Colors.black,
+                            text: 'login'.tr,
+                            click: () => Get.offAndToNamed(Routes.login))),
+                  ],
+                ),
+              ),
+            ));
+  }
+
   void changelangauge(BuildContext context) {
     showDialog(
         context: context,
         builder: (con) => AlertDialog(
-          content: GetBuilder<LanguageController>(
-            builder: (controller) => Container(
-              width: double.infinity,
-              height: 150,
-              child: Column(
-                children: [
-                  SizedBox(height: 16),
-                  Text(
-                    'Are you want to change language'.tr,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: Const.appFont),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          child: Text(
-                            'English',
-                            style: TextStyle(
-                                color: HexColor(AppColors.defualtColor),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
-                          ),
-                          onPressed: () {
-                            controller.saveLang("en");
-                            Navigator.pop(context);
-                          },
+              clipBehavior: Clip.antiAlias,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              content: GetBuilder<LanguageController>(
+                builder: (controller) => Container(
+                  width: 350,
+                  height: 180,
+                  clipBehavior: Clip.antiAlias,
+                  padding: EdgeInsetsDirectional.only(top: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 16),
+                      Text(
+                        'Are you want to change language'.tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: Const.appFont),
+                      ),
+                      Spacer(),
+                      Container(
+                        margin: EdgeInsets.only(top: 16, bottom: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CustomButton(
+                                text: 'english'.tr,
+                                textColor: AppHelper.getAppLanguage() == 'en'
+                                    ? Colors.white
+                                    : HexColor(AppColors.defualtColor),
+                                height: 48,
+                                width: 100,
+                                radius: 8,
+                                borderWidth:
+                                    AppHelper.getAppLanguage() == 'en' ? 0 : 1,
+                                background: AppHelper.getAppLanguage() == 'en'
+                                    ? HexColor(AppColors.defualtColor)
+                                    : HexColor(AppColors.backgroundColor),
+                                isUpperCase: false,
+                                borderColor: AppHelper.getAppLanguage() == 'en'
+                                    ? AppColors.defualtColor
+                                    : AppColors.defualtColor,
+                                click: () {
+                                  controller.saveLang("en");
+                                  Navigator.pop(context);
+                                }),
+                            CustomButton(
+                                text: 'arabic'.tr,
+                                textColor: AppHelper.getAppLanguage() == 'ar'
+                                    ? Colors.white
+                                    : HexColor(AppColors.defualtColor),
+                                height: 48,
+                                width: 100,
+                                radius: 8,
+                                borderWidth:
+                                    AppHelper.getAppLanguage() == 'ar' ? 0 : 1,
+                                background: AppHelper.getAppLanguage() == 'ar'
+                                    ? HexColor(AppColors.defualtColor)
+                                    : HexColor(AppColors.backgroundColor),
+                                isUpperCase: false,
+                                borderColor: AppHelper.getAppLanguage() == 'ar'
+                                    ? AppColors.defualtColor
+                                    : AppColors.defualtColor,
+                                click: () {
+                                  controller.saveLang("ar");
+                                  Navigator.pop(context);
+                                }),
+                          ],
                         ),
-                        TextButton(
-                            child: Text(
-                              'العربية',
-                              style: TextStyle(
-                                  color: HexColor(AppColors.blackColor),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: Const.appFont),
-                            ),
-                            onPressed: () {
-                              controller.saveLang("ar");
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ));
+            ));
   }
 
   void deleteAccount(BuildContext context) {
     showDialog(
         context: context,
         builder: (con) => AlertDialog(
-          content: Container(
-            width: double.infinity,
-            height: 200,
-            child: Column(
-              children: [
-                SizedBox(height: 16),
-                Text(
-                  'delete_account'.tr,
-                  style: TextStyle(
-                      color: HexColor(AppColors.defualtColor),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: Const.appFont),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'delete_account_confirmation'.tr,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: Const.appFont),
-                  textAlign: TextAlign.center,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(
-                          child: Text(
-                            'Yes'.tr,
-                            style: TextStyle(
-                                color: HexColor(AppColors.defualtColor),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
-                          ),
-                          onPressed: () {
-                            HomeController controller = Get.find();
-                            ApiRequests.deleteAccount(
-                                token: AppHelper.getCurrentUserToken())
-                                .then((value) {
-                              AppHelper.clearData(key: Const.KEY_USER_TOKEN)
-                                  .then((value) {
-                                AppHelper.clearData(
-                                    key: Const.KEY_USER_DATA)
+              clipBehavior: Clip.antiAlias,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              content: Container(
+                clipBehavior: Clip.antiAlias,
+                padding: EdgeInsetsDirectional.only(top: 10.r),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.r)),
+                width: 350,
+                height: 250,
+                child: Column(
+                  children: [
+                    SizedBox(height: 16),
+                    Text(
+                      'delete_account'.tr,
+                      style: TextStyle(
+                          color: HexColor(AppColors.defualtColor),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: Const.appFont),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'delete_account_confirmation'.tr,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: Const.appFont),
+                      textAlign: TextAlign.center,
+                    ),
+                    Spacer(),
+                    Container(
+                      margin: EdgeInsets.only(top: 16, bottom: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CustomButton(
+                              text: 'delete'.tr,
+                              textColor: Colors.white,
+                              height: 48,
+                              width: 100,
+                              radius: 8,
+                              background: HexColor(AppColors.defualtColor),
+                              isUpperCase: false,
+                              borderColor: AppColors.defualtColor,
+                              click: () {
+                                HomeController controller = Get.find();
+                                ApiRequests.deleteAccount(
+                                        token: AppHelper.getCurrentUserToken())
                                     .then((value) {
-                                  Get.offAndToNamed(Routes.login);
-                                  controller.navIndex = 0;
-                                  controller.getCurrenNavIndex(navIndex: 0);
+                                  AppHelper.clearData(key: Const.KEY_USER_TOKEN)
+                                      .then((value) {
+                                    AppHelper.clearData(
+                                            key: Const.KEY_USER_DATA)
+                                        .then((value) {
+                                      Get.offAndToNamed(Routes.login);
+                                      controller.navIndex = 0;
+                                      controller.getCurrenNavIndex(navIndex: 0);
+                                    });
+                                  });
+                                }).catchError((error) {
+                                  print('catchError: $error');
                                 });
-                              });
-                            }).catchError((error) {
-                              print('catchError: $error');
-                            });
-                          }),
-                      TextButton(
-                          child: Text(
-                            'No'.tr,
-                            style: TextStyle(
-                                color: HexColor(AppColors.blackColor),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
-                          ),
-                          onPressed: () => Navigator.pop(context)),
-                    ],
-                  ),
+                              }),
+                          CustomButton(
+                              text: 'cancel'.tr,
+                              textColor: HexColor(AppColors.defualtColor),
+                              height: 48,
+                              width: 100,
+                              radius: 8,
+                              borderWidth: 1,
+                              background: HexColor(AppColors.backgroundColor),
+                              isUpperCase: false,
+                              borderColor: AppColors.defualtColor,
+                              click: () {
+                                Navigator.pop(context);
+                              }),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        ));
+              ),
+            ));
   }
 
   void logout(BuildContext context) {
     showDialog(
         context: context,
         builder: (con) => AlertDialog(
+              clipBehavior: Clip.antiAlias,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
               content: Container(
-                width: double.infinity,
-                height: 180,
+                width: 380,
+                height: 250,
+                clipBehavior: Clip.antiAlias,
+                padding: EdgeInsetsDirectional.only(top: 10, start: 10, end: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   children: [
                     SizedBox(height: 16),
@@ -500,8 +600,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       'logout'.tr,
                       style: TextStyle(
                           color: HexColor(AppColors.defualtColor),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
                           fontFamily: Const.appFont),
                     ),
                     SizedBox(height: 16),
@@ -512,22 +612,24 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           fontFamily: Const.appFont),
+                      textAlign: TextAlign.center,
                     ),
+                    Spacer(),
                     Container(
-                      margin: EdgeInsets.all(16),
+                      margin: EdgeInsets.only(top: 16, bottom: 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          TextButton(
-                              child: Text(
-                                'Yes'.tr,
-                                style: TextStyle(
-                                    color: HexColor(AppColors.defualtColor),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: Const.appFont),
-                              ),
-                              onPressed: () {
+                          CustomButton(
+                              text: 'logout'.tr,
+                              textColor: Colors.white,
+                              height: 48,
+                              width: 130,
+                              radius: 8,
+                              background: HexColor(AppColors.defualtColor),
+                              isUpperCase: false,
+                              borderColor: AppColors.defualtColor,
+                              click: () {
                                 HomeController controller = Get.find();
                                 ApiRequests.logout(
                                         token: AppHelper.getCurrentUserToken())
@@ -546,16 +648,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                   print('catchError: $error');
                                 });
                               }),
-                          TextButton(
-                              child: Text(
-                                'No'.tr,
-                                style: TextStyle(
-                                    color: HexColor(AppColors.blackColor),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: Const.appFont),
-                              ),
-                              onPressed: () => Navigator.pop(context)),
+                          CustomButton(
+                              text: 'cancel'.tr,
+                              textColor: HexColor(AppColors.defualtColor),
+                              height: 48,
+                              width: 100,
+                              radius: 8,
+                              borderWidth: 1,
+                              background: HexColor(AppColors.backgroundColor),
+                              isUpperCase: false,
+                              borderColor: AppColors.defualtColor,
+                              click: () {
+                                Navigator.pop(context);
+                              }),
                         ],
                       ),
                     ),
@@ -564,5 +669,4 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ));
   }
-
 }

@@ -23,7 +23,7 @@ class AppBindings implements Bindings {
     // Get.lazyPut(() => ProfilePageController());
     // Get.lazyPut(() => ExpectionsPageController());
     // Get.lazyPut(() => FavoriteController());
-    Get.lazyPut(() => NotificationsController());
+    // Get.lazyPut(() => NotificationsController());
     Get.lazyPut(() => ProfileController());
     Get.lazyPut(() => EditProfileController());
     Get.lazyPut(() => ContactUsController());

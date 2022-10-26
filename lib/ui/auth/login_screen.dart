@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -37,7 +38,7 @@ class LoginScreen extends GetView<LoginController> {
                 Container(
                   margin: EdgeInsets.only(top: 65.r),
                   child: Image.asset(
-                    'assets/icons/logo4.png',
+                    'assets/icons/logo41.png',
                     width: 150.w,
                     height: 150.h,
                   ),

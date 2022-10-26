@@ -8,19 +8,19 @@ class ForgetPasswordController extends GetxController {
   IconData clearDataIcon = Icons.clear;
 
   RxBool isLoading = false.obs;
-  late GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late TextEditingController emailController = TextEditingController();
+  GlobalKey<FormState> formKeyPassword = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
 
   @override
   void omInit() {
-    formKey = GlobalKey<FormState>();
-    emailController = TextEditingController();
+    // formKeyPassword = GlobalKey<FormState>();
+    // emailController = TextEditingController();
     super.onInit();
   }
 
   @override
   void dispose() {
-    formKey.currentState!.dispose();
+    formKeyPassword.currentState!.dispose();
     emailController.dispose();
     super.dispose();
   }
@@ -31,13 +31,14 @@ class ForgetPasswordController extends GetxController {
   }
 
   void forgetPassword() {
-    bool isValidate = formKey.currentState!.validate();
+    bool isValidate = formKeyPassword.currentState!.validate();
     if (isValidate) {
+      print('EMAIL: ${emailController.text}');
       isLoading(true);
       ApiRequests.forgetpassword(email: emailController.text).then((value) {
         // isLoading(true);
         Get.snackbar('sent'.tr, value!.data!);
-        Get.toNamed(Routes.checkEmail);
+        Get.toNamed(Routes.login);
         isLoading(false);
       }).catchError((error) {
         isLoading(false);

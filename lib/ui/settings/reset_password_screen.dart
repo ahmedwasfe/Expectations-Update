@@ -17,57 +17,31 @@ class ResetPasswordScreen extends GetView<ChangePasswordController> {
         key: controller.formKey,
         child: Column(
           children: [
-            Container(
-              height: 120,
-              decoration: BoxDecoration(
-                  color: HexColor(AppColors.defualtColor),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(24),
-                      bottomRight: Radius.circular(24))),
-              child: Container(
-                margin: EdgeInsets.only(top: 25),
-                child: Row(
-                  children: [
-                    SizedBox(width: 20),
-                    InkWell(
-                        child: SvgPicture.asset('assets/icons/back.svg'),
-                        onTap: () => Get.offAndToNamed(Routes.home)),
-                    Expanded(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'Change password'.tr,
-                        style: TextStyle(
-                            color: HexColor(AppColors.whiteColor),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: Const.appFont),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MainToolBar(title: 'Change password'.tr, isBack: true, route: Routes.home),
             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(right: 20, top: 40),
+                      margin: EdgeInsetsDirectional.only(end: 20, top: 40),
                       alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'old password'.tr,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
+                          Container(
+                            margin: EdgeInsetsDirectional.only(start: 20),
+                            child: Text(
+                              'old password'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: Const.appFont),
+                            ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 20, top: 8),
+                            margin: EdgeInsetsDirectional.only(start: 20, top: 8),
                             child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
@@ -112,13 +86,16 @@ class ResetPasswordScreen extends GetView<ChangePasswordController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'new password'.tr,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
+                          Container(
+                            margin: EdgeInsetsDirectional.only(start: 20),
+                            child: Text(
+                              'new password'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: Const.appFont),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 20, top: 8),
@@ -166,13 +143,16 @@ class ResetPasswordScreen extends GetView<ChangePasswordController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Confirm Password'.tr,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: Const.appFont),
+                          Container(
+                            margin: EdgeInsetsDirectional.only(start: 20),
+                            child: Text(
+                              'Confirm Password'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: Const.appFont),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 20, top: 8),

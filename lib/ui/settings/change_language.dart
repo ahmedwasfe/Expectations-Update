@@ -31,7 +31,7 @@ class _ChangeLanguageeState extends State<ChangeLanguagee> {
                 EdgeInsets.only(top: size.height / 6, bottom: size.height / 9),
             child: Center(
               child: Image.asset(
-                'assets/icons/logo4.png',
+                'assets/icons/logo41.png',
                 height: size.height / 4,
               ),
             ),

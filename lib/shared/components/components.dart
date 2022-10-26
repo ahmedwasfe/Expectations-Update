@@ -194,9 +194,35 @@ class MainToolBar extends StatelessWidget {
 
   MainToolBar({required this.title, this.route, this.isBack});
 
+  Widget AppTooBar() => AppBar(
+    backgroundColor: HexColor(AppColors.defualtColor),
+    toolbarHeight: 60.h,
+    title: Text(
+      '$title'.tr,
+      style: TextStyle(
+          color: HexColor(AppColors.whiteColor),
+          fontSize: 22,
+          fontWeight: FontWeight.w500,
+          fontFamily: Const.appFont
+      ),
+      textAlign: TextAlign.center,),
+    centerTitle: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(11.0),
+          bottomLeft: Radius.circular(11.0)),
+    ),
+    leading: isBack! ? InkWell(
+        child: AppHelper.getAppLanguage() == 'ar' ? Image.asset('assets/icons/back.png') : Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+        onTap: () => Get.offAndToNamed(route!)) : Container(),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    print('LANG: ${AppHelper.getAppLanguage()}');
+    return AppTooBar();
+     /*
+      Container(
       height: 60,
       decoration: BoxDecoration(
           color: HexColor(AppColors.defualtColor),
@@ -225,7 +251,7 @@ class MainToolBar extends StatelessWidget {
           ],
         ),
       ),
-    );
+    );*/
   }
 }
 

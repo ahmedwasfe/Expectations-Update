@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w500,
                       fontFamily: Const.appFont),
                 ),
-                SizedBox(width: 100.w),
+                SizedBox(width: 70.w),
                 InkWell(
                     child: SvgPicture.asset('assets/icons/search.svg',
                         height: 20.h, width: 20.w),

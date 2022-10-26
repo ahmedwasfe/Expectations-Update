@@ -5,7 +5,7 @@ class MyLocal implements Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         "ar": {
-          "English": "الانجليزية",
+          "english": "الانجليزية",
           "arabic": "العربية",
           "Language": "اللغة",
           "Are you want to change language": "هل تريد تغيير اللغة ؟",
@@ -80,6 +80,8 @@ class MyLocal implements Translations {
               "هل أنت متأكد من عملية تسجيل الخروج ؟",
           "Yes": "نعم",
           "No": "لا",
+          "cancel": "إلغاء",
+          "delete": "حذف",
           "Search": "البحث",
           "Search here....": "ابحث هنا.......",
           "Awards": "الجوائز",
@@ -157,9 +159,10 @@ class MyLocal implements Translations {
           "delete_account": "حذف الحساب",
           "delete_account_confirmation": "هل أنت متأكد أنك تريد حذف حسابك؟",
           "subscribe": "إشتراك",
+          "done_payment_successfully": "تم الدفع بنجاح",
         },
         "en": {
-          "English": "English",
+          "english": "English",
           "arabic": "Arabic",
           "Language": "Language",
           "Are you want to change language": "Are you want to change language?",
@@ -234,6 +237,8 @@ class MyLocal implements Translations {
               "Are you sure you want to sign out?",
           "Yes": "Yes",
           "No": " No",
+          "cancel": "Cancel",
+          "delete": "Delete",
           "Search": "Search",
           "Search here....": "Search here....",
           "Awards": "Awards",
@@ -258,9 +263,9 @@ class MyLocal implements Translations {
           "Your message title": "Your message title.",
           "Description": "Description",
           "Write your message here ......": "Write your message here ......",
-          "old password": "old password",
+          "old password": "Old password",
           "Enter the old password here": "Enter the old password here",
-          "new password": "new password",
+          "new password": "New password",
           "Enter the new password here": "Enter the new password here",
           "Confirm Password": "Confirm Password",
           "Please confirm password": "Please confirm password.",
@@ -314,6 +319,7 @@ class MyLocal implements Translations {
           "delete_account": "Delete account",
           "delete_account_confirmation": "Are you sure want to delete your account?",
           "subscribe": "Subscribe",
+          "done_payment_successfully": "Done payment successfully",
         }
       };
 }

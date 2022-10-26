@@ -11,7 +11,10 @@ class NotificationsController extends GetxController{
     super.onInit();
   }
 
-  void fetchNotifications(){
-    ApiRequests.fetchNotifications().then((value) => listNotifications.addAll(value!.data!));
+  Future<void> fetchNotifications() async {
+    await ApiRequests.fetchNotifications().then((value) {
+      listNotifications.clear();
+      // listNotifications.addAll(value!.data!);
+    });
   }
 }

@@ -50,6 +50,12 @@
 	<key>NSCameraUsageDescription</key>
 	<string>camera for taking photos</string>
 
+	<!-- allow insecure connections -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
 	<!-- Permission options for the `microphone` group -->
 	<key>NSMicrophoneUsageDescription</key>
 	<string>microphone</string>

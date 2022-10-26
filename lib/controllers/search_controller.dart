@@ -32,8 +32,11 @@ class SearchController extends GetxController{
   void search({required String word}){
     ApiRequests.search(word: word)
         .then((value) {
-      listSearchs.addAll(value!.data!);
-      update();
+          if(value != null){
+            listSearchs.clear();
+            listSearchs.addAll(value.data!);
+            update();
+          }
     });
   }
 }

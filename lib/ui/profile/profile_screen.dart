@@ -5,11 +5,13 @@ import 'package:expectations/controllers/edit_profile_controller.dart';
 import 'package:expectations/controllers/profile_controller.dart';
 import 'package:expectations/model/profile.dart';
 import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -32,47 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return  Scaffold(
       body: Column(
         children: [
-          Container(
-            height: 120,
-            margin: EdgeInsets.only(top: 20),
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SizedBox(width: 20),
-                InkWell(
-                    child: SvgPicture.asset('assets/icons/back.svg'),
-                    onTap: () => Get.offAndToNamed(Routes.home)),
-                Spacer(),
-                Text(
-                  'Profile'.tr,
-                  style: TextStyle(
-                      color: HexColor(AppColors.whiteColor),
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: Const.appFont),
-                ),
-                Spacer(),
-                InkWell(
-                    child: SvgPicture.asset(
-                      height: 24,
-                        width: 24,
-                        'assets/icons/edit_profile.svg'),
-                    onTap: () => Get.toNamed(Routes.editProfile)),
-                SizedBox(
-                  width: 20,
-                ),
-                // SvgPicture.asset('assets/icons/add_favorit.svg'),
-                SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
-          ),
+          MainToolBar(title: 'Profile', isBack: true, route: Routes.home, isProfile: true),
           Expanded(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -99,6 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         color: HexColor(
                                             AppColors.defualtColor))),
                               ),
+                              SizedBox(height: 10.h),
                               Text(
                                 '${_controller.profile.name}',
                                 style: TextStyle(
@@ -111,8 +74,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 20, top: 40),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -136,8 +99,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 20, top: 30),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -161,8 +124,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 20, top: 30),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -186,8 +149,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 20, top: 30),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -211,8 +174,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 20, top: 30),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -236,9 +199,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          margin:
-                          EdgeInsets.only(right: 20, top: 30, bottom: 30),
-                          alignment: Alignment.centerRight,
+                          margin: EdgeInsetsDirectional.only(start: 20, top: 40),
+                          alignment: AlignmentDirectional.centerStart,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

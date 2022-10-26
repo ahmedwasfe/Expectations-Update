@@ -19,38 +19,7 @@ class EditProfileScreen extends GetView<EditProfileController> {
         key: controller.formKey,
         child: Column(
           children: [
-            Container(
-              height: 120,
-              margin: EdgeInsets.only(top: 20),
-              decoration: BoxDecoration(
-                  color: HexColor(AppColors.defualtColor),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(24),
-                      bottomRight: Radius.circular(24))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(width: 20),
-                  InkWell(
-                      child: SvgPicture.asset('assets/icons/back.svg'),
-                      onTap: () => Get.offAndToNamed(Routes.profile)),
-                  Spacer(),
-                  Text(
-                    'Account modification'.tr,
-                    style: TextStyle(
-                        color: HexColor(AppColors.whiteColor),
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: Const.appFont),
-                  ),
-                  Spacer(),
-                  SvgPicture.asset('assets/icons/done.svg'),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
-              ),
-            ),
+            MainToolBar(title: 'Account modification', isBack: true, route: Routes.home, isProfile: false),
             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -74,24 +43,26 @@ class EditProfileScreen extends GetView<EditProfileController> {
                                     color: HexColor(AppColors.defualtColor))),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 40),
-                            alignment: Alignment.centerRight,
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'full name'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, top: 40, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'full name'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20, top: 8),
+                                  margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: TextFormField(
                                         controller: controller.nameController,
                                         keyboardType: TextInputType.text,
@@ -110,24 +81,27 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 30),
-                            alignment: Alignment.centerRight,
+                            margin: EdgeInsetsDirectional.only(top: 30),
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Email Address'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'Email Address'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20, top: 8),
+                                  margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: TextFormField(
                                         controller: controller.emailController,
                                         keyboardType: TextInputType.emailAddress,
@@ -146,24 +120,27 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 30),
-                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 30),
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'phone number'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'phone number'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20, top: 8),
+                                  margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: TextFormField(
                                         controller: controller.phoneController,
                                         keyboardType: TextInputType.phone,
@@ -182,24 +159,27 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 30),
-                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 30),
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Address'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'Address'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20, top: 8),
+                                  margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: TextFormField(
                                         controller: controller.addressController,
                                         keyboardType: TextInputType.streetAddress,
@@ -219,22 +199,26 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 30),
-                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 30),
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'date of birth'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'date of birth'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 InkWell(
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 20, top: 8),
+                                    margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                     child: Padding(
                                       padding:
                                       const EdgeInsets.symmetric(horizontal: 8.0),
@@ -273,21 +257,25 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 20, top: 30, bottom: 30),
-                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 30, bottom: 30),
+                            alignment: AlignmentDirectional.centerStart,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'athletic inclinations'.tr,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: Const.appFont),
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    'athletic inclinations'.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: Const.appFont),
+                                  ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20, top: 8),
+                                  margin: EdgeInsetsDirectional.only(end: 20, top: 8, start: 20),
                                   child: Padding(
                                     padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
@@ -312,7 +300,7 @@ class EditProfileScreen extends GetView<EditProfileController> {
                           ),
                         ],
                       );
-                    else if(snapshot.connectionState == ConnectionState.waiting)
+                    else if(snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
                         child: Container(
                             width: 20,
@@ -320,7 +308,7 @@ class EditProfileScreen extends GetView<EditProfileController> {
                             margin: EdgeInsets.only(top: 28),
                             child: CircularProgressIndicator()),
                       );
-                    else
+                    } else
                       return Container();
                   },
                 ),

@@ -17,7 +17,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
         key: controller.formKey,
         child: Column(
           children: [
-            MainToolBar(title: 'Contact Us', isBack: true, route: Routes.home),
+            MainToolBar(title: 'Contact Us', isBack: true, route: Routes.home, isProfile: false),
             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),

@@ -29,7 +29,7 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'Favorites', isBack: false),
+          MainToolBar(title: 'Favorites', isBack: false, isProfile: false),
           Expanded(
             child: Stack(
               alignment: Alignment.center,

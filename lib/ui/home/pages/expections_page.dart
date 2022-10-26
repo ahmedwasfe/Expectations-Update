@@ -32,7 +32,7 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'My Expectations', isBack: false),
+          MainToolBar(title: 'My Expectations', isBack: false, isProfile: false),
           Expanded(
             child: ListView.builder(
                 physics: BouncingScrollPhysics(),

@@ -1,5 +1,6 @@
 import 'package:expectations/controllers/register_controller.dart';
 import 'package:expectations/model/Packages/packages.dart';
+import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
@@ -25,32 +26,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            height: 120.h,
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10.r),
-                    bottomRight: Radius.circular(10.r))),
-            child: Container(
-              margin: EdgeInsets.only(top: 40.r),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      'packages'.tr,
-                      style: TextStyle(
-                          color: HexColor(AppColors.whiteColor),
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: Const.appFont),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          MainToolBar(title: 'packages', isBack: true, route: Routes.home, isProfile: false),
           FutureBuilder(
             future: _controller.getPackages(),
             builder: (context, snapshot) {

@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'Settings', isBack: false),
+          MainToolBar(title: 'Settings', isBack: false, isProfile: false),
           Expanded(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

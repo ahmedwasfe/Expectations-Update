@@ -160,6 +160,7 @@ class MyLocal implements Translations {
           "delete_account_confirmation": "هل أنت متأكد أنك تريد حذف حسابك؟",
           "subscribe": "إشتراك",
           "done_payment_successfully": "تم الدفع بنجاح",
+          "broadcasting_has_ended": "لقد تم إنهاء البث",
         },
         "en": {
           "english": "English",
@@ -194,7 +195,7 @@ class MyLocal implements Translations {
           "Create an account": "Create an account",
           "Please fill out this form to create your account!":
               "Please fill out this form to create your account!",
-          "full name": "full name",
+          "full name": "Full name",
           "Please write your full name (first and last name)":
               "Please write your full name (first and last name)",
           "date of birth": "date of birth",
@@ -320,6 +321,7 @@ class MyLocal implements Translations {
           "delete_account_confirmation": "Are you sure want to delete your account?",
           "subscribe": "Subscribe",
           "done_payment_successfully": "Done payment successfully",
+          "broadcasting_has_ended": "Broadcasting has ended",
         }
       };
 }

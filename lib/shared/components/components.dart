@@ -191,8 +191,9 @@ class MainToolBar extends StatelessWidget {
   String? title;
   String? route = '';
   bool? isBack = false;
+  bool? isProfile = false;
 
-  MainToolBar({required this.title, this.route, this.isBack});
+  MainToolBar({required this.title, this.route, this.isBack, this.isProfile});
 
   Widget AppTooBar() => AppBar(
     backgroundColor: HexColor(AppColors.defualtColor),
@@ -215,6 +216,18 @@ class MainToolBar extends StatelessWidget {
     leading: isBack! ? InkWell(
         child: AppHelper.getAppLanguage() == 'ar' ? Image.asset('assets/icons/back.png') : Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
         onTap: () => Get.offAndToNamed(route!)) : Container(),
+    actions: [
+      isProfile! ? InkWell(
+          child: Container(
+            margin: EdgeInsetsDirectional.only(end: 20.r),
+            child: SvgPicture.asset(
+                height: 24,
+                width: 24,
+                'assets/icons/edit_profile.svg'),
+          ),
+          onTap: () => Get.toNamed(Routes.editProfile))
+          : Container()
+    ],
   );
 
   @override

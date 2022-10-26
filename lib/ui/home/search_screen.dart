@@ -11,8 +11,8 @@ import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class SearchScreen extends GetView<SearchController> {
-  const SearchScreen({Key? key}) : super(key: key);
+class SearchScreen extends StatelessWidget {
+  SearchController controller = Get.put(SearchController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,36 +20,7 @@ class SearchScreen extends GetView<SearchController> {
         builder: (con) => Scaffold(
               body: Column(
                 children: [
-                  Container(
-                    height: 120,
-                    decoration: BoxDecoration(
-                        color: HexColor(AppColors.defualtColor),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10))),
-                    child: Container(
-                      margin: EdgeInsets.only(top: 25),
-                      child: Row(
-                        children: [
-                          SizedBox(width: 20),
-                          InkWell(
-                              child: SvgPicture.asset('assets/icons/back.svg'),
-                              onTap: () => Get.offAndToNamed(Routes.home)),
-                          Expanded(
-                            child: Text(
-                              textAlign: TextAlign.center,
-                              'Search'.tr,
-                              style: TextStyle(
-                                  color: HexColor(AppColors.whiteColor),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: Const.appFont),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  MainToolBar(title: 'Search', isBack: true, route: Routes.home, isProfile: false),
                   Container(
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only(left: 16, right: 16, top: 20),

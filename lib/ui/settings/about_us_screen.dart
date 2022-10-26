@@ -17,7 +17,7 @@ class AboutUsScreen extends GetView<BoardingsController> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'About Us', isBack: true, route: Routes.home),
+          MainToolBar(title: 'About Us', isBack: true, route: Routes.home, isProfile: false),
           Expanded(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

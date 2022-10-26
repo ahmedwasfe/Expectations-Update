@@ -32,7 +32,7 @@ class _AllLiveScreenState extends State<AllLiveScreen> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'all_live', isBack: true, route: Routes.home),
+          MainToolBar(title: 'all_live', isBack: true, route: Routes.home, isProfile: false),
           Expanded(
             child: FutureBuilder(
               future: appController.fetchAllLive(),
@@ -86,14 +86,18 @@ class _AllLiveScreenState extends State<AllLiveScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.w600),),
                         onPressed: (){
-
-                          AppHelper.saveAppData(key: Const.KEY_LIVE_ID, value: live.id);
-                          AppHelper.saveLiveToken(key: Const.KEY_LIVE_TOKEN, token: live.liveToken!);
-                          Const.LIVE_TOKEN = live.liveToken!;
-                          homeController.joinLive(context, isBroadcaster: true, userType: Const.KEY_GUEST)
-                              .then((value) {
-                                _liveController.joinToBroadcast(liveId: live.id!);
-                          });
+                          if(live.liveToken != null){
+                            AppHelper.saveAppData(key: Const.KEY_LIVE_ID, value: live.id);
+                            AppHelper.saveLiveToken(key: Const.KEY_LIVE_TOKEN, token: live.liveToken!);
+                            Const.LIVE_TOKEN = live.liveToken!;
+                            homeController.joinLive(context, isBroadcaster: true, userType: Const.KEY_GUEST)
+                                .then((value) {
+                              _liveController.joinToBroadcast(liveId: live.id!);
+                            });
+                          }else{
+                            AppHelper.showToast(message: 'broadcasting_has_ended'.tr, color: Colors.redAccent);
+                          }
+                          
                         })
                   ],
                 ),
@@ -101,10 +105,15 @@ class _AllLiveScreenState extends State<AllLiveScreen> {
             ),
           ),
       onTap: () async {
-        AppHelper.saveAppData(key: Const.KEY_LIVE_ID, value: live.id);
-        AppHelper.saveLiveToken(key: Const.KEY_LIVE_TOKEN, token: live.liveToken!);
-        Const.LIVE_TOKEN = live.liveToken!;
-        await homeController.joinLive(context, isBroadcaster: false, userType: Const.KEY_VIEWER);
+
+        if(live.liveToken != null){
+          AppHelper.saveAppData(key: Const.KEY_LIVE_ID, value: live.id);
+          AppHelper.saveLiveToken(key: Const.KEY_LIVE_TOKEN, token: live.liveToken!);
+          Const.LIVE_TOKEN = live.liveToken!;
+          await homeController.joinLive(context, isBroadcaster: false, userType: Const.KEY_VIEWER);
+        }else{
+          AppHelper.showToast(message: 'broadcasting_has_ended'.tr, color: Colors.redAccent);
+        }
       })
   );
 }

@@ -18,7 +18,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'Notifications'.tr, isBack: true, route: Routes.home),
+          MainToolBar(title: 'Notifications'.tr, isBack: true, route: Routes.home, isProfile: false),
           FutureBuilder(
            future: _controller.fetchNotifications(),
             builder: (context, snapShot) {

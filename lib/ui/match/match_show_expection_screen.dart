@@ -30,39 +30,7 @@ class ShowExpectionScreen extends GetView<ExpectionController> {
       backgroundColor: HexColor(AppColors.backgroundColor),
       body: Column(
         children: [
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-                color: HexColor(AppColors.defualtColor),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24))),
-            child: Container(
-              margin: EdgeInsets.only(top: 25),
-              child: Row(
-                children: [
-                  SizedBox(width: 20),
-                  InkWell(
-                      child: SvgPicture.asset('assets/icons/back.svg'),
-                      onTap: () {}),
-                  Spacer(),
-                  Text(
-                    '${periodicals.name}',
-                    style: TextStyle(
-                        color: HexColor(AppColors.whiteColor),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: Const.appFont),
-                  ),
-                  Spacer(),
-                  SvgPicture.asset('assets/icons/add_favorit.svg'),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          MainToolBar(title: '${periodicals.name}', isBack: false, isProfile: false),
           Expanded(
             child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),

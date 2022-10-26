@@ -22,7 +22,7 @@ class AwardsScreen extends GetView<AwardsController> {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'Awards', route: Routes.home),
+          MainToolBar(title: 'Awards', route: Routes.home, isProfile: false),
           !controller.listAwards.isEmpty
               ? Expanded(
                   child: ListView.builder(

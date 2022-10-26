@@ -17,7 +17,7 @@ class ResetPasswordScreen extends GetView<ChangePasswordController> {
         key: controller.formKey,
         child: Column(
           children: [
-            MainToolBar(title: 'Change password'.tr, isBack: true, route: Routes.home),
+            MainToolBar(title: 'Change password'.tr, isBack: true, route: Routes.home, isProfile: false),
             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),

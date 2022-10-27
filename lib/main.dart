@@ -24,6 +24,7 @@ void main() async {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     } else {
     await Firebase.initializeApp();
+
     }
   await initServices();
   // ApiRequests.initAPI();

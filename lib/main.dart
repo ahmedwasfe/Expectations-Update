@@ -12,15 +12,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'utils/local/local.dart';
  
 import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  //  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   await Firebase.initializeApp();
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    } else {
+    await Firebase.initializeApp();
+
+    }
   await initServices();
   // ApiRequests.initAPI();
   runApp(MyApp());

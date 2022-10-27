@@ -20,12 +20,13 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  if (defaultTargetPlatform == TargetPlatform.iOS) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    } else {
-    await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-    }
+  // if (defaultTargetPlatform == TargetPlatform.iOS) {
+  //   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // } else {
+  //   await Firebase.initializeApp();
+  // }
   await initServices();
   // ApiRequests.initAPI();
   runApp(MyApp());

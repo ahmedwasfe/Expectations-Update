@@ -164,13 +164,20 @@ class RegisterController extends GetxController {
     List<PaymentSdkAPms> apms = [];
     apms.add(PaymentSdkAPms.AMAN);
 
+    // TODO Test Key
+    /*
+    * serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+      clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+    *
+    * */
+
     var configuration = PaymentSdkConfigurationDetails(
         profileId: "91958",
-        serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
-        clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+        serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
+        clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
         cartId: "Sample Payment",
-        cartDescription: "Flowers",
-        merchantName: "Flowers Store",
+        cartDescription: "Twaq3",
+        merchantName: "Twaq3 App",
         screentTitle: "Pay with Card",
         amount: amount,
         locale: AppHelper.getAppLanguage() == 'ar' ? PaymentSdkLocale.AR : PaymentSdkLocale.EN,

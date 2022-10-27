@@ -123,8 +123,8 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   background: HexColor(AppColors.defualtColor),
                   borderColor: AppColors.defualtColor,
                   click: () {
-                    Future.delayed(Duration(seconds: 3), () => AppHelper.showToast(message: 'an error occurred'), );
-                    // _controller.payNow(package.price!.toDouble());
+                    // Future.delayed(Duration(seconds: 3), () => AppHelper.showToast(message: 'an error occurred'), );
+                    _controller.payNow(package.price!.toDouble());
                   }),
               SizedBox(height: 16.h),
             ],

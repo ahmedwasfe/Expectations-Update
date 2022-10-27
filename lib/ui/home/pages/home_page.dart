@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                                         image: DecorationImage(
                                             image: NetworkImage(
                                                 '${Const.baseImagesUrl}${element.image}'),
-                                            fit: BoxFit.cover),
+                                            fit: BoxFit.contain),
                                         borderRadius:
                                             BorderRadius.circular(10).r),
                                   ))

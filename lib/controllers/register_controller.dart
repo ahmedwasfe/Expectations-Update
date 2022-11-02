@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:expectations/api/api_requests.dart';
 import 'package:expectations/model/Packages/packages.dart';
@@ -193,9 +194,15 @@ class RegisterController extends GetxController {
 
     var theme = IOSThemeConfigurations();
 
-    theme.logoImage = "assets/icons/logo4.png";
+    theme.logoImage = "assets/icons/logo41.png";
 
-    configuration.iOSThemeConfigurations = theme;
+    if(Platform.isIOS){
+      configuration.simplifyApplePayValidation = true;
+      configuration.iOSThemeConfigurations = theme;
+    }else{
+      configuration.iOSThemeConfigurations = theme;
+    }
+
     configuration.tokeniseType = PaymentSdkTokeniseType.MERCHANT_MANDATORY;
     return configuration;
   }

@@ -29,6 +29,7 @@ class CloseLiveData{
   int? code;
   int? userId;
   String? start;
+  String? token;
   String? end;
   String? status;
   String? createdAt;
@@ -39,6 +40,7 @@ class CloseLiveData{
         this.code,
         this.userId,
         this.start,
+        this.token,
         this.end,
         this.status,
         this.createdAt,
@@ -49,6 +51,7 @@ class CloseLiveData{
     code = json['code'];
     userId = json['user_id'];
     start = json['start'];
+    token = json['token'];
     end = json['end'];
     status = json['status'];
     createdAt = json['created_at'];
@@ -61,6 +64,7 @@ class CloseLiveData{
     data['code'] = this.code;
     data['user_id'] = this.userId;
     data['start'] = this.start;
+    data['token'] = this.token;
     data['end'] = this.end;
     data['status'] = this.status;
     data['created_at'] = this.createdAt;

@@ -28,8 +28,8 @@ class LiveController extends GetxController{
         AppHelper.saveAppData(key: Const.KEY_LIVE_ID, value: value.data!.id);
         AppHelper.saveLiveToken(key: Const.KEY_LIVE_TOKEN, token: value!.data!.token!);
         Const.LIVE_TOKEN = value.data!.token!;
-        print('LIVE_ID: ${AppHelper.getAppData(key: Const.KEY_LIVE_ID)}');
-        print('LIVE_TOKEN: ${Const.LIVE_TOKEN}');
+        print('createNewLive LIVE_ID: ${AppHelper.getAppData(key: Const.KEY_LIVE_ID)}');
+        print('createNewLive LIVE_TOKEN: ${Const.LIVE_TOKEN}');
     });
   }
 

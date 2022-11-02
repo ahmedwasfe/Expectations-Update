@@ -60,10 +60,11 @@ class ApiRequests {
       // home/matchs?from=2022-09-03&to=2022-09-03
       Uri.parse('$_baseUrl/home/matchs?from=$from&to=$to'),
     );
-
+    print('ERROR: ${jsonDecode(response.body)}');
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       HomeMatches matches = HomeMatches.fromJson(body);
+
       // print('RESPONSE: ${jsonEncode(matches)}');
       return matches;
     } else {
@@ -165,6 +166,52 @@ class ApiRequests {
             'There is an error, please check all the data entered'.tr);
       print('Error Login: ${response.statusCode}: ${response.body}');
       return user;
+    }
+  }
+
+  static Future<ForgetPassword?> forgetpassword({required String email}) async {
+    http.Response response = await _client.post(
+      Uri.parse('$_baseUrl/forgot-password'),
+      headers: {'Content-type': 'application/json'},
+      body: jsonEncode(
+        <String, dynamic>{"email": email},
+      ),
+    );
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      print("Response: $body");
+      ForgetPassword forgetPassword = ForgetPassword.fromJson(body);
+      return forgetPassword;
+    } else {
+      print('Error: ${response.body}');
+      return null;
+    }
+  }
+
+  static Future<ResetPassword> resetPassword(
+      {required String token,
+        required String oldPassword,
+        required String newPassword,
+        required String confirmPassword}) async {
+    http.Response response = await _client.post(
+      Uri.parse('$_baseUrl/reset-password'),
+      headers: {'Content-type': 'application/json', 'Authorization': token},
+      body: jsonEncode(<String, dynamic>{
+        "old_password": oldPassword,
+        "new_password": newPassword,
+        "confirm_password": confirmPassword
+      }),
+    );
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      print("Reponse: $body");
+      ResetPassword resetPassword = ResetPassword.fromJson(body);
+      return resetPassword;
+    } else {
+      var body = jsonDecode(response.body);
+      ResetPassword resetPassword = ResetPassword.message(body);
+      print('Error: ${response.body}');
+      return resetPassword;
     }
   }
 
@@ -485,52 +532,6 @@ class ApiRequests {
     }
   }
 
-  static Future<ForgetPassword?> forgetpassword({required String email}) async {
-    http.Response response = await _client.post(
-      Uri.parse('$_baseUrl/forgot-password'),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode(
-        <String, dynamic>{"email": email},
-      ),
-    );
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      print("Response: $body");
-      ForgetPassword forgetPassword = ForgetPassword.fromJson(body);
-      return forgetPassword;
-    } else {
-      print('Error: ${response.body}');
-      return null;
-    }
-  }
-
-  static Future<ResetPassword> resetPassword(
-      {required String token,
-      required String oldPassword,
-      required String newPassword,
-      required String confirmPassword}) async {
-    http.Response response = await _client.post(
-      Uri.parse('$_baseUrl/reset-password'),
-      headers: {'Content-type': 'application/json', 'Authorization': token},
-      body: jsonEncode(<String, dynamic>{
-        "old_password": oldPassword,
-        "new_password": newPassword,
-        "confirm_password": confirmPassword
-      }),
-    );
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      print("Reponse: $body");
-      ResetPassword resetPassword = ResetPassword.fromJson(body);
-      return resetPassword;
-    } else {
-      var body = jsonDecode(response.body);
-      ResetPassword resetPassword = ResetPassword.message(body);
-      print('Error: ${response.body}');
-      return resetPassword;
-    }
-  }
-
   // New LIve
   static Future<NewLive?> newLive(
       {required String token, required String agoraToken}) async {
@@ -562,9 +563,10 @@ class ApiRequests {
       headers: {'Content-type': 'application/json', 'Authorization': token},
       body: jsonEncode(<String, dynamic>{'live_id': '$liveId'}),
     );
+    print('RESPONSE closeLive: ${jsonDecode(response.body)}');
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      print('RESPONSE closeLive: ${jsonDecode(response.body)}');
+
       CloseLive live = CloseLive.fromJson(body);
       // print('RESPONSE closeLive: ${jsonEncode(live)}');
       return live;

@@ -238,7 +238,23 @@ class RegisterController extends GetxController {
   }
 
   Future<void> payWithApple(double amount) async {
-    FlutterPaytabsBridge.startApplePayPayment(generateConfig(amount), (event) {
+
+    var configuration = PaymentSdkConfigurationDetails(
+      profileId: "91958",
+      serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
+      clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
+      cartId: "Sample Payment",
+      cartDescription: "Twaq3",
+      merchantName: "Twaq3 App",
+      screentTitle: "Pay with Card",
+      locale: AppHelper.getAppLanguage() == 'ar' ? PaymentSdkLocale.AR : PaymentSdkLocale.EN,
+      amount: amount,
+      currencyCode: "SAR",
+      merchantCountryCode: "SA",
+      merchantApplePayIndentifier: "com.tm.expectations",
+    );
+
+    FlutterPaytabsBridge.startApplePayPayment(configuration, (event) {
       if (event["status"] == "success") {
         // Handle transaction details here.
         var transactionDetails = event["data"];

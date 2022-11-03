@@ -144,6 +144,22 @@ class RegisterController extends GetxController {
     });
   }
 
+  // TODO Real KEY
+  /*
+  * TODO profileId: "92423",
+  * TODO serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
+    TODO clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
+  * */
+
+
+  // TODO Test KEY
+  /*
+    * TODO profileId: "91958",
+    * TODO serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+    * TODO clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+    *
+    * */
+
   // TODO Payment
   PaymentSdkConfigurationDetails generateConfig(double amount) {
 
@@ -165,16 +181,9 @@ class RegisterController extends GetxController {
     List<PaymentSdkAPms> apms = [];
     apms.add(PaymentSdkAPms.AMAN);
 
-    // TODO Test Key
-    /*
-    * TODO profileId: "91958",
-    * TODO serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
-    * TODO clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
-    *
-    * */
 
     var configuration = PaymentSdkConfigurationDetails(
-        profileId: "91958",
+        profileId: "92423",
         serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
         clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
         cartId: "Sample Payment",
@@ -241,9 +250,9 @@ class RegisterController extends GetxController {
   Future<void> payWithApple(double amount) async {
 
     var configuration = PaymentSdkConfigurationDetails(
-      profileId: "91958",
-      serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
-      clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+      profileId: "92423",
+      serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
+      clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
       cartId: "Sample Payment",
       cartDescription: "Twaq3",
       merchantName: "Twaq3 App",

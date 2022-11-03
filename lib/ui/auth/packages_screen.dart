@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:expectations/controllers/register_controller.dart';
 import 'package:expectations/model/Packages/packages.dart';
 import 'package:expectations/routes/routes.dart';
@@ -124,7 +126,11 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   borderColor: AppColors.defualtColor,
                   click: () {
                     // Future.delayed(Duration(seconds: 3), () => AppHelper.showToast(message: 'an error occurred'), );
-                    _controller.payNow(package.price!.toDouble());
+                   if(Platform.isIOS){
+                     _controller.payWithApple(package.price!.toDouble());
+                   }else{
+                     _controller.payNow(package.price!.toDouble());
+                   }
                   }),
               SizedBox(height: 16.h),
             ],

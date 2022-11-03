@@ -237,6 +237,35 @@ class RegisterController extends GetxController {
     });
   }
 
+  Future<void> payWithApple(double amount) async {
+    FlutterPaytabsBridge.startApplePayPayment(generateConfig(amount), (event) {
+      if (event["status"] == "success") {
+        // Handle transaction details here.
+        var transactionDetails = event["data"];
+        print('success: $transactionDetails');
+        if (transactionDetails["isSuccess"]) {
+          var transactionDetails = event["data"];
+          print('isSuccess: $transactionDetails');
+          AppHelper.showToast(message: 'done payment successfully'.tr, color: Colors.green);
+        } else {
+          print("failed transaction");
+        }
+      } else if (event["status"] == "error") {
+        // Handle error here.
+        var transactionDetails = event["data"];
+        print('error: $transactionDetails');
+        print('error: ${event["status"]}');
+      } else if (event["status"] == "event") {
+        // Handle events here.
+        var transactionDetails = event["data"];
+        print('event: $transactionDetails');
+      }
+      update();
+    }).then((value) {
+      print('startCardPayment: ${jsonEncode(value)}');
+    });
+  }
+
   void payment({required int packageId}) {
     ApiRequests.payment(
             token: AppHelper.getCurrentUserToken(),

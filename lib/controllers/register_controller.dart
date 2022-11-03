@@ -167,8 +167,9 @@ class RegisterController extends GetxController {
 
     // TODO Test Key
     /*
-    * serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
-      clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+    * TODO profileId: "91958",
+    * TODO serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+    * TODO clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
     *
     * */
 
@@ -241,8 +242,8 @@ class RegisterController extends GetxController {
 
     var configuration = PaymentSdkConfigurationDetails(
       profileId: "91958",
-      serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
-      clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
+      serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+      clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
       cartId: "Sample Payment",
       cartDescription: "Twaq3",
       merchantName: "Twaq3 App",

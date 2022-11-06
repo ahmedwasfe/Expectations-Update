@@ -80,6 +80,7 @@ class LiveController extends GetxController{
         .then((value) {
           if(value != null){
             listUsersOnline.addAll(value.data!);
+            print('USERS: ${jsonEncode(listUsersOnline)}');
           }
     });
   }

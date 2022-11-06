@@ -563,7 +563,7 @@ class ApiRequests {
       headers: {'Content-type': 'application/json', 'Authorization': token},
       body: jsonEncode(<String, dynamic>{'live_id': '$liveId'}),
     );
-    print('RESPONSE closeLive: ${jsonDecode(response.body)}');
+
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
 

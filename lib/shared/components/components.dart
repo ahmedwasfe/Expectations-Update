@@ -65,13 +65,17 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].title}' : '${listBoardings[4].title}',
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: '${Const.appFont}',
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
+                  child: Text(
+                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].title}' : '${listBoardings[4].title}',
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: '${Const.appFont}',
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Padding(
@@ -153,13 +157,17 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].title}' : '${listBoardings[6].title}',
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: '${Const.appFont}',
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
+                  child: Text(
+                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].title}' : '${listBoardings[6].title}',
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: '${Const.appFont}',
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Padding(

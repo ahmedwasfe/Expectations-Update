@@ -104,7 +104,7 @@ class _LiveScreenState extends State<LiveScreen> {
     print('joinChannel: ${Const.LIVE_TOKEN}');
     print('joinChannel: ${AppHelper.getLiveToken(key: Const.KEY_LIVE_TOKEN)}');
 
-    await _engine.joinChannel(Const.LIVE_TOKEN, 'ahmed', '', 0);
+    await _engine.joinChannel(AppHelper.getLiveToken(key: Const.KEY_LIVE_TOKEN), 'ahmed', '', 0);
   }
 
   Future<void> _initAgoraRtcEngin() async {
@@ -454,9 +454,9 @@ class _LiveScreenState extends State<LiveScreen> {
     // print("LIVEID: ${_liveController.liveId}");
     print("_onCallEnd LIVEID: ${AppHelper.getLiveId()}");
     if (widget.userType == Const.KEY_BROADCASTER)
-      _liveController.closeLive(context, liveId: AppHelper.getLiveId());
+      _liveController.closeLive(context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
     else if (widget.userType == Const.KEY_GUEST) {
-      _liveController.exitFromBroadcast(context, liveId: AppHelper.getLiveId());
+      _liveController.exitFromBroadcast(context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
     } else {
       Navigator.pop(context);
     }
@@ -493,4 +493,5 @@ class _LiveScreenState extends State<LiveScreen> {
           ],
         ),
       );
+
 }

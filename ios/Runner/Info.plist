@@ -48,7 +48,7 @@
 
 	<!-- Permission options for the `camera` group -->
 	<key>NSCameraUsageDescription</key>
-	<string>camera for taking photos</string>
+	<string>Camera for participating in the live sessions</string>
 
 	<!-- allow insecure connections -->
 	<key>NSAppTransportSecurity</key>
@@ -58,7 +58,7 @@
 	</dict>
 	<!-- Permission options for the `microphone` group -->
 	<key>NSMicrophoneUsageDescription</key>
-	<string>microphone</string>
+	<string>Microphone for participating in the live sessions</string>
 
 
 </dict>

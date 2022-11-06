@@ -256,15 +256,18 @@ class RegisterController extends GetxController {
       cartId: "Sample Payment",
       cartDescription: "Twaq3",
       merchantName: "Twaq3 App",
-      screentTitle: "Pay with Card",
+      screentTitle: "Pay with Apple Pay",
       locale: AppHelper.getAppLanguage() == 'ar' ? PaymentSdkLocale.AR : PaymentSdkLocale.EN,
       amount: amount,
       currencyCode: "SAR",
       merchantCountryCode: "SA",
-      merchantApplePayIndentifier: "com.tm.expectations",
+      merchantApplePayIndentifier: "merchant.com.example.expectations",
+      //merchant.com.example.expectations  //com.tm.expectations
+      linkBillingNameWithCardHolderName: true,
+      simplifyApplePayValidation: true,
     );
 
-    FlutterPaytabsBridge.startApplePayPayment(configuration, (event) {
+     FlutterPaytabsBridge.startApplePayPayment(configuration, (event) {
       if (event["status"] == "success") {
         // Handle transaction details here.
         var transactionDetails = event["data"];

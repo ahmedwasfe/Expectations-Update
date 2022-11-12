@@ -247,24 +247,36 @@ class RegisterController extends GetxController {
   }
 
   Future<void> payWithApple(double amount) async {
-
+// TODO Test KEY
+  /*
+    * TODO profileId: "91958",
+    * TODO serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+    * TODO clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+    *
+    * */
     var configuration = PaymentSdkConfigurationDetails(
-      profileId: "92423",
-      serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
-      clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
-      cartId: "Sample Payment",
-      cartDescription: "Twaq3",
+      // profileId: "92423",
+      // serverKey: "SZJN2WKRDB-JGD2TB6HJ9-H6JZW2ZWNK",
+      // clientKey: "CDKMQK-R9N96T-DM72GH-2NDTVN",
+      profileId: "91958",
+      serverKey: "STJN2WKRKZ-JGB9BWTJTG-HHRLDZWDBJ",
+      clientKey: "CRKMQK-R9BH6T-2P2V76-BBBHVP",
+      cartId: "c21d8933-3c43-4eb3-9993-9c2654ccfd44",
+      cartDescription: "Follow up",
       merchantName: "Twaq3 App",
-      screentTitle: "Pay with Apple Pay",
+      screentTitle: 'Pay with Card',
       locale: AppHelper.getAppLanguage() == 'ar' ? PaymentSdkLocale.AR : PaymentSdkLocale.EN,
       amount: amount,
       currencyCode: "SAR",
       merchantCountryCode: "SA",
       merchantApplePayIndentifier: "merchant.com.example.expectations",
-      //merchant.com.example.expectations  //com.tm.expectations
       linkBillingNameWithCardHolderName: true,
       simplifyApplePayValidation: true,
+      forceShippingInfo = false;
+      showBillingInfo = false;
+      showShippingInfo = false;
     );
+        print('configuration: $configuration');
 
      FlutterPaytabsBridge.startApplePayPayment(configuration, (event) {
       if (event["status"] == "success") {
@@ -283,9 +295,10 @@ class RegisterController extends GetxController {
         var transactionDetails = event["data"];
         print('error: $transactionDetails');
         print('error: ${event["status"]}');
+        AppHelper.showToast(message: 'payment error: $transactionDetails', color: Colors.green);
       } else if (event["status"] == "event") {
         // Handle events here.
-        var transactionDetails = event["data"];
+        var transactionDetails = event;
         print('event: $transactionDetails');
       }
       update();

@@ -57,7 +57,7 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   void requestMultiplePermissions() async {
-    if (await Permission.camera.isDenied &&
+    if (await Permission.camera.isDenied ||
         await Permission.microphone.isDenied) {
       Map<Permission, PermissionStatus> statuses = await [
         Permission.camera,

@@ -30,7 +30,9 @@ class LiveController extends GetxController{
         Const.LIVE_TOKEN = value.data!.token!;
         print('createNewLive LIVE_ID: ${AppHelper.getAppData(key: Const.KEY_LIVE_ID)}');
         print('createNewLive LIVE_TOKEN: ${Const.LIVE_TOKEN}');
+      update();
     });
+    update();
   }
 
   void closeLive(context, {required int liveId}){
@@ -40,7 +42,9 @@ class LiveController extends GetxController{
           // AppHelper.clearData(key: Const.KEY_LIVE_TOKEN);
           Const.LIVE_TOKEN = '';
           Navigator.pop(context);
+          update();
     });
+    update();
   }
 
   void joinToBroadcast({required int liveId}) {

@@ -126,13 +126,14 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   background: HexColor(AppColors.defualtColor),
                   borderColor: AppColors.defualtColor,
                   click: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen()));
+
                     // Future.delayed(Duration(seconds: 3), () => AppHelper.showToast(message: 'an error occurred'), );
-                   // if(Platform.isIOS){
-                   //   _controller.payWithApple(package.price!.toDouble());
-                   // }else{
-                   //   _controller.payNow(package.price!.toDouble());
-                   // }
+                   if(Platform.isIOS){
+                     // _controller.payWithApple(package.price!.toDouble());
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen()));
+                   }else{
+                     _controller.payNow(package.price!.toDouble());
+                   }
                   }),
               SizedBox(height: 16.h),
             ],

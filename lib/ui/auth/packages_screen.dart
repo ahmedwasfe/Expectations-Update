@@ -6,6 +6,7 @@ import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
+import 'package:expectations/ui/auth/apple_pay_screen.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
@@ -125,12 +126,13 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   background: HexColor(AppColors.defualtColor),
                   borderColor: AppColors.defualtColor,
                   click: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen()));
                     // Future.delayed(Duration(seconds: 3), () => AppHelper.showToast(message: 'an error occurred'), );
-                   if(Platform.isIOS){
-                     _controller.payWithApple(package.price!.toDouble());
-                   }else{
-                     _controller.payNow(package.price!.toDouble());
-                   }
+                   // if(Platform.isIOS){
+                   //   _controller.payWithApple(package.price!.toDouble());
+                   // }else{
+                   //   _controller.payNow(package.price!.toDouble());
+                   // }
                   }),
               SizedBox(height: 16.h),
             ],

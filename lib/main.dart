@@ -17,6 +17,7 @@ import 'package:flutter/foundation.dart'
 import 'utils/local/local.dart';
  
 import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
@@ -51,4 +52,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

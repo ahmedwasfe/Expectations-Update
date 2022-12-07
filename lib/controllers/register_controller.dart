@@ -339,9 +339,9 @@ class RegisterController extends GetxController {
       merchantApplePayIndentifier: "merchant.com.example.expectations",
       linkBillingNameWithCardHolderName: true,
       simplifyApplePayValidation: true,
-      // forceShippingInfo = false;
-      // showBillingInfo = false;
-      // showShippingInfo = false;
+      forceShippingInfo : false,
+      showBillingInfo : false,
+      showShippingInfo : false,
     );
         print('configuration: $configuration');
 

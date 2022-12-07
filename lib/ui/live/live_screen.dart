@@ -453,11 +453,17 @@ class _LiveScreenState extends State<LiveScreen> {
   void _onCallEnd(context) {
     // print("LIVEID: ${_liveController.liveId}");
     print("_onCallEnd LIVEID: ${AppHelper.getLiveId()}");
-    if (widget.userType == Const.KEY_BROADCASTER)
-      _liveController.closeLive(context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
-    else if (widget.userType == Const.KEY_GUEST) {
-      _liveController.exitFromBroadcast(context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
-    } else {
+    if(AppHelper.getLiveId() != null ) {
+      if (widget.userType == Const.KEY_BROADCASTER)
+        _liveController.closeLive(
+            context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
+      else if (widget.userType == Const.KEY_GUEST) {
+        _liveController.exitFromBroadcast(
+            context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
+      } else {
+        Navigator.pop(context);
+      }
+    }else {
       Navigator.pop(context);
     }
   }

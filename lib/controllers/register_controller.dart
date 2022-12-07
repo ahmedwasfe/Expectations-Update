@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:expectations/api/api_requests.dart';
+import 'package:expectations/api/purchases_api.dart';
 import 'package:expectations/model/Packages/packages.dart';
 import 'package:expectations/model/Packages/payment.dart';
 import 'package:expectations/model/register.dart';
 import 'package:expectations/model/user.dart';
 import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/constants.dart';
+import 'package:expectations/ui/widget/pay_wall_widget.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paytabs_bridge/BaseBillingShippingInfo.dart';
@@ -18,11 +20,13 @@ import 'package:flutter_paytabs_bridge/PaymentSdkLocale.dart';
 import 'package:flutter_paytabs_bridge/PaymentSdkTokeniseType.dart';
 import 'package:flutter_paytabs_bridge/flutter_paytabs_bridge.dart';
 import 'package:get/get.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RegisterController extends GetxController {
   String ipAddress = '';
   List<PackagesData> listPackages = [];
+  List<Package> packages = [];
   Payment paymentData = Payment();
 
   RxBool isLoading = false.obs;
@@ -272,9 +276,9 @@ class RegisterController extends GetxController {
       merchantApplePayIndentifier: "merchant.com.example.expectations",
       linkBillingNameWithCardHolderName: true,
       simplifyApplePayValidation: true,
-      forceShippingInfo = false;
-      showBillingInfo = false;
-      showShippingInfo = false;
+      // forceShippingInfo = false;
+      // showBillingInfo = false;
+      // showShippingInfo = false;
     );
         print('configuration: $configuration');
 
@@ -319,6 +323,27 @@ class RegisterController extends GetxController {
         // print('LINK payment: ${paymentData.url}');
       }
     });
+  }
+
+  Future fetchOffers(BuildContext context) async {
+    final offerings = await PurchasesApi.fetchOfferes();
+    if(offerings.isEmpty)
+      AppHelper.showToast(message: 'No Plans Found', color: Colors.redAccent);
+    else{
+      final offer = offerings.first;
+      final packages = offerings
+      .map((offer) => offer.availablePackages)
+      .expand((pair) => pair)
+      .toList();
+      print('fetchOffers OFFER: $offer');
+      this.packages.clear();
+      this.packages.addAll(packages);
+      showBottomSheet(context: context, builder: (context) => PayWallWidget(title: 'Title sdd', description: 'Description dssds', packages: packages, onCLickPackage: (package){
+        PurchasesApi.purchaesPackage(package);
+      }));
+    }
+
+
   }
 
   void goTo(Register register, String route) {

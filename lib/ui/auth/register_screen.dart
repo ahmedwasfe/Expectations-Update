@@ -123,8 +123,7 @@ class RegisterScreen extends GetView<RegisterController> {
                                 height: 40.h,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0)
-                                      .r,
+                                          horizontal: 8.0).r,
                                   child: TextFormField(
                                     controller: controller.birthDateController,
                                     keyboardType: TextInputType.datetime,

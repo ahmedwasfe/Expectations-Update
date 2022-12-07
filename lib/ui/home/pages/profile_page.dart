@@ -9,6 +9,7 @@ import 'package:expectations/routes/routes.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
+import 'package:expectations/ui/widget/pay_wall_widget.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
@@ -229,7 +230,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ],
                                 ),
                                 onTap: () {
-                                  home.getCurrenNavIndex(navIndex: 2);
+                                  home.getCurrenNavIndex(navIndex: 3);
                                 },
                               ))),
                   Container(

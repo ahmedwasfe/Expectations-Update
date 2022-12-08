@@ -4,9 +4,10 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 class PurchasesApi{
 
   static const _apiKey = 'goog_DRMQGvKZoeDdIfRiDXaidsuYcSA';
-
+  static const _apiKeyApple = 'appl_CGYDNAAXaglTwpaxkoqpXcrBQFc'
   static Future initPurchases() async {
-    final _config = PurchasesConfiguration(_apiKey);
+    // final _config = PurchasesConfiguration(_apiKey);
+    final _config = PurchasesConfiguration(_apiKeyApple);
     await Purchases.setDebugLogsEnabled(true);
     await Purchases.configure(_config);
   }

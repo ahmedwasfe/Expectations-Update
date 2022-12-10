@@ -28,22 +28,70 @@ class _PackagesScreenState extends State<PackagesScreen> {
   RegisterController _controller = Get.put(RegisterController());
 
   @override
+  void initState() {
+    super.initState();
+    Purchases.addCustomerInfoUpdateListener(
+        (customerInfo) => updateCustomerStatus());
+    updateCustomerStatus();
+  }
+
+  Future updateCustomerStatus() async {
+    final customerInfo = await Purchases.getCustomerInfo();
+    customerInfo.entitlements.active['Write here entitlements identifier'];
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          MainToolBar(title: 'packages', isBack: true, route: Routes.home, isProfile: false),
+          MainToolBar(
+              title: 'packages',
+              isBack: true,
+              route: Routes.home,
+              isProfile: false),
           FutureBuilder(
-            future: Platform.isAndroid ? _controller.getPackages() : _controller.fetchOffers(context),
+            future: Platform.isAndroid
+                ? _controller.getPackages()
+                : _controller.fetchOffers(context),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done)
-                return Platform.isAndroid ? Expanded(
-                    child: ListView.builder(
-                      itemCount: _controller.listPackages.length,
-                      itemBuilder: (context, index) => buildPackageItem(_controller.listPackages[index]),
-                    )) : PayWallWidget(title: 'Title', description: 'Description', packages: _controller.packages, onCLickPackage: (package){
-                  PurchasesApi.purchaesPackage(package);
-                });
+                return !Platform.isAndroid
+                    ? Expanded(
+                        child: ListView.builder(
+                            itemCount: _controller.listPackages.length,
+                            itemBuilder: (context, index) => buildPackageItem(
+                                _controller.listPackages[index])))
+                    : Expanded(
+                      child: Center(
+                          child: Container(
+                            margin: EdgeInsetsDirectional.only(start: 20.r, end: 20.r),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomButton(
+                                    text: 'subscription_product'.tr,
+                                    isUpperCase: false,
+                                    radius: 8,
+                                    background: HexColor(AppColors.defualtColor),
+                                    click: () => showSubscriptionBottomSheet(context, buildApplePay())),
+                                SizedBox(height: 20.r),
+                                CustomButton(
+                                    text: 'subscription_package'.tr,
+                                    isUpperCase: false,
+                                    radius: 8,
+                                    background: HexColor(AppColors.defualtColor),
+                                    click: () => showSubscriptionBottomSheet(context, PayWallWidget(
+                                        title: '',
+                                        description: '',
+                                        packages: _controller.packages,
+                                        onCLickPackage: (package) =>
+                                            PurchasesApi.purchaesPackage(package)))),
+                              ],
+                            ),
+                          ),
+                        ),
+                    );
               else if (snapshot.connectionState == ConnectionState.waiting)
                 return Expanded(
                     child: Center(child: CircularProgressIndicator()));
@@ -144,6 +192,63 @@ class _PackagesScreenState extends State<PackagesScreen> {
   //       ),
   //     );
 
+  Widget buildApplePay() => Center(
+        child: Container(
+          height: 100.w,
+          margin: EdgeInsetsDirectional.only(start: 20.r, end: 20.r),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.paid, color: HexColor(AppColors.defualtColor)),
+              const SizedBox(height: 20),
+              CustomButton(
+                  text: 'buy_subscription'.tr,
+                  isUpperCase: false,
+                  radius: 8,
+                  background: HexColor(AppColors.defualtColor),
+                  click: () async {
+                    await PurchasesApi.purchaesProduct('Write here plan id');
+                  }),
+            ],
+          ),
+        ),
+      );
+
+  void showSubscriptionBottomSheet(BuildContext context, Widget widget) {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 320,
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Container(
+                  height: 4,
+                  width: 50,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+                SizedBox(height: 20),
+                Text(''),
+                SizedBox(height: 14),
+                SizedBox(height: 20),
+                widget,
+                SizedBox(height: 20),
+              ],
+            ),
+          );
+        });
+  }
+
   Widget buildPackageItem(PackagesData package) {
     return Container(
       width: double.infinity,
@@ -152,7 +257,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
       child: Card(
         color: HexColor(AppColors.dotColor),
         shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
         child: Column(
           children: [
             Container(
@@ -162,8 +267,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100.r),
                   image: DecorationImage(
-                      image: NetworkImage(
-                          '${package.image}'),
+                      image: NetworkImage('${package.image}'),
                       fit: BoxFit.cover)),
             ),
             Text(
@@ -220,7 +324,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                 borderColor: AppColors.defualtColor,
                 click: () async {
                   _controller.payNow(package.price!.toDouble());
-                   // Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
                   // if(Platform.isIOS){
                   //   Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
                   // }else{

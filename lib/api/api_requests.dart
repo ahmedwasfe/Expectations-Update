@@ -60,7 +60,7 @@ class ApiRequests {
       // home/matchs?from=2022-09-03&to=2022-09-03
       Uri.parse('$_baseUrl/home/matchs?from=$from&to=$to'),
     );
-    print('ERROR: ${jsonDecode(response.body)}');
+    // print('ERROR: ${jsonDecode(response.body)}');
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       HomeMatches matches = HomeMatches.fromJson(body);
@@ -78,7 +78,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       AgoraToken token = AgoraToken.fromJson(body);
-      print('SUCCESS getAgorToken: ${jsonEncode(token)}');
+      // print('SUCCESS getAgorToken: ${jsonEncode(token)}');
       return token;
     } else {
       print('ERROR getAgorToken: ${jsonDecode(response.body)}');
@@ -151,7 +151,7 @@ class ApiRequests {
     if (response.statusCode == 200 || response.statusCode == 201) {
       var body = jsonDecode(response.body);
       user = User.fromJson(body);
-      print('SUUCCESS: ${jsonEncode(user)}');
+      // print('SUUCCESS: ${jsonEncode(user)}');
       return user;
     } else {
       var body = jsonDecode(response.body);
@@ -179,7 +179,7 @@ class ApiRequests {
     );
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      print("Response: $body");
+      // print("Response: $body");
       ForgetPassword forgetPassword = ForgetPassword.fromJson(body);
       return forgetPassword;
     } else {
@@ -204,7 +204,7 @@ class ApiRequests {
     );
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      print("Reponse: $body");
+      // print("Reponse: $body");
       ResetPassword resetPassword = ResetPassword.fromJson(body);
       return resetPassword;
     } else {
@@ -243,7 +243,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Payment payment = Payment.fromJson(body);
-      print('Success payment: ${jsonEncode(payment)}');
+      // print('Success payment: ${jsonEncode(payment)}');
       return payment;
     } else {
       print('ERROR payment: ${jsonDecode(response.body)}');
@@ -523,7 +523,7 @@ class ApiRequests {
         headers: {'Content-type': 'application/json'});
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      print('Response: $body');
+      // print('Response: $body');
       Awards awards = Awards.fromJson(body);
       return awards;
     } else {
@@ -542,7 +542,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       NewLive live = NewLive.fromJson(body);
-      print('SUCCESS newLive: ${jsonEncode(live)}');
+      // print('SUCCESS newLive: ${jsonEncode(live)}');
       return live;
     } else {
       print('ERROR newLive: ${jsonDecode(response.body)}');
@@ -587,7 +587,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Broadcast broadcast = Broadcast.fromJson(body);
-      print('SUCCESS watchBroadcast: ${jsonEncode(broadcast)}');
+      // print('SUCCESS watchBroadcast: ${jsonEncode(broadcast)}');
       return broadcast;
     } else {
       print('ERROR watchBroadcast: ${jsonDecode(response.body)}');
@@ -607,7 +607,7 @@ class ApiRequests {
       var body = jsonDecode(response.body);
       print('SUCCESS exitBroadcast: ${jsonEncode(body)}');
       Broadcast broadcast = Broadcast.fromJson(body);
-      print('SUCCESS exitBroadcast: ${jsonEncode(broadcast)}');
+      // print('SUCCESS exitBroadcast: ${jsonEncode(broadcast)}');
       return broadcast;
     }else {
       print('ERROR exitBroadcast: ${jsonDecode(response.body)}');
@@ -626,7 +626,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Broadcast broadcast = Broadcast.fromJson(body);
-      print('SUCCESS watchBroadcast: ${jsonEncode(broadcast)}');
+      // print('SUCCESS watchBroadcast: ${jsonEncode(broadcast)}');
       return broadcast;
     } else {
       print('ERROR watchBroadcast: ${jsonDecode(response.body)}');
@@ -645,7 +645,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Viewer viewer = Viewer.fromJson(body);
-      print('SUCCESS getViewers: ${jsonEncode(viewer)}');
+      // print('SUCCESS getViewers: ${jsonEncode(viewer)}');
       return viewer;
     } else {
       print('ERROR getViewers: ${jsonDecode(response.body)}');
@@ -658,7 +658,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       AllLive live = AllLive.fromJson(body);
-      print('RESPONSE getAllLive: ${jsonEncode(body)}');
+      // print('RESPONSE getAllLive: ${jsonEncode(body)}');
       return live;
     } else {
       print('ERROR: getAllLive: ${jsonDecode(response.body)}');
@@ -714,7 +714,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       MakeLike like = MakeLike.fromJson(body);
-      print('SUCCESS makeLike: ${jsonEncode(like)}');
+      // print('SUCCESS makeLike: ${jsonEncode(like)}');
       return like;
     } else {
       print('ERROR makeLike: ${jsonDecode(response.body)}');
@@ -732,7 +732,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       DeleteLike like = DeleteLike.fromJson(body);
-      print('SUCCESS deleteLike: ${jsonEncode(like)}');
+      // print('SUCCESS deleteLike: ${jsonEncode(like)}');
       return like;
     } else {
       print('ERROR deleteLike: ${jsonDecode(response.body)}');
@@ -749,7 +749,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Likes likes = Likes.fromJson(body);
-      print('SUCCESS getLiveLikes: ${jsonEncode(likes)}');
+      // print('SUCCESS getLiveLikes: ${jsonEncode(likes)}');
       return likes;
     } else {
       print('SUCCESS getLiveLikes: ${jsonEncode(response.body)}');
@@ -780,7 +780,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       DeleteAccount deleteAccount = DeleteAccount.fromJson(body);
-      print('SUCCES: ${jsonEncode(deleteAccount)}');
+      // print('SUCCES: ${jsonEncode(deleteAccount)}');
       return deleteAccount;
     } else {
       print('Error: ${response.body}');

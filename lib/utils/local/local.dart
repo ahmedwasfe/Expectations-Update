@@ -161,6 +161,9 @@ class MyLocal implements Translations {
           "subscribe": "إشتراك",
           "done_payment_successfully": "تم الدفع بنجاح",
           "broadcasting_has_ended": "لقد تم إنهاء البث",
+          'buy_subscription': 'شراء الاشتراك',
+          'subscription_product': 'اشتراك المنتج',
+          'subscription_package': 'اشتراك حزمة',
         },
         "en": {
           "english": "English",
@@ -322,6 +325,9 @@ class MyLocal implements Translations {
           "subscribe": "Subscribe",
           "done_payment_successfully": "Done payment successfully",
           "broadcasting_has_ended": "Broadcasting has ended",
+          'buy_subscription': 'Subscription',
+          'subscription_product': 'Subscription product',
+          'subscription_package': 'Subscription package',
         }
       };
 }

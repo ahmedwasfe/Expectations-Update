@@ -31,4 +31,14 @@ class PurchasesApi{
       return false;
     }
   }
+
+  static Future<bool> purchaesProduct(String product) async {
+    try{
+      await Purchases.purchaseProduct(product);
+      return true;
+    }catch(e) {
+      print('purchaesProduct: ${e.toString()}');
+      return false;
+    }
+  }
 }

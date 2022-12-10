@@ -37,7 +37,8 @@ class _PackagesScreenState extends State<PackagesScreen> {
 
   Future updateCustomerStatus() async {
     final customerInfo = await Purchases.getCustomerInfo();
-    customerInfo.entitlements.active['Write here entitlements identifier'];
+    // customerInfo.entitlements.active['Write here entitlements identifier'];
+    customerInfo.entitlements.active['all_packages'];
   }
 
   @override
@@ -207,7 +208,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   radius: 8,
                   background: HexColor(AppColors.defualtColor),
                   click: () async {
-                    await PurchasesApi.purchaesProduct('Write here plan id');
+                    // await PurchasesApi.purchaesProduct('Write here plan id');
+                    await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
+                    // await PurchasesApi.purchaesProduct('EXPECT001');
+
                   }),
             ],
           ),

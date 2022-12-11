@@ -56,7 +56,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                 : _controller.fetchOffers(context),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done)
-                return !Platform.isAndroid
+                return Platform.isAndroid
                     ? Expanded(
                         child: ListView.builder(
                             itemCount: _controller.listPackages.length,

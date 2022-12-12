@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:expectations/api/api_requests.dart';
+import 'package:expectations/api/purchases_api.dart';
 import 'package:expectations/controllers/home_controller.dart';
 import 'package:expectations/controllers/language_controller.dart';
 import 'package:expectations/controllers/profile_controller.dart';
@@ -254,7 +256,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: () => Get.toNamed(Routes.packages),
+                      onTap: () async {
+                        if(Platform.isAndroid)
+                          Get.toNamed(Routes.packages);
+                        else{
+                          await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
+                        }
+                      }
                     ),
                   ),
                   Container(

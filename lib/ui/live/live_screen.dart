@@ -453,7 +453,7 @@ class _LiveScreenState extends State<LiveScreen> {
   void _onCallEnd(context) {
     // print("LIVEID: ${_liveController.liveId}");
     print("_onCallEnd LIVEID: ${AppHelper.getLiveId()}");
-    if(AppHelper.getLiveId() != null ) {
+    if(AppHelper.getLiveId() != 0) {
       if (widget.userType == Const.KEY_BROADCASTER)
         _liveController.closeLive(
             context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));

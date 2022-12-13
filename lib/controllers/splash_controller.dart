@@ -11,6 +11,7 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
+    AppHelper.requestMultiplePermissions();
     getFirebaseToken();
     getAgoraToken();
     startApp();

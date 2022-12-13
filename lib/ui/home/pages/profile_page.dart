@@ -260,6 +260,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         if(Platform.isAndroid)
                           Get.toNamed(Routes.packages);
                         else{
+                          // showSubscriptionBottomSheet(context, Text('Subscribe'));
                           await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
                         }
                       }
@@ -372,6 +373,41 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
     );
+  }
+
+  void showSubscriptionBottomSheet(BuildContext context, Widget widget) {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 320,
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Container(
+                  height: 4,
+                  width: 50,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+                SizedBox(height: 20),
+                Text(''),
+                SizedBox(height: 14),
+                SizedBox(height: 20),
+                widget,
+                SizedBox(height: 20),
+              ],
+            ),
+          );
+        });
   }
 
   static void showLoginDialog(BuildContext context) {

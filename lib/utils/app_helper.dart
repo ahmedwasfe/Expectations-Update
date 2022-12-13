@@ -13,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppHelper extends GetxService {
@@ -298,6 +299,18 @@ class AppHelper extends GetxService {
     if(getAppData(key: Const.KEY_LIVE_ID) != null)
       return getAppData(key: Const.KEY_LIVE_ID);
     else return 0;
+  }
+
+  static requestMultiplePermissions() async {
+    if (await Permission.camera.isDenied ||
+        await Permission.microphone.isDenied) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.camera,
+        Permission.microphone,
+      ].request();
+      print("CAMERA permission: ${statuses[Permission.camera]}, "
+          "MIC permission: ${statuses[Permission.microphone]}");
+    }
   }
 
   static void showToast({required String message, Color color = Colors.black}){

@@ -40,7 +40,7 @@ class _LiveScreenState extends State<LiveScreen> {
 
   @override
   void initState() {
-    requestMultiplePermissions();
+    AppHelper.requestMultiplePermissions();
     super.initState();
     initiliazedAgora();
     print('isBroadcaster: ${widget.userType}');

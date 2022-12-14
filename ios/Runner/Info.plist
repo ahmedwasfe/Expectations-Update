@@ -32,10 +32,10 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera for participating in the live sessions</string>
+	<string>We need to have access to your camera so you can participate in the live sessions through video call.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone for participating in the live sessions</string>
-	<key>UILaunchStoryboardName</key>
+	<string>We need to have access to your microphone so you can participate in the live sessions through video call.</string>
+ 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
+  bool isChecked = false;
 
   late GlobalKey<FormState> formKey;
   late TextEditingController emailController;

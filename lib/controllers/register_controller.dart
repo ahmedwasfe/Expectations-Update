@@ -236,6 +236,7 @@ class RegisterController extends GetxController {
           var transactionDetails = event["data"];
           print('isSuccess: $transactionDetails');
           AppHelper.showToast(message: 'done payment successfully'.tr, color: Colors.green);
+          AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: 30);
         } else {
           print("failed transaction");
         }
@@ -250,7 +251,8 @@ class RegisterController extends GetxController {
         print('event: $transactionDetails');
       }
       update();
-    }).then((value) {
+    })
+        .then((value) {
       print('startCardPayment: ${jsonEncode(value)}');
     });
   }
@@ -317,6 +319,7 @@ class RegisterController extends GetxController {
     configuration.tokeniseType = PaymentSdkTokeniseType.MERCHANT_MANDATORY;
     return configuration;
   }
+
   Future<void> payWithApple(double amount) async {
     
     var configuration = PaymentSdkConfigurationDetails(

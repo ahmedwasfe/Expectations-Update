@@ -16,6 +16,7 @@ class Const {
   static final String KEY_BOARDING_PAGE_3 = 'boarding_page_3';
   static final String KEY_STARTED_PAGE = 'started_page';
   static final String KEY_LOGIN_REGISTER = 'login_register';
+  static final String KEY_COUNTS_DAYS = 'days';
 
   static final String Value_Register = 'register';
   static final String KEY_LANGUAGE = 'lang';
@@ -31,5 +32,8 @@ class Const {
   static const String KEY_BROADCASTER = 'broadcaster';
   static const String KEY_GUEST = 'guest';
   static const String KEY_VIEWER = 'viewer';
+
+
+  static const String privacyPolicy = '';
 
 }

@@ -61,6 +61,11 @@ class MyLocal implements Translations {
           "Notifications": "الإشعارات",
           "Share the application": "شارك التطبيق",
           "Contact Us": "تواصل معنا",
+          "privacy_policy": "سياسة الخصوصية",
+          "terms_conditions": "الشروط والأحكام",
+          "agreement": "اتفاقية ترخيص المستخدم",
+          "privacy_policy_agreement": "هل توافق على سياسة الخصوصية",
+          "please_agree_privacy_policy": "يجب أن توافق على سياسة الخصوصية",
           "About Us": "معلومات عنا",
           "logout": "تسجيل الخروج",
           "The game has been added to the favourites":
@@ -164,6 +169,18 @@ class MyLocal implements Translations {
           'buy_subscription': 'شراء الاشتراك',
           'subscription_product': 'اشتراك المنتج',
           'subscription_package': 'اشتراك حزمة',
+
+          'report': 'إبلاغ',
+          'submit': 'إرسال',
+          'violent_extremism':'التطرف العنيف',
+          'illegal_activities':'الأنشطة والسلع غير المشروعة',
+          'hate_behaviour':'سلوك الكراهية',
+          'fraud_and_fraud':'الاحتيال والنصب',
+          'self_harm':'انتحار ، إيذاء النفس',
+          'harassment':'المضايقة أو التنمر',
+          'violent_grotesque_content':'محتوى عنيف وبشع',
+          'wrong_info':'معلومات خاطئة',
+          'Intellectual_property_infringement':'التعدي على الملكية الفكرية',
         },
         "en": {
           "english": "English",
@@ -222,6 +239,11 @@ class MyLocal implements Translations {
           "Notifications": "Notifications",
           "Share the application": "Share the application",
           "Contact Us": "Contact Us",
+          "privacy_policy": "Privacy policy",
+          "terms_conditions": "Terms & Conditions",
+          "agreement": "End-User License Agreement",
+          "privacy_policy_agreement": "Do you agree to the privacy policy",
+          "please_agree_privacy_policy": "You must agree to the Privacy Policy",
           "About Us": "About Us",
           "logout": "Logout",
           "The game has been added to the favourites":
@@ -328,6 +350,18 @@ class MyLocal implements Translations {
           'buy_subscription': 'Subscription',
           'subscription_product': 'Subscription product',
           'subscription_package': 'Subscription package',
+
+          'report': 'Report',
+          'submit': 'Submit',
+          'violent_extremism':'violent extremism',
+          'illegal_activities':'Illegal activities and goods',
+          'hate_behaviour':'Hate behaviour',
+          'fraud_and_fraud':'Fraud and fraud',
+          'self_harm':'Suicide, self-harm',
+          'harassment':'Harassment or bullying',
+          'violent_grotesque_content':'Violent and grotesque content',
+          'wrong_info':'Wrong information',
+          'Intellectual_property_infringement':'Intellectual property infringement',
         }
       };
 }

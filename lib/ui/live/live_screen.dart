@@ -36,6 +36,7 @@ class _LiveScreenState extends State<LiveScreen> {
   late RtcEngine _engine;
   bool muted = false;
 
+
   // bool isBroadcaster = true;
 
   @override
@@ -133,74 +134,87 @@ class _LiveScreenState extends State<LiveScreen> {
               color: HexColor('2C2C2C'),
               child: Row(
                 children: [
-                  Container(
-                    margin: EdgeInsetsDirectional.only(start: 16, top: 16),
-                    padding:
-                        EdgeInsetsDirectional.only(top: 2, bottom: 2, end: 30),
-                    alignment: Alignment.topRight,
-                    decoration: BoxDecoration(
-                        color: HexColor('383838'),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                            backgroundImage:
-                                NetworkImage('${AppHelper.getDefaultImage()}')),
-                        SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Text(
-                              '${AppHelper.getUserName()}',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            SizedBox(height: 2),
-                            FutureBuilder(
-                              future: _liveController.getUsers(
-                                  liveId: AppHelper.getLiveId()),
-                              builder: (context, snapshot) => Text(
-                                '${_liveController.listUsersOnline.length} Online',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 10),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsetsDirectional.only(start: 8, top: 16),
+                      padding:
+                          EdgeInsetsDirectional.only(top: 2, bottom: 2, end: 20),
+                      alignment: Alignment.topRight,
+                      decoration: BoxDecoration(
+                          color: HexColor('383838'),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage('${AppHelper.getDefaultImage()}')),
+                          SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${AppHelper.getUserName()}',
+                                style: TextStyle(fontSize: 12, color: Colors.white),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              SizedBox(height: 2),
+                              FutureBuilder(
+                                future: _liveController.getUsers(
+                                    liveId: AppHelper.getLiveId()),
+                                builder: (context, snapshot) => Text(
+                                  '${_liveController.listUsersOnline.length} Online',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Spacer(),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin: EdgeInsetsDirectional.only(top: 10, start: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        widget.userType == Const.KEY_VIEWER
-                            ? Container()
-                            : IconButton(
-                                icon: Icon(
-                                  Icons.switch_camera,
-                                  color: Colors.white,
-                                  size: 20.0,
-                                ),
-                                onPressed: _onSwitchCamera),
-                        widget.userType == Const.KEY_VIEWER
-                            ? Container()
-                            : IconButton(
-                                icon: Icon(
-                                  muted ? Icons.mic_off : Icons.mic,
-                                  color:
-                                      muted ? Colors.redAccent : Colors.white,
-                                  size: 24.0,
-                                ),
-                                color: muted ? Colors.white : Colors.redAccent,
-                                onPressed: _onToggleMute),
-                        IconButton(
-                          icon: Icon(Icons.close, color: Colors.white),
-                          onPressed: () => _onCallEnd(context),
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      margin: EdgeInsetsDirectional.only(top: 10, start: 4),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(Icons.flag_outlined, color: Colors.white),
+                            onPressed: () {
+                              if(AppHelper.getCurrentUserToken() != null)
+                                _liveController.showReportBottomSheet(context);
+                              else
+                                AppHelper.showLoginDialog(context);
+                            },
+                          ),
+                          widget.userType == Const.KEY_VIEWER
+                              ? Container()
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.switch_camera,
+                                    color: Colors.white,
+                                    size: 20.0,
+                                  ),
+                                  onPressed: _onSwitchCamera),
+                          widget.userType == Const.KEY_VIEWER
+                              ? Container()
+                              : IconButton(
+                                  icon: Icon(
+                                    muted ? Icons.mic_off : Icons.mic,
+                                    color:
+                                        muted ? Colors.redAccent : Colors.white,
+                                    size: 24.0,
+                                  ),
+                                  color: muted ? Colors.white : Colors.redAccent,
+                                  onPressed: _onToggleMute),
+                          IconButton(
+                            icon: Icon(Icons.close, color: Colors.white),
+                            onPressed: () => _onCallEnd(context),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -454,12 +468,14 @@ class _LiveScreenState extends State<LiveScreen> {
     // print("LIVEID: ${_liveController.liveId}");
     print("_onCallEnd LIVEID: ${AppHelper.getLiveId()}");
     if(AppHelper.getLiveId() != 0) {
-      if (widget.userType == Const.KEY_BROADCASTER)
+      if (widget.userType == Const.KEY_BROADCASTER) {
         _liveController.closeLive(
             context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
-      else if (widget.userType == Const.KEY_GUEST) {
+        Navigator.pop(context);
+      }else if (widget.userType == Const.KEY_GUEST) {
         _liveController.exitFromBroadcast(
             context, liveId: AppHelper.getAppData(key: Const.KEY_LIVE_ID));
+        Navigator.pop(context);
       } else {
         Navigator.pop(context);
       }

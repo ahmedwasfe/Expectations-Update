@@ -33,8 +33,6 @@ void main() async {
   runApp(MyApp());
 }
 
-
-
 Future initServices() async {
   await Get.putAsync(() => AppHelper().initial());
 }

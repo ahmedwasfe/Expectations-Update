@@ -1,3 +1,5 @@
+import 'package:expectations/shared/components/constants.dart';
+import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -8,9 +10,12 @@ class PurchasesApi{
 
   static Future initPurchases() async {
     // final _config = PurchasesConfiguration(_apiKey);
-    final _config = PurchasesConfiguration(_apiKeyApple);
+    // print('USER: ${AppHelper.getUserData(key: Const.KEY_USER_DATA) != null ? AppHelper.getUserData(key: Const.KEY_USER_DATA).id!.toString() : '0'}');
+    final _config = PurchasesConfiguration(_apiKeyApple)..appUserID = AppHelper.getUserData(key: Const.KEY_USER_DATA) != null ? AppHelper.getUserData(key: Const.KEY_USER_DATA).id.toString() : '0';
     await Purchases.setDebugLogsEnabled(true);
     await Purchases.configure(_config);
+    Purchases.logIn(AppHelper.getUserData(key: Const.KEY_USER_DATA) != null ? AppHelper.getUserData(key: Const.KEY_USER_DATA).id.toString() : '0');
+    Purchases.logOut();
   }
 
   static Future<List<Offering>> fetchOfferes() async {

@@ -31,10 +31,14 @@ class HomeController extends GetxController {
       }
       update();
     } else {
-      if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
-        AppHelper.showLoginDialog(context!);
-      else
+      if(navIndex == 4){
         this.navIndex = navIndex;
+      }else{
+        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null)
+          AppHelper.showLoginDialog(context!);
+        else
+          this.navIndex = navIndex;
+      }
       update();
     }
   }

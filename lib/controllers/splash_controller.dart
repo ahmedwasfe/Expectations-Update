@@ -1,3 +1,7 @@
+
+
+import 'dart:io';
+
 import 'package:expectations/api/api_requests.dart';
 import 'package:expectations/model/live/agora_token.dart';
 import 'package:expectations/routes/routes.dart';
@@ -19,14 +23,22 @@ class SplashController extends GetxController {
   }
 
   Future startApp() {
+    print('startApp SUB: ${AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS)}');
     // Future.delayed(Duration(seconds: 8), () => Get.offAndToNamed('/boarding'));
     if (boarding != null) {
       if (AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
         return Future.delayed(Duration(seconds: 5), () {
               if(AppHelper.getExpiredDate() != null && AppHelper.getExpiredDate() != ""){
-                if(AppHelper.getDateTody() == AppHelper.getExpiredDate())
-                  Get.offAndToNamed(Routes.packages);
-                else
+                if(AppHelper.getDateTody() == AppHelper.getExpiredDate()) {
+                  if(AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS) != null){
+                    Get.offAndToNamed(Routes.home);
+                  }else{
+                    if(Platform.isAndroid)
+                      Get.offAndToNamed(Routes.packages);
+                    else
+                      AppHelper.showToast(message: 'please_subscribe');
+                  }
+                }else
                   Get.offAndToNamed(Routes.home);
               }else
                 Get.offAndToNamed(Routes.home);

@@ -26,6 +26,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ProfileController _controller = Get.find();
+  int days = 0;
 
   @override
   void initState() {
@@ -34,6 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');
     return Scaffold(
       body: Column(
         children: [
@@ -72,9 +74,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Container(
                                   margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${_controller.profile.name}',
+                                        AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null ? '${_controller.profile.name}' : 'User name',
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -82,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             fontFamily: Const.appFont),
                                       ),
                                       Text(
-                                        '${_controller.profile.phone}',
+                                        AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null ? '${_controller.profile.phone}' : '+966 000 000 000',
                                         style: TextStyle(
                                             color:
                                                 HexColor(AppColors.greyColor),
@@ -132,7 +135,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           )
                         ],
                       ),
-                      onTap: () => Get.toNamed(Routes.profile),
+                      onTap: () {
+                        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
+                          Get.toNamed(Routes.profile);
+                        else
+                          AppHelper.showLoginDialog(context);
+                      },
                     ),
                   ),
                   Container(
@@ -156,7 +164,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: () => Get.toNamed(Routes.resetPassword),
+                      onTap: () {
+                        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
+                          Get.toNamed(Routes.profile);
+                        else
+                          AppHelper.showLoginDialog(context);
+                      },
                     ),
                   ),
                   Container(
@@ -204,7 +217,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: () => Get.toNamed(Routes.notifications),
+                      onTap: () {
+                        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
+                          Get.toNamed(Routes.notifications);
+                        else
+                          AppHelper.showLoginDialog(context);
+                      },
                     ),
                   ),
                   Container(
@@ -232,7 +250,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ],
                                 ),
                                 onTap: () {
-                                  home.getCurrenNavIndex(navIndex: 3);
+                                  if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
+                                    home.getCurrenNavIndex(navIndex: 3);
+                                  else
+                                    AppHelper.showLoginDialog(context);
                                 },
                               ))),
                   Container(
@@ -257,12 +278,19 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       onTap: () async {
-                        if(Platform.isAndroid)
-                          Get.toNamed(Routes.packages);
-                        else{
-                          // showSubscriptionBottomSheet(context, Text('Subscribe'));
-                          await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
-                        }
+                        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null) {
+                          if(Platform.isAndroid)
+                            Get.toNamed(Routes.packages);
+                          else{
+                            // showSubscriptionBottomSheet(context, Text('Subscribe'));
+                            await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
+                            setState(() {
+                              days += 30;
+                              AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: days);
+                            });
+                          }
+                        }else
+                          AppHelper.showLoginDialog(context);
                       }
                     ),
                   ),
@@ -288,6 +316,30 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       onTap: () => Get.toNamed(Routes.contactUs),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40, right: 24, left: 24),
+                    child: InkWell(
+                      child: Row(
+                        children: [
+                          Icon(Icons.privacy_tip_outlined, color: HexColor(AppColors.defualtColor)),
+                          SizedBox(width: 20),
+                          Text(
+                            'privacy_policy'.tr,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: Const.appFont,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
+                        ],
+                      ),
+                      onTap: () => Get.toNamed(Routes.privacyPolicy),
                     ),
                   ),
                   Container(
@@ -338,7 +390,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: () => deleteAccount(context),
+                      onTap: () {
+                        if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
+                          deleteAccount(context);
+                        else
+                          AppHelper.showLoginDialog(context);
+                      },
                     ),
                   ),
                   Container(
@@ -350,7 +407,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           SvgPicture.asset('assets/icons/sign_out.svg'),
                           SizedBox(width: 20),
                           Text(
-                            'logout'.tr,
+                            AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null ? 'Login'.tr : 'logout'.tr,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -363,7 +420,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               size: 20, color: HexColor(AppColors.defualtColor))
                         ],
                       ),
-                      onTap: () => logout(context),
+                      onTap: () {
+                        logout(context);
+                      },
                     ),
                   ),
                 ],
@@ -642,7 +701,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     SizedBox(height: 16),
                     Text(
-                      'logout'.tr,
+                      AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null ? 'Login'.tr : 'logout'.tr,
                       style: TextStyle(
                           color: HexColor(AppColors.defualtColor),
                           fontSize: 18,
@@ -651,7 +710,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Are you sure you want to sign out'.tr,
+                      AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null ? 'please_login'.tr : 'Are you sure you want to sign out'.tr,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -666,7 +725,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           CustomButton(
-                              text: 'logout'.tr,
+                              text: AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null ? 'Login'.tr : 'logout'.tr,
                               textColor: Colors.white,
                               height: 48,
                               width: 130,
@@ -676,22 +735,28 @@ class _ProfilePageState extends State<ProfilePage> {
                               borderColor: AppColors.defualtColor,
                               click: () {
                                 HomeController controller = Get.find();
-                                ApiRequests.logout(
-                                        token: AppHelper.getCurrentUserToken())
-                                    .then((value) {
-                                  AppHelper.clearData(key: Const.KEY_USER_TOKEN)
+                                if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null){
+                                  ApiRequests.logout(
+                                      token: AppHelper.getCurrentUserToken())
                                       .then((value) {
-                                    AppHelper.clearData(
-                                            key: Const.KEY_USER_DATA)
+                                    AppHelper.clearData(key: Const.KEY_USER_TOKEN)
                                         .then((value) {
-                                      Get.offAndToNamed(Routes.login);
-                                      controller.navIndex = 0;
-                                      controller.getCurrenNavIndex(navIndex: 0);
+                                      AppHelper.clearData(
+                                          key: Const.KEY_USER_DATA)
+                                          .then((value) {
+                                        Get.offAndToNamed(Routes.login);
+                                        controller.navIndex = 0;
+                                        controller.getCurrenNavIndex(navIndex: 0);
+                                      });
                                     });
+                                  }).catchError((error) {
+                                    print('catchError: $error');
                                   });
-                                }).catchError((error) {
-                                  print('catchError: $error');
-                                });
+                                }else{
+                                  Get.offAndToNamed(Routes.login);
+                                  controller.navIndex = 0;
+                                  controller.getCurrenNavIndex(navIndex: 0);
+                                }
                               }),
                           CustomButton(
                               text: 'cancel'.tr,

@@ -98,6 +98,9 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/Privacy-policy-termify.txt
+    - assets/Terms-of-service-termify.txt
+    - assets/eula-termify.txt
 
   #   - images/a_dot_ham.jpeg
 

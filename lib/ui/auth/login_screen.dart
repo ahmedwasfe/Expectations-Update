@@ -162,6 +162,23 @@ class LoginScreen extends GetView<LoginController> {
                           onTap: () => Get.toNamed(Routes.forgetPassword),
                         ),
                       ),
+                      GetBuilder<LoginController>(builder: (controller) => CheckboxListTile(
+                          value: controller.isChecked,
+                          title: InkWell(
+                            child: Text(
+                              "privacy_policy_agreement".tr,
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: '${Const.appFont}'),
+                            ),
+                            onTap: () => Get.toNamed(Routes.privacyPolicy),
+                          ),
+                          onChanged: (isChecked){
+                            controller.isChecked = isChecked!;
+                            controller.update();
+                          })),
                     ],
                   ),
                 ),
@@ -179,7 +196,12 @@ class LoginScreen extends GetView<LoginController> {
                     fontfamily: '${Const.appFont}',
                     radius: 8.r,
                     background: HexColor(AppColors.defualtColor),
-                    click: () => controller.login(),
+                    click: () {
+                      if(controller.isChecked)
+                        controller.login();
+                      else
+                        AppHelper.showToast(message: 'please_agree_privacy_policy'.tr ,color: Colors.redAccent);
+                    },
                   ),
                 ),
                 Container(

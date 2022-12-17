@@ -371,6 +371,54 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
+                          Icon(Icons.app_shortcut, color: HexColor(AppColors.defualtColor)),
+                          SizedBox(width: 20),
+                          Text(
+                            'application_advantages'.tr,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: Const.appFont,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
+                        ],
+                      ),
+                      onTap: () => Get.toNamed(Routes.appAdvantages),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40, right: 24, left: 24),
+                    child: InkWell(
+                      child: Row(
+                        children: [
+                          Icon(Icons.rule_rounded, color: HexColor(AppColors.defualtColor)),
+                          SizedBox(width: 20),
+                          Text(
+                            'contest_rules'.tr,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: Const.appFont,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
+                        ],
+                      ),
+                      onTap: () => rules(context),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40, right: 24, left: 24),
+                    child: InkWell(
+                      child: Row(
+                        children: [
                           SvgPicture.asset('assets/icons/delete.svg',
                               height: 24,
                               width: 24,
@@ -467,42 +515,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           );
         });
-  }
-
-  static void showLoginDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (con) => AlertDialog(
-              clipBehavior: Clip.antiAlias,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              content: Container(
-                height: 300.h,
-                clipBehavior: Clip.antiAlias,
-                padding: EdgeInsetsDirectional.only(top: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  children: [
-                    SizedBox(height: 16.h),
-                    Container(
-                        margin: EdgeInsets.only(top: 8.r),
-                        height: 150.h,
-                        width: 230.w,
-                        child: Image.asset('assets/images/login.png',
-                            fit: BoxFit.cover)),
-                    Spacer(),
-                    Container(
-                        child: CustomButton(
-                            height: 52,
-                            background: Colors.black,
-                            text: 'login'.tr,
-                            click: () => Get.offAndToNamed(Routes.login))),
-                  ],
-                ),
-              ),
-            ));
   }
 
   void changelangauge(BuildContext context) {
@@ -778,5 +790,34 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ));
+  }
+
+  void rules(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+          clipBehavior: Clip.antiAlias,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          content: Container(
+            width: 380,
+            height: 250,
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsetsDirectional.only(top: 10, start: 10, end: 10),
+            padding: EdgeInsetsDirectional.only(top: 10, start: 10, end: 10),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Text('test_rules'.tr,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                fontFamily: Const.appFont
+              )),
+            ),
+          ),
+        ));
   }
 }

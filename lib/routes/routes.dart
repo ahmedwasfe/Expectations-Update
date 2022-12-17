@@ -17,6 +17,7 @@ import 'package:expectations/ui/notifications_screen.dart';
 import 'package:expectations/ui/profile/edit_profile_screen.dart';
 import 'package:expectations/ui/profile/profile_screen.dart';
 import 'package:expectations/ui/settings/about_us_screen.dart';
+import 'package:expectations/ui/settings/application_advantages.dart';
 import 'package:expectations/ui/settings/contact_us_screen.dart';
 import 'package:expectations/ui/settings/privacy_policy_screen.dart';
 import 'package:expectations/ui/settings/reset_password_screen.dart';
@@ -100,6 +101,7 @@ class AppRoutes {
     GetPage(name: Routes.checkEmail, page: () => CheckEmailScreen()),
     GetPage(name: Routes.allLive, page: () => AllLiveScreen()),
     GetPage(name: Routes.live, page: () => LiveScreen()),
+    GetPage(name: Routes.appAdvantages, page: () => AppAdvantagesScreen()),
   ];
 }
 
@@ -128,4 +130,6 @@ class Routes {
   static const checkEmail = '/check_email';
   static const allLive = '/all_live';
   static const live = '/live';
+  static const appAdvantages = '/application_advantages';
+  static const contestRules = '/contest_rules';
 }

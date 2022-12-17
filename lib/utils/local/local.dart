@@ -181,6 +181,12 @@ class MyLocal implements Translations {
           'violent_grotesque_content':'محتوى عنيف وبشع',
           'wrong_info':'معلومات خاطئة',
           'Intellectual_property_infringement':'التعدي على الملكية الفكرية',
+          'contest_rules': 'قواعد المسابقة',
+          'application_advantages': 'مزايا التطبيق',
+          'register_with_us': 'سجل معنا في التطبيق للتمتع بمزايا التطبيق المختلفة',
+          'activate_your_subscription': 'قم بتفعيل اشتراكك في التطبيق لتتمتع بمميزات التطبيق',
+          'predict_the_result': 'توقع نتيجة فريقك الفائز واربح العديد من الجوائز',
+          'test_rules': 'يقوم المستخدم بتوقع نتيجة المباراة بين فريقين ويدخل السحب على العديد من الجوائز لكن على المستخدم التسجيل ف التطبيق ليقوم بالتوقع على المباريات',
         },
         "en": {
           "english": "English",
@@ -362,6 +368,12 @@ class MyLocal implements Translations {
           'violent_grotesque_content':'Violent and grotesque content',
           'wrong_info':'Wrong information',
           'Intellectual_property_infringement':'Intellectual property infringement',
+          'contest_rules': 'Contest rules',
+          'application_advantages': 'Application advantages',
+          'register_with_us': 'Register with us in the application to enjoy the various advantages of the application',
+          'activate_your_subscription': 'Activate your subscription to the application to enjoy the features of the application',
+          'predict_the_result': 'Predict the result of your winning team and win many prizes',
+          'test_rules': 'The user predicts the outcome of the match between two teams and enters the draw for many prizes, but the user must register in the application to predict the matches',
         }
       };
 }

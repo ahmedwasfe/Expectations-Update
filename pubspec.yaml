@@ -116,15 +116,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Cairo
+    - family: Tajawal
       fonts:
-        - asset: assets/fonts/Cairo-Bold.ttf
+        - asset: assets/fonts/tajawal_extra_bold.ttf
           weight: 700
-        - asset: assets/fonts/Cairo-SemiBold.ttf
+        - asset: assets/fonts/tajawal_bold.ttf
           weight: 600
-        - asset: assets/fonts/Cairo-Medium.ttf
+        - asset: assets/fonts/tajawal_medium.ttf
           weight: 500
-        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/tajawal_regular.ttf
           weight: 400
 
   #         style: italic

@@ -17,6 +17,7 @@ class ProfileController extends GetxController {
     await ApiRequests.fetchUserData(token: AppHelper.getCurrentUserToken())
         .then((value) {
       profile = value!.data!;
+      update();
     });
   }
 }

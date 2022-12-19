@@ -220,7 +220,7 @@ class ApiRequests {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       Packages packages = Packages.fromJson(body);
-      // print('SUCCESS: ${jsonEncode(packages)}');
+      // print('SUCCESS getPackages: ${jsonEncode(packages)}');
       return packages;
     } else {
       print('ERROR: ${jsonDecode(response.body)}');

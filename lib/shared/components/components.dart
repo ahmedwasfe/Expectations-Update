@@ -43,14 +43,14 @@ Widget CustomButton({
         ),
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius),
-        color: background,
-        border: Border.all(color: HexColor(borderColor), width: borderWidth)
-      ),
+          borderRadius: BorderRadius.circular(radius),
+          color: background,
+          border: Border.all(color: HexColor(borderColor), width: borderWidth)),
     );
 
-Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, int index) {
-  if(index == 0)
+Widget PageViewScreens(
+    BoardingData boarding, List<BoardingData> listBoardings, int index) {
+  if (index == 0)
     return Container(
       child: Stack(
         alignment: Alignment.topCenter,
@@ -58,7 +58,8 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
           Container(
             height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
+            child: Image.asset('assets/images/boarding${boarding.id}.png',
+                fit: BoxFit.contain),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 280.0).r,
@@ -68,7 +69,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
                 Container(
                   margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
                   child: Text(
-                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].title}' : '${listBoardings[4].title}',
+                    AppHelper.getAppLanguage() == "ar"
+                        ? '${listBoardings[0].title}'
+                        : '${listBoardings[4].title}',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Colors.black,
@@ -81,7 +84,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
-                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[0].description}' : '${listBoardings[4].description}',
+                    AppHelper.getAppLanguage() == "ar"
+                        ? '${listBoardings[0].description}'
+                        : '${listBoardings[4].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.sp,
@@ -98,7 +103,7 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
         ],
       ),
     );
-  else if(index == 1)
+  else if (index == 1)
     return Container(
       child: Stack(
         alignment: Alignment.topCenter,
@@ -106,7 +111,8 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
           Container(
             height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
+            child: Image.asset('assets/images/boarding${boarding.id}.png',
+                fit: BoxFit.contain),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 280.0).r,
@@ -114,7 +120,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AppHelper.getAppLanguage() == "ar" ? '${listBoardings[1].title}' : '${listBoardings[5].title}',
+                  AppHelper.getAppLanguage() == "ar"
+                      ? '${listBoardings[1].title}'
+                      : '${listBoardings[5].title}',
                   style: TextStyle(
                     fontSize: 24.sp,
                     color: Colors.black,
@@ -125,7 +133,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
-                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[1].description}' : '${listBoardings[5].description}',
+                    AppHelper.getAppLanguage() == "ar"
+                        ? '${listBoardings[1].description}'
+                        : '${listBoardings[5].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.sp,
@@ -142,7 +152,7 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
         ],
       ),
     );
-  else if(index == 2)
+  else if (index == 2)
     return Container(
       child: Stack(
         alignment: Alignment.topCenter,
@@ -150,7 +160,8 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
           Container(
             height: 400,
             width: double.infinity,
-            child: Image.asset('assets/images/boarding${boarding.id}.png', fit: BoxFit.contain),
+            child: Image.asset('assets/images/boarding${boarding.id}.png',
+                fit: BoxFit.contain),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 280.0).r,
@@ -160,7 +171,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
                 Container(
                   margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
                   child: Text(
-                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].title}' : '${listBoardings[6].title}',
+                    AppHelper.getAppLanguage() == "ar"
+                        ? '${listBoardings[2].title}'
+                        : '${listBoardings[6].title}',
                     style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.black,
@@ -173,7 +186,9 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12).r,
                   child: Text(
-                    AppHelper.getAppLanguage() == "ar" ? '${listBoardings[2].description}' : '${listBoardings[6].description}',
+                    AppHelper.getAppLanguage() == "ar"
+                        ? '${listBoardings[2].description}'
+                        : '${listBoardings[6].description}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.sp,
@@ -194,9 +209,15 @@ Widget PageViewScreens(BoardingData boarding, List<BoardingData> listBoardings, 
     return Container();
 }
 
+Widget CustomProgress() => Center(
+    child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 30),
+        width: 20.w,
+        height: 20.h,
+        child: CircularProgressIndicator(
+            color: HexColor(AppColors.defualtColor))));
 
 class MainToolBar extends StatelessWidget {
-
   String? title;
   String? route = '';
   bool? isBack = false;
@@ -205,47 +226,50 @@ class MainToolBar extends StatelessWidget {
   MainToolBar({required this.title, this.route, this.isBack, this.isProfile});
 
   Widget AppTooBar() => AppBar(
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: HexColor(AppColors.defualtColor)
-    ),
-    backgroundColor: HexColor(AppColors.defualtColor),
-    toolbarHeight: 60.h,
-    title: Text(
-      '$title'.tr,
-      style: TextStyle(
-          color: HexColor(AppColors.whiteColor),
-          fontSize: 22,
-          fontWeight: FontWeight.w500,
-          fontFamily: Const.appFont
-      ),
-      textAlign: TextAlign.center,),
-    centerTitle: true,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(11.0),
-          bottomLeft: Radius.circular(11.0)),
-    ),
-    leading: isBack! ? InkWell(
-        child: AppHelper.getAppLanguage() == 'ar' ? Image.asset('assets/icons/back.png') : Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-        onTap: () => Get.offAndToNamed(route!)) : Container(),
-    actions: [
-      isProfile! ? InkWell(
-          child: Container(
-            margin: EdgeInsetsDirectional.only(end: 20.r),
-            child: SvgPicture.asset(
-                height: 24,
-                width: 24,
-                'assets/icons/edit_profile.svg'),
-          ),
-          onTap: () => Get.toNamed(Routes.editProfile))
-          : Container()
-    ],
-  );
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: HexColor(AppColors.defualtColor)),
+        backgroundColor: HexColor(AppColors.defualtColor),
+        toolbarHeight: 60.h,
+        title: Text(
+          '$title'.tr,
+          style: TextStyle(
+              color: HexColor(AppColors.whiteColor),
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+              fontFamily: Const.appFont),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(11.0),
+              bottomLeft: Radius.circular(11.0)),
+        ),
+        leading: isBack!
+            ? InkWell(
+                child: AppHelper.getAppLanguage() == 'ar'
+                    ? Image.asset('assets/icons/back.png')
+                    : Icon(Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white),
+                onTap: () => Get.offAndToNamed(route!))
+            : Container(),
+        actions: [
+          isProfile!
+              ? InkWell(
+                  child: Container(
+                    margin: EdgeInsetsDirectional.only(end: 20.r),
+                    child: SvgPicture.asset(
+                        height: 24, width: 24, 'assets/icons/edit_profile.svg'),
+                  ),
+                  onTap: () => Get.toNamed(Routes.editProfile))
+              : Container()
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {
     return AppTooBar();
-     /*
+    /*
       Container(
       height: 60,
       decoration: BoxDecoration(
@@ -278,4 +302,3 @@ class MainToolBar extends StatelessWidget {
     );*/
   }
 }
-

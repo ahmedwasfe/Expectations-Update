@@ -183,7 +183,7 @@ class LoginScreen extends GetView<LoginController> {
                   ),
                 ),
                 Obx(() => controller.isLoading == true
-                    ? CircularProgressIndicator()
+                    ? CustomProgress()
                     : Container()),
                 Container(
                   margin: EdgeInsets.only(top: 40.r, left: 30.r, right: 30.r),

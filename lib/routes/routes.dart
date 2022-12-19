@@ -4,6 +4,7 @@ import 'package:expectations/ui/auth/forget_password_screen.dart';
 import 'package:expectations/ui/auth/login_screen.dart';
 import 'package:expectations/ui/auth/packages_screen.dart';
 import 'package:expectations/ui/auth/register_screen.dart';
+import 'package:expectations/ui/auth/subscribe_screen.dart';
 import 'package:expectations/ui/boarding_screen.dart';
 import 'package:expectations/ui/home/home_screen.dart';
 import 'package:expectations/ui/home/search_screen.dart';
@@ -52,6 +53,7 @@ class AppRoutes {
     GetPage(
         name: Routes.packages,
         page: () => PackagesScreen()),
+    GetPage(name: Routes.subscribe, page: () => SubscribeScreen()),
     GetPage(
         name: Routes.home, page: () => HomeScreen(), binding: HomeBinding()),
     GetPage(name: Routes.search, page: () => SearchScreen()),
@@ -113,6 +115,7 @@ class Routes {
   static const login = '/login';
   static const register = '/register';
   static const packages = '/packages';
+  static const subscribe = '/subscribe';
   static const home = '/home';
   static const search = '/search';
   static const matchPrediction = '/match_prediction';

@@ -43,6 +43,7 @@ class AppAdvantagesScreen extends StatelessWidget {
                   'assets/images/boarding1.png',
                   height: 200.h),
             ),
+            SizedBox(height: 16.h),
             Container(
               margin: EdgeInsetsDirectional.only(start: 18.r, end: 18.r),
               child: Text(
@@ -64,6 +65,7 @@ class AppAdvantagesScreen extends StatelessWidget {
                   'assets/images/boarding2.png',
                   height: 200.h),
             ),
+            SizedBox(height: 16.h),
             Container(
               margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
               child: Text(
@@ -85,6 +87,7 @@ class AppAdvantagesScreen extends StatelessWidget {
                   'assets/images/boarding3.png',
                   height: 200.h),
             ),
+            SizedBox(height: 16.h),
             Container(
               margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
               child: Text(

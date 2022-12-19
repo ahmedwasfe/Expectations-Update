@@ -283,6 +283,7 @@ class MatchHomeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print('teamAwayBadge: ${match.teamAwayBadge}');
     return InkWell(
         child: Card(
           margin: EdgeInsets.only(bottom: 10),
@@ -310,7 +311,7 @@ class MatchHomeItem extends StatelessWidget {
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                       image:
-                                          NetworkImage('${match.leagueLogo}'))),
+                                          NetworkImage(match.leagueLogo!.isNotEmpty ? '${match.leagueLogo}' : '${Const.defaultImage}'))),
                             ),
                             Text(
                               '${match.leagueName}',
@@ -347,7 +348,7 @@ class MatchHomeItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          '${match.teamHomeBadge}'))),
+                                          match.teamHomeBadge!.isNotEmpty ? '${match.teamHomeBadge}' : '${Const.defaultImage}'))),
                             ),
                           ],
                         ),
@@ -382,7 +383,7 @@ class MatchHomeItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          '${match.teamAwayBadge!}'))),
+                                          match.teamAwayBadge!.isNotEmpty ? '${match.teamAwayBadge!}' : '${Const.defaultImage}'))),
                             ),
                             SizedBox(width: 4),
                             Text(

@@ -1,6 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -35,106 +37,93 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
     // loadFormationFromAssets();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-            'privacy_policy'.tr,
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 18.sp,
-                color: HexColor(AppColors.defualtColor),),
-            textAlign: TextAlign.center),
-        toolbarHeight: 80.h,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.maybePop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-            size: 23,
+
+      body: Column(
+        children: [
+          MainToolBar(title: 'privacy_policy'.tr, isBack: true, route: Routes.home, isProfile: false),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsetsDirectional.only(start: 20, top: 50),
+                    child: Text(
+                      'privacy_policy'.tr,
+                    style: TextStyle(
+                      fontFamily: Const.appFont,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18.sp
+                    )),
+                  ),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(
+                        start: 16.r, end: 16.r, top: 16.r),
+                    child: Text(
+                      '$privacy',
+                      maxLines: 200,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: Const.appFont
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50.h),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(start: 20),
+                    child: Text(
+                        'terms_conditions'.tr,
+                        style: TextStyle(
+                            fontFamily: Const.appFont,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.sp
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(
+                        start: 16.r, end: 16.r, top: 16.r),
+                    child: Text(
+                      '$terms',
+                      maxLines: 200,
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: Const.appFont
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50.h),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(start: 20),
+                    child: Text(
+                        'agreement'.tr,
+                        style: TextStyle(
+                            fontFamily: Const.appFont,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.sp
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(
+                        start: 16.r, end: 16.r, top: 16.r),
+                    child: Text(
+                      '$agreement',
+                      maxLines: 200,
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: Const.appFont
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsetsDirectional.only(start: 20),
-              child: Text(
-                'privacy_policy'.tr,
-              style: TextStyle(
-                fontFamily: Const.appFont,
-                fontWeight: FontWeight.w700,
-                fontSize: 18.sp
-              )),
-            ),
-            Container(
-              margin: EdgeInsetsDirectional.only(
-                  start: 16.r, end: 16.r, top: 16.r),
-              child: Text(
-                '$privacy',
-                maxLines: 200,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: Const.appFont
-                ),
-              ),
-            ),
-            SizedBox(height: 50.h),
-            Container(
-              margin: EdgeInsetsDirectional.only(start: 20),
-              child: Text(
-                  'terms_conditions'.tr,
-                  style: TextStyle(
-                      fontFamily: Const.appFont,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18.sp
-                  )),
-            ),
-            Container(
-              margin: EdgeInsetsDirectional.only(
-                  start: 16.r, end: 16.r, top: 16.r),
-              child: Text(
-                '$terms',
-                maxLines: 200,
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: Const.appFont
-                ),
-              ),
-            ),
-            SizedBox(height: 50.h),
-            Container(
-              margin: EdgeInsetsDirectional.only(start: 20),
-              child: Text(
-                  'agreement'.tr,
-                  style: TextStyle(
-                      fontFamily: Const.appFont,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18.sp
-                  )),
-            ),
-            Container(
-              margin: EdgeInsetsDirectional.only(
-                  start: 16.r, end: 16.r, top: 16.r),
-              child: Text(
-                '$agreement',
-                maxLines: 200,
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: Const.appFont
-                ),
-              ),
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }

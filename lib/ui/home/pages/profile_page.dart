@@ -25,8 +25,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  ProfileController _controller = Get.find();
-  int days = 0;
+  ProfileController _controller = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -51,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         // print('PROFILE IPAddress: ${AppHelper.getUserData(key: Const.KEY_USER_DATA).ipAddress}');
                         // print('PROFILE IPAddress: ${AppHelper.getRegisterData(key: Const.KEY_USER_DATA).ipAddress}');
                         if (snapshot.connectionState == ConnectionState.done)
-                          return Container(
+                          return GetBuilder<ProfileController>(builder: (controller) => Container(
                             margin: EdgeInsetsDirectional.only(
                               top: 30,
                               start: 20,
@@ -64,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: CircleAvatar(
                                       backgroundColor: Colors.transparent,
                                       backgroundImage: NetworkImage(
-                                          'https://i.postimg.cc/B6GcTk8F/default-avatar2.png')),
+                                          '${Const.defaultImage}')),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       border: Border.all(
@@ -75,22 +74,24 @@ class _ProfilePageState extends State<ProfilePage> {
                                   margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null ? '${_controller.profile.name}' : 'User name',
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             fontFamily: Const.appFont),
                                       ),
+                                      SizedBox(height: 4.h),
                                       Text(
                                         AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null ? '${_controller.profile.phone}' : '+966 000 000 000',
                                         style: TextStyle(
                                             color:
-                                                HexColor(AppColors.greyColor),
+                                            HexColor(AppColors.defualtColor),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.w400,
+                                            fontWeight: FontWeight.w500,
                                             fontFamily: Const.appFont),
                                       ),
                                     ],
@@ -98,16 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ],
                             ),
-                          );
+                          ));
                         else if (snapshot.connectionState ==
                             ConnectionState.waiting)
-                          return Center(
-                            child: Container(
-                                width: 20,
-                                height: 20,
-                                margin: EdgeInsets.only(top: 28),
-                                child: CircularProgressIndicator()),
-                          );
+                          return CustomProgress();
                         else
                           return Container();
                       }),
@@ -166,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       onTap: () {
                         if(AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
-                          Get.toNamed(Routes.profile);
+                          Get.toNamed(Routes.resetPassword);
                         else
                           AppHelper.showLoginDialog(context);
                       },
@@ -283,11 +278,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Get.toNamed(Routes.packages);
                           else{
                             // showSubscriptionBottomSheet(context, Text('Subscribe'));
-                            await PurchasesApi.purchaesProduct('com.example.expectations.monthlyPlan35');
-                            setState(() {
-                              days += 30;
-                              AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: days);
-                            });
+                            Get.toNamed(Routes.subscribe);
                           }
                         }else
                           AppHelper.showLoginDialog(context);

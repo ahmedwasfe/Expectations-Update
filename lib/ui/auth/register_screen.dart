@@ -481,7 +481,7 @@ class RegisterScreen extends GetView<RegisterController> {
                   ////////////////////////////////////////////////////////////////////////////////////////////
                   SizedBox(height: 18.h),
                   Obx(() => controller.isLoading == true
-                      ? CircularProgressIndicator()
+                      ? CustomProgress()
                       : Container()),
                   Container(
                     height: 48.h,

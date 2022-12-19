@@ -29,14 +29,17 @@ class SplashController extends GetxController {
       if (AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) != null)
         return Future.delayed(Duration(seconds: 5), () {
               if(AppHelper.getExpiredDate() != null && AppHelper.getExpiredDate() != ""){
+                print('getDateTody: ${AppHelper.getDateTody()}');
+                print('getExpiredDate: ${AppHelper.getExpiredDate()}');
                 if(AppHelper.getDateTody() == AppHelper.getExpiredDate()) {
+                  AppHelper.clearData(key: Const.KEY_COUNTS_DAYS);
                   if(AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS) != null){
                     Get.offAndToNamed(Routes.home);
                   }else{
                     if(Platform.isAndroid)
                       Get.offAndToNamed(Routes.packages);
                     else
-                      AppHelper.showToast(message: 'please_subscribe');
+                      Get.offAndToNamed(Routes.subscribe);
                   }
                 }else
                   Get.offAndToNamed(Routes.home);

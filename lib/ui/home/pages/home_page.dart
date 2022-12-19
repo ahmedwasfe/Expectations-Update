@@ -10,6 +10,7 @@ import 'package:expectations/model/days.dart';
 import 'package:expectations/model/home_matches/home_matches.dart';
 import 'package:expectations/model/periodicals.dart';
 import 'package:expectations/routes/routes.dart';
+import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/ui/home/show_periodicals.dart';
@@ -191,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                           ).toList())),
                   SizedBox(height: 4.h),
                   isLoading == true
-                      ? Center(child: CircularProgressIndicator())
+                      ? CustomProgress()
                       : Container(),
                   SizedBox(height: 16.h),
                   ListView.builder(

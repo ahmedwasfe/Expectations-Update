@@ -1,9 +1,10 @@
 class Const {
   static const String baseImagesUrl = 'https://cp.tawaq3.com/';
+  static const String defaultImage = 'https://i.postimg.cc/B6GcTk8F/default-avatar2.png';
 
   // static const String baseUrl = 'http://expectations.creativesarea.com/api';
 
-  static const String appFont = "Cairo";
+  static const String appFont = "Tajawal";
   static final String kEY_LANGUAGE = "language";
   static final String KEY_BOARDING = "boarding";
   static final String KEY_USER_DATA = 'user_data';
@@ -35,5 +36,6 @@ class Const {
 
 
   static const String privacyPolicy = '';
+  static const String CURRENCY = ' SAR ';
 
 }

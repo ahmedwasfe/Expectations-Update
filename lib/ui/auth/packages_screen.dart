@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:expectations/api/purchases_api.dart';
+import 'package:expectations/controllers/packages_controller.dart';
 import 'package:expectations/controllers/register_controller.dart';
 import 'package:expectations/model/Packages/packages.dart';
 import 'package:expectations/routes/routes.dart';
@@ -25,7 +26,7 @@ class PackagesScreen extends StatefulWidget {
 }
 
 class _PackagesScreenState extends State<PackagesScreen> {
-  RegisterController _controller = Get.put(RegisterController());
+  PackagesController _controller = Get.put(PackagesController());
 
   @override
   void initState() {
@@ -43,6 +44,8 @@ class _PackagesScreenState extends State<PackagesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // AppHelper.clearData(key: Const.KEY_COUNTS_DAYS);
+    print('DAYS COUNTS: ${AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS)}');
     return Scaffold(
       body: Column(
         children: [
@@ -57,7 +60,12 @@ class _PackagesScreenState extends State<PackagesScreen> {
                 : _controller.fetchOffers(context),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done)
-                return Platform.isAndroid
+                return GetBuilder<PackagesController>(builder: (controller) => Expanded(
+                    child: ListView.builder(
+                        itemCount: _controller.listPackages.length,
+                        itemBuilder: (context, index) => buildPackageItem(
+                            _controller.listPackages[index]))));
+                /*return Platform.isAndroid
                     ? Expanded(
                         child: ListView.builder(
                             itemCount: _controller.listPackages.length,
@@ -92,10 +100,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                             ),
                           ),
                         ),
-                    );
+                    );*/
               else if (snapshot.connectionState == ConnectionState.waiting)
                 return Expanded(
-                    child: Center(child: CircularProgressIndicator()));
+                    child: CustomProgress());
               else
                 return Container();
             },
@@ -267,13 +275,12 @@ class _PackagesScreenState extends State<PackagesScreen> {
             Container(
               width: 50,
               height: 50,
-              margin: EdgeInsets.only(top: 10.r, bottom: 10.r),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.r),
-                  image: DecorationImage(
-                      image: NetworkImage('${package.image}'),
-                      fit: BoxFit.cover)),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage('${AppHelper.getTeamImage(package.image!)}'),
+              ),
+              margin: EdgeInsets.only(top: 30.r, bottom: 10.r),
             ),
+            SizedBox(height: 10.h),
             Text(
                 AppHelper.getAppLanguage() == 'ar'
                     ? '${package.titleAr}'
@@ -283,6 +290,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     fontFamily: Const.appFont,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w800)),
+            SizedBox(height: 14.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -292,15 +300,16 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         fontFamily: Const.appFont,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600)),
-                SizedBox(width: 10.w),
-                Text('${package.price}',
+                SizedBox(width: 8.w),
+                Text('${package.price}${Const.CURRENCY}',
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: Const.appFont,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600)),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700)),
               ],
             ),
+            SizedBox(height: 14.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -310,31 +319,78 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         fontFamily: Const.appFont,
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
-                SizedBox(width: 10.w),
+                SizedBox(width: 8.w),
                 Text('${package.days}',
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: Const.appFont,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600)),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700)),
+                Text('day'.tr,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: Const.appFont,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700)),
               ],
             ),
             Spacer(),
-            CustomButton(
-                text: 'enroll'.tr,
-                width: 200.w,
-                radius: 8.r,
-                background: HexColor(AppColors.defualtColor),
-                borderColor: AppColors.defualtColor,
-                click: () async {
-                  _controller.payNow(package.price!.toDouble());
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
-                  // if(Platform.isIOS){
-                  //   Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
-                  // }else{
-                  //   _controller.payNow(package.price!.toDouble());
-                  // }
-                }),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomButton(
+                    text: 'subscribe'.tr,
+                    width: 150.w,
+                    radius: 8.r,
+                    background: HexColor(AppColors.defualtColor),
+                    borderColor: AppColors.defualtColor,
+                    click: () async {
+                      _controller.days += 30;
+                      if(AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS) != null){
+                        int days = AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS);
+                        print('CustomButton: $days');
+                        if(days == 30){
+                          _controller.days = 0;
+                          AppHelper.showToast(message: 'you_aleardy_subscribe'.tr, color: Colors.green);
+                        }else{
+                          _controller.payNow(package.price!.toDouble());
+                          AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: _controller.days);
+                        }
+                      }else{
+                        _controller.payNow(package.price!.toDouble());
+                        AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: _controller.days);
+                      }
+                      print('DAYS: ${_controller.days}');
+                      print('DAYS: ${AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS)}');
+
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
+                      // if(Platform.isIOS){
+                      //   Navigator.push(context, MaterialPageRoute(builder: (context) => ApplePayScreen(package: package)));
+                      // }else{
+                      //   _controller.payNow(package.price!.toDouble());
+                      // }
+                    }),
+                CustomButton(
+                    text: 'unsubscribe'.tr,
+                    isUpperCase: false,
+                    radius: 8,
+                    width: 150,
+                    height: 48,
+                    background: HexColor(AppColors.defualtColor),
+                    borderColor: AppColors.defualtColor,
+                    click: () async {
+                      if(AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS) == null || AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS) == 0){
+                        AppHelper.showToast(message: 'no_have_any_subscribe'.tr, color: Colors.green);
+                      }else{
+                        _controller.days = 0;
+                        AppHelper.saveAppData(key: Const.KEY_COUNTS_DAYS, value: _controller.days);
+                        AppHelper.showToast(message: 'done_cancel_subscribe'.tr, color: Colors.green);
+                        print('DAYS: ${_controller.days}');
+                        print('DAYS: ${AppHelper.getAppData(key: Const.KEY_COUNTS_DAYS)}');
+                      }
+                    }),
+              ],
+            ),
             SizedBox(height: 16.h),
           ],
         ),

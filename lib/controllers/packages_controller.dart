@@ -124,7 +124,7 @@ class PackagesController extends GetxController{
 
     var theme = IOSThemeConfigurations();
 
-    theme.logoImage = "assets/icons/logo41.png";
+    theme.logoImage = "assets/icons/logo5.png";
 
     if(Platform.isIOS){
       configuration.simplifyApplePayValidation = true;

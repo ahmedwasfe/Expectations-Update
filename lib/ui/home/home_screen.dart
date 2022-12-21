@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppHelper.statusBarColor(isHome: true);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: HexColor(AppColors.defualtColor)));
   print('HOME TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');

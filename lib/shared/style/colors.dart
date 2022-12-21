@@ -19,7 +19,8 @@ class AppColors {
   // 900: Color(0xFFE59F26),
 
   // static const String defualtColor = 'E59F26';
-  static const String defualtColor = '05442F';
+  // static const String defualtColor = '05442F';
+  static const String defualtColor = 'EDA245';
   static const String whiteColor = 'FFFFFF';
   static const String blackColor = '000000';
   static const String greyColor = "B0B0B0";

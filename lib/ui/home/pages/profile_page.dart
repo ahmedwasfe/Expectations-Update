@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/profile.svg'),
+                          SvgPicture.asset('assets/icons/profile.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'Profile'.tr,
@@ -143,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/lock_password.svg'),
+                          SvgPicture.asset('assets/icons/lock_password.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'Change password'.tr,
@@ -172,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/language.svg'),
+                          SvgPicture.asset('assets/icons/language.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'Language'.tr,
@@ -196,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/notifications.svg'),
+                          SvgPicture.asset('assets/icons/notifications.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'Notifications'.tr,
@@ -227,6 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
+                                        color: HexColor(AppColors.defualtColor),
                                         'assets/icons/favorite_icon.svg'),
                                     SizedBox(width: 20),
                                     Text(
@@ -256,7 +257,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          Image.asset('assets/icons/subscriber.png'),
+                          Image.asset('assets/icons/subscriber.png', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'subscribe'.tr,
@@ -290,7 +291,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/contact_us.svg'),
+                          SvgPicture.asset('assets/icons/contact_us.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'Contact Us'.tr,
@@ -338,7 +339,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/about_us.svg'),
+                          SvgPicture.asset('assets/icons/about_us.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             'About Us'.tr,
@@ -443,7 +444,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
-                          SvgPicture.asset('assets/icons/sign_out.svg'),
+                          SvgPicture.asset('assets/icons/sign_out.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(
                             AppHelper.getUserToken(key: Const.KEY_USER_TOKEN) == null ? 'Login'.tr : 'logout'.tr,

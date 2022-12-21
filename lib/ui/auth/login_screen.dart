@@ -16,8 +16,8 @@ class LoginScreen extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.black));
+    // SystemChrome.setSystemUIOverlayStyle(
+    //     SystemUiOverlayStyle(statusBarColor: Colors.black));
     if (AppHelper.getUserData(key: Const.KEY_USER_DATA) != null) {
       print(
           "LoginScreen: ${AppHelper.getUserData(key: Const.KEY_USER_DATA).name}");
@@ -223,9 +223,9 @@ class LoginScreen extends GetView<LoginController> {
                         child: Text(
                           'Create an account'.tr,
                           style: TextStyle(
-                              color: HexColor(AppColors.blackColor),
+                              color: HexColor(AppColors.defualtColor),
                               fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               fontFamily: Const.appFont),
                         ),
                         onTap: () => Get.toNamed('/register'),

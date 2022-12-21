@@ -9,6 +9,7 @@ import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -311,6 +312,14 @@ class AppHelper extends GetxService {
       print("CAMERA permission: ${statuses[Permission.camera]}, "
           "MIC permission: ${statuses[Permission.microphone]}");
     }
+  }
+
+  static void statusBarColor({required bool isHome}){
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+        statusBarColor: isHome ? Colors.white : Colors.black,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark));
   }
 
   static void showToast({required String message, Color color = Colors.black}){

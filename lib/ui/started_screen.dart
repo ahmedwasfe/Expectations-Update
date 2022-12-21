@@ -16,8 +16,9 @@ class StartedScreen extends GetView<BoardingsController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.black));
+    AppHelper.statusBarColor(isHome: true);
+    // SystemChrome.setSystemUIOverlayStyle(
+    //     SystemUiOverlayStyle(statusBarColor: Colors.black));
     return Scaffold(
       body: FutureBuilder(
         future: _controller.fetchBoardings(),
@@ -98,7 +99,7 @@ class StartedScreen extends GetView<BoardingsController> {
                 child: Text(
                   'skip'.tr,
                   style: TextStyle(
-                      color: HexColor(AppColors.blackColor),
+                      color: HexColor(AppColors.defualtColor),
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: Const.appFont),

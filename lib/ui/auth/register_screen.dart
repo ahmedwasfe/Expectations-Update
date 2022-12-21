@@ -16,8 +16,8 @@ class RegisterScreen extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.black));
+    // SystemChrome.setSystemUIOverlayStyle(
+    //     SystemUiOverlayStyle(statusBarColor: Colors.black));
     return Scaffold(
       body: Form(
         key: controller.formKey,
@@ -516,9 +516,9 @@ class RegisterScreen extends GetView<RegisterController> {
                           child: Text(
                             'Login'.tr,
                             style: TextStyle(
-                                color: HexColor(AppColors.blackColor),
+                                color: HexColor(AppColors.defualtColor),
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontFamily: Const.appFont),
                           ),
                           onTap: () => Get.offAllNamed('/login'),

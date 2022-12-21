@@ -29,7 +29,7 @@ class AboutUsScreen extends GetView<BoardingsController> {
                     margin: EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/icons/logo41.png'),
+                            image: AssetImage('assets/icons/logo5.png'),
                             fit: BoxFit.contain),
                         ),
                   ),

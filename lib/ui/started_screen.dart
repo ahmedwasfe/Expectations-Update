@@ -26,7 +26,7 @@ class StartedScreen extends GetView<BoardingsController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/icons/logo41.png',
+                'assets/icons/logo5.png',
                 width: 200.w,
                 height: 200.h,
               ),

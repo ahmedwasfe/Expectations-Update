@@ -29,7 +29,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                       margin: EdgeInsets.only(top: 30),
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/icons/logo41.png'),
+                              image: AssetImage('assets/icons/logo5.png'),
                               fit: BoxFit.contain),),
                     ),
                     /*Container(

@@ -311,7 +311,7 @@ class MatchHomeItem extends StatelessWidget {
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                       image:
-                                          NetworkImage(match.leagueLogo!.isNotEmpty ? '${match.leagueLogo}' : '${Const.defaultImage}'))),
+                                          NetworkImage(match.leagueLogo!.isNotEmpty ? '${match.leagueLogo}' : '${Const.logoDefaultImage}'))),
                             ),
                             Text(
                               '${match.leagueName}',
@@ -348,7 +348,7 @@ class MatchHomeItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          match.teamHomeBadge!.isNotEmpty ? '${match.teamHomeBadge}' : '${Const.defaultImage}'))),
+                                          match.teamHomeBadge!.isNotEmpty ? '${match.teamHomeBadge}' : '${Const.logoDefaultImage}'))),
                             ),
                           ],
                         ),
@@ -383,7 +383,7 @@ class MatchHomeItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          match.teamAwayBadge!.isNotEmpty ? '${match.teamAwayBadge!}' : '${Const.defaultImage}'))),
+                                          match.teamAwayBadge!.isNotEmpty ? '${match.teamAwayBadge!}' : '${Const.logoDefaultImage}'))),
                             ),
                             SizedBox(width: 4),
                             Text(

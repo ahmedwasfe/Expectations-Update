@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:expectations/api/api_requests.dart';
+import 'package:expectations/controllers/home_controller.dart';
 import 'package:expectations/model/match.dart';
 import 'package:expectations/model/register.dart';
 import 'package:expectations/model/user.dart';
@@ -12,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -334,7 +337,7 @@ class AppHelper extends GetxService {
     );
   }
 
-  static void showLoginDialog(BuildContext context){
+  /*static void showLoginDialog(BuildContext context){
     showDialog(
         context: context,
         builder: (con) => AlertDialog(
@@ -376,5 +379,64 @@ class AppHelper extends GetxService {
             ),
           ),
         ));
+  }*/
+
+  static void showLoginDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (con) => AlertDialog(
+          clipBehavior: Clip.antiAlias,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          content: Container(
+            height: 300.h,
+            clipBehavior: Clip.antiAlias,
+            padding: EdgeInsetsDirectional.only(top: 10),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 16.h),
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 4.r, end: 4.r),
+                  child: Text(
+                  'please_login'.tr,
+                    style: TextStyle(
+                      color: HexColor(AppColors.defualtColor),
+                      fontSize: Platform.isAndroid ? 16.sp : 14.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                    margin: EdgeInsets.only(top: 8.r),
+                    height: 150.h,
+                    width: 230.w,
+                    child: Image.asset('assets/images/login.png', fit: BoxFit.cover)),
+                Spacer(),
+                Container(
+                    child: CustomButton(
+                        height: 52,
+                        background: HexColor(AppColors.defualtColor),
+                        borderColor: (AppColors.defualtColor),
+                        text: 'login'.tr,
+                        click: () {
+                          goToLogin();
+                        })),
+              ],
+            ),
+          ),
+        ));
+  }
+
+  static void goToLogin() {
+    AppHelper.clearData(key: Const.KEY_USER_TOKEN);
+    AppHelper.clearData(key: Const.KEY_USER_DATA);
+    HomeController controller = Get.put(HomeController());
+    controller.getCurrenNavIndex(navIndex: 0);
+    Get.offAndToNamed(Routes.login);
   }
 }

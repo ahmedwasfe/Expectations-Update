@@ -1,6 +1,7 @@
 import 'package:expectations/api/api_requests.dart';
 import 'package:expectations/model/favorite_match.dart';
 import 'package:expectations/model/match.dart';
+import 'package:expectations/model/user_expectations.dart';
 import 'package:expectations/ui/match/match_expection_screen.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +11,12 @@ import 'package:get/get.dart';
 class ExpectionController extends GetxController {
   ExpectionScreen screen = Get.arguments;
 
+  List<ExpectationData> listExpectations = [];
+
   late GlobalKey<FormState> formKey;
   late TextEditingController resultHomeController;
   late TextEditingController resultAwayController;
+
   @override
   void onInit() {
     print('MatchID: ${screen.match.id}');
@@ -28,6 +32,18 @@ class ExpectionController extends GetxController {
     resultHomeController.dispose();
     resultAwayController.dispose();
     super.dispose();
+  }
+
+  Future<void> fetchExpectations() async {
+    await ApiRequests.fetchExpectations(token: AppHelper.getCurrentUserToken())
+        .then((value) {
+          if(value != null){
+            listExpectations.clear();
+            listExpectations.addAll(value.data!);
+            update();
+          }
+    });
+    update();
   }
 
   void registerMatchPrediction() {
@@ -65,7 +81,6 @@ class ExpectionController extends GetxController {
       // update();
       return Icon(CupertinoIcons.heart, color: Colors.redAccent);
     }
-    update();
     return Icon(CupertinoIcons.heart, color: Colors.redAccent);
   }
 
@@ -88,20 +103,18 @@ class ExpectionController extends GetxController {
 
   void addToFavorite({required int matchId}) {
     ApiRequests.addToFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: matchId)
+        token: AppHelper.getCurrentUserToken(), matchId: matchId)
         .then((value) {
-      update();
-      Get.snackbar('add to favourites'.tr,
-          'The game has been added to the favourites'.tr);
+      Get.snackbar("add to favourites".tr,
+          "The game has been added to the favourites".tr);
     });
   }
 
   void removeFromFavorite({required int matchId}) {
     ApiRequests.removeFromFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: matchId)
+        token: AppHelper.getCurrentUserToken(), matchId: matchId)
         .then((value) {
-      update();
-      Get.snackbar('Delete from favourites'.tr,
+      Get.snackbar('Delete from favourites',
           'The match has been removed from the favourites'.tr);
     });
   }

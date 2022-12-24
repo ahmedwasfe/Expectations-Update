@@ -1,6 +1,5 @@
-import 'package:expectations/api/api_requests.dart';
-import 'package:expectations/model/favorite_match.dart';
-import 'package:expectations/model/match.dart';
+
+import 'package:expectations/controllers/expections_page_controller.dart';
 import 'package:expectations/model/user_expectations.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
@@ -11,21 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:get/get.dart';
 
-class ExpectionsPage extends StatefulWidget {
-  const ExpectionsPage({Key? key}) : super(key: key);
 
-  @override
-  State<ExpectionsPage> createState() => _ExpectionsPageState();
-}
+class ExpectionsPage extends StatelessWidget {
 
-class _ExpectionsPageState extends State<ExpectionsPage> {
-  List<ExpectationData> listExpectations = [];
-
-  @override
-  void initState() {
-    fetchExpectations();
-    super.initState();
-  }
+  final ExpectionsPageController _controller = Get.put(ExpectionsPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,80 +22,35 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
         children: [
           MainToolBar(title: 'My Expectations', isBack: false, isProfile: false),
           Expanded(
-            child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: listExpectations.length,
-                itemBuilder: (context, index) =>
-                    buildExpectionsItem(listExpectations[index])),
+            child: FutureBuilder(
+              future: _controller.fetchExpectations(),
+              builder: (context, snapshot){
+                if(snapshot.connectionState == ConnectionState.done){
+                  if(_controller.listExpectations.isNotEmpty){
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: _controller.listExpectations.length,
+                        itemBuilder: (context, index) => buildExpectionsItem(index, expectation: _controller.listExpectations[index]));
+                  }else{
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: 20,
+                        itemBuilder: (context, index) => buildExpectionsItem(index));
+                  }
+                }else if(snapshot.connectionState == ConnectionState.waiting){
+                  return CustomProgress();
+                }else{
+                  return Container();
+                }
+              },
+            ),
           ),
         ],
       ),
     );
   }
 
-  void fetchExpectations() {
-    ApiRequests.fetchExpectations(token: AppHelper.getCurrentUserToken())
-        .then((value) {
-      listExpectations.addAll(value!.data!);
-    });
-  }
-
-  Icon checkIsMatchInFavorite(Match match) {
-    if (!match.favorites!.isEmpty) {
-      for (FavoriteMatch fav in match.favorites!) {
-        if (fav.userId == AppHelper.getUserId()) {
-          print('CurrentUserID: ${AppHelper.getUserId()}');
-          print('UserID: ${fav.userId}');
-          // update();
-          return Icon(CupertinoIcons.heart_fill, color: Colors.redAccent);
-        } else {
-          // update();
-          return Icon(CupertinoIcons.heart, color: Colors.redAccent);
-        }
-      }
-    } else {
-      // update();
-      return Icon(CupertinoIcons.heart, color: Colors.redAccent);
-    }
-    return Icon(CupertinoIcons.heart, color: Colors.redAccent);
-  }
-
-  void addRemoveFavorite(Match match) {
-    if (!match.favorites!.isEmpty) {
-      removeFromFavorite(matchId: match.id!);
-      checkIsMatchInFavorite(match);
-      // for(FavoriteMatch fav in match.favorites!){
-      //   if(fav.userId == AppHelper.getUserId()) {
-      //
-      //   }else {
-      //
-      //   }
-      // }
-    } else {
-      addToFavorite(matchId: match.id!);
-      checkIsMatchInFavorite(match);
-    }
-  }
-
-  void addToFavorite({required int matchId}) {
-    ApiRequests.addToFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: matchId)
-        .then((value) {
-      Get.snackbar("add to favourites".tr,
-          "The game has been added to the favourites".tr);
-    });
-  }
-
-  void removeFromFavorite({required int matchId}) {
-    ApiRequests.removeFromFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: matchId)
-        .then((value) {
-      Get.snackbar('Delete from favourites',
-          'The match has been removed from the favourites'.tr);
-    });
-  }
-
-  Widget buildExpectionsItem(ExpectationData expectation) => Container(
+  Widget buildExpectionsItem(int index, {ExpectationData? expectation}) => Container(
         width: double.infinity,
         height: 150,
         margin: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
@@ -122,10 +65,12 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 4, left: 4),
-                child: IconButton(
-                    icon: checkIsMatchInFavorite(expectation.match!),
-                    onPressed: () =>
-                        setState(() => addRemoveFavorite(expectation.match!))),
+                child: GetBuilder<ExpectionsPageController>(builder: (controller) => IconButton(
+                    icon: expectation != null ? _controller.checkIsMatchInFavorite(expectation.match!) : index % 2 == 0 ? Icon(CupertinoIcons.heart_fill, color: Colors.redAccent) : Icon(CupertinoIcons.heart, color: Colors.redAccent),
+                    onPressed: () {
+                      if(expectation != null)
+                        _controller.addRemoveFavorite(expectation.match!);
+                    })),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 8, right: 8),
@@ -142,10 +87,10 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        '${Const.baseImagesUrl}${AppHelper.getTeamHomeImage(expectation.match!)}'))),
+                                        expectation != null ? '${Const.baseImagesUrl}${AppHelper.getTeamHomeImage(expectation.match!)}' : '${Const.logoDefaultImage}'))),
                           ),
                           Text(
-                            '${expectation.match!.teamHome!.name!}',
+                            expectation != null ? '${expectation.match!.teamHome!.name!}' : 'Tawaq3',
                             style: TextStyle(
                                 color: HexColor(AppColors.blackColor),
                                 fontSize: 14,
@@ -161,7 +106,7 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                         margin: EdgeInsets.symmetric(horizontal: 8),
                         alignment: Alignment.center,
                         child: Text(
-                          '${expectation.result1!}',
+                          expectation != null ? '${expectation.result1!}' : '0',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -198,7 +143,7 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             Text(
-                                '${AppHelper.formatMatchTime(expectation.match!)}',
+                               expectation != null ? '${AppHelper.formatMatchTime(expectation.match!)}' : '10:00 PM',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: HexColor(AppColors.defualtColor),
@@ -206,7 +151,7 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                                     fontWeight: FontWeight.w600,
                                     fontFamily: Const.appFont)),
                             Text(
-                                '${AppHelper.formatMatchDate(expectation.match!)}',
+                                expectation != null ? '${AppHelper.formatMatchDate(expectation.match!)}' : '20-05-2022',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: HexColor(AppColors.subTextColor),
@@ -223,7 +168,7 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                         alignment: Alignment.center,
                         margin: EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          '${expectation.result2!}',
+                          expectation != null ? '${expectation.result2!}' : '0',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -247,10 +192,10 @@ class _ExpectionsPageState extends State<ExpectionsPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        '${Const.baseImagesUrl}${AppHelper.getTeamAwayImage(expectation.match!)}'))),
+                                       expectation != null ? '${Const.baseImagesUrl}${AppHelper.getTeamAwayImage(expectation.match!)}' : '${Const.logoDefaultImage}'))),
                           ),
                           Text(
-                            '${expectation.match!.teamAway!.name!}',
+                            expectation != null ? '${expectation.match!.teamAway!.name!}' : 'Tawaq3',
                             style: TextStyle(
                                 color: HexColor(AppColors.blackColor),
                                 fontSize: 14,

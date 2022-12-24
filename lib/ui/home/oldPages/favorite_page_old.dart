@@ -88,7 +88,7 @@ class FavoritesItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8, left: 8),
               child: InkWell(
                 child: SvgPicture.asset('assets/icons/addedd_fav_red.svg'),
-                onTap: () => controller.removeFromFavorite(),
+                onTap: () => controller.removeFromFavorite(favorite!.id!),
               ),
             ),
             Padding(

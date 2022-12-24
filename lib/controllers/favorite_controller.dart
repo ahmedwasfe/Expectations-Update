@@ -15,23 +15,27 @@ class FavoriteController extends GetxController {
     super.onInit();
   }
 
-  fetchFavorites() {
-    isLoading(true);
-    ApiRequests.fetchFavorites(token: AppHelper.getCurrentUserToken())
+  Future<void> fetchFavorites() async {
+    await ApiRequests.fetchFavorites(token: AppHelper.getCurrentUserToken())
         .then((value) {
-      listFavorites.addAll(value!.data!);
-      listFavorites.forEach((element) => favorite = element);
-      isLoading(false);
-    }).catchError((error) => isLoading(false));
+          if(value != null){
+            listFavorites.clear();
+            listFavorites.addAll(value.data!);
+            listFavorites.forEach((element) => favorite = element);
+            update();
+          }
+    }).catchError((error) {});
+    update();
   }
 
-  void removeFromFavorite() {
+  void removeFromFavorite(int id) {
     ApiRequests.removeFromFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: favorite.id!)
+            token: AppHelper.getCurrentUserToken(), matchId: id)
         .then((value) {
       fetchFavorites();
       update();
       Get.snackbar('Delete from favourites'.tr, '${value!.data}');
     });
+    update();
   }
 }

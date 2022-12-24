@@ -1,4 +1,5 @@
 import 'package:expectations/api/api_requests.dart';
+import 'package:expectations/controllers/favorite_controller.dart';
 import 'package:expectations/model/favorite.dart';
 import 'package:expectations/shared/components/components.dart';
 import 'package:expectations/shared/components/constants.dart';
@@ -9,20 +10,10 @@ import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class FavoritePage extends StatefulWidget {
-  @override
-  State<FavoritePage> createState() => _FavoritePageState();
-}
 
-class _FavoritePageState extends State<FavoritePage> {
-  bool isLoading = false;
-  List<FavoriteData> listFavorites = [];
+class FavoritePage extends StatelessWidget {
 
-  @override
-  void initState() {
-    fetchFavorites();
-    super.initState();
-  }
+  final FavoriteController _controller = Get.put(FavoriteController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +22,29 @@ class _FavoritePageState extends State<FavoritePage> {
         children: [
           MainToolBar(title: 'Favorites', isBack: false, isProfile: false),
           Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // isLoading == true ? Center(child: CircularProgressIndicator(),) : Container(),
-                ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: listFavorites.length,
-                    itemBuilder: (context, index) =>
-                        buildFavoritesItem(listFavorites[index]))
-              ],
+            child: FutureBuilder(
+              future: _controller.fetchFavorites(),
+              builder: (context, snapshot){
+                if(snapshot.connectionState == ConnectionState.done){
+                  if(_controller.listFavorites.isNotEmpty){
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: _controller.listFavorites.length,
+                        itemBuilder: (context, index) =>
+                            buildFavoritesItem(favorite: _controller.listFavorites[index]));
+                  }else{
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: 20,
+                        itemBuilder: (context, index) => buildFavoritesItem());
+                  }
+
+                }else if(snapshot.connectionState == ConnectionState.waiting){
+                  return CustomProgress();
+                }else {
+                  return Container();
+                }
+              },
             ),
           ),
         ],
@@ -48,7 +52,7 @@ class _FavoritePageState extends State<FavoritePage> {
     );
   }
 
-  Widget buildFavoritesItem(FavoriteData favorite) => Container(
+  Widget buildFavoritesItem({FavoriteData? favorite}) => Container(
         width: double.infinity,
         height: 150,
         margin: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
@@ -65,7 +69,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 padding: const EdgeInsets.only(top: 8, left: 8),
                 child: InkWell(
                   child: SvgPicture.asset('assets/icons/addedd_fav_red.svg'),
-                  onTap: () => setState(() => removeFromFavorite(favorite.id!)),
+                  onTap: () =>  _controller.removeFromFavorite(favorite!.id!),
                 ),
               ),
               Padding(
@@ -83,10 +87,10 @@ class _FavoritePageState extends State<FavoritePage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        '${Const.baseImagesUrl}${AppHelper.getTeamHomeImage(favorite.match!)}'))),
+                                        favorite != null ? '${Const.baseImagesUrl}${AppHelper.getTeamHomeImage(favorite.match!)}' : '${Const.logoDefaultImage}'))),
                           ),
                           Text(
-                            '${favorite.match!.teamHome!.name!}',
+                            favorite != null ? '${favorite.match!.teamHome!.name!}' : 'Ttawaq3',
                             style: TextStyle(
                                 color: HexColor(AppColors.blackColor),
                                 fontSize: 14,
@@ -96,7 +100,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         ],
                       ),
                       // SizedBox(width: 16),
-                      favorite.match!.result1 != null
+                      favorite != null
                           ? Container(
                               width: 30,
                               height: 30,
@@ -123,7 +127,7 @@ class _FavoritePageState extends State<FavoritePage> {
                               margin: EdgeInsets.symmetric(horizontal: 8),
                               alignment: Alignment.center,
                               child: Text(
-                                '',
+                                '0',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -160,7 +164,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             Text(
-                                '${AppHelper.formatMatchTime(favorite.match!)}',
+                               favorite != null ? '${AppHelper.formatMatchTime(favorite.match!)}' : '10:00 PM',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: HexColor(AppColors.defualtColor),
@@ -168,7 +172,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                     fontWeight: FontWeight.w600,
                                     fontFamily: Const.appFont)),
                             Text(
-                                '${AppHelper.formatMatchDate(favorite.match!)}',
+                                favorite != null ? '${AppHelper.formatMatchDate(favorite.match!)}' : '14-05-2022',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: HexColor(AppColors.subTextColor),
@@ -179,7 +183,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         ),
                       ),
                       // SizedBox(width: 16),
-                      favorite.match!.result2 != null
+                      favorite != null
                           ? Container(
                               width: 30,
                               height: 30,
@@ -206,7 +210,7 @@ class _FavoritePageState extends State<FavoritePage> {
                               margin: EdgeInsets.symmetric(horizontal: 8),
                               alignment: Alignment.center,
                               child: Text(
-                                '',
+                                '0',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -230,10 +234,10 @@ class _FavoritePageState extends State<FavoritePage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        '${Const.baseImagesUrl}${AppHelper.getTeamAwayImage(favorite.match!)}'))),
+                                       favorite != null ? '${Const.baseImagesUrl}${AppHelper.getTeamAwayImage(favorite.match!)}' : '${Const.logoDefaultImage}'))),
                           ),
                           Text(
-                            '${favorite.match!.teamAway!.name!}',
+                            favorite != null ? '${favorite.match!.teamAway!.name!}' : 'Tawaq3',
                             style: TextStyle(
                                 color: HexColor(AppColors.blackColor),
                                 fontSize: 14,
@@ -250,23 +254,4 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ),
       );
-
-  fetchFavorites() {
-    setState(() => isLoading = true);
-    ApiRequests.fetchFavorites(token: AppHelper.getCurrentUserToken())
-        .then((value) {
-      listFavorites.addAll(value!.data!);
-      // listFavorites.forEach((element) => favorite = element);
-      setState(() => isLoading = false);
-    }).catchError((error) => setState(() => isLoading = false));
-  }
-
-  void removeFromFavorite(int id) {
-    ApiRequests.removeFromFavorite(
-            token: AppHelper.getCurrentUserToken(), matchId: id)
-        .then((value) {
-      fetchFavorites();
-      Get.snackbar('Delete from favourites'.tr, '${value!.data}');
-    });
-  }
 }

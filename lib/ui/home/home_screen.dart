@@ -1,11 +1,8 @@
 import 'package:expectations/controllers/home_controller.dart';
-import 'package:expectations/routes/routes.dart';
-import 'package:expectations/shared/components/constants.dart';
 import 'package:expectations/shared/style/colors.dart';
 import 'package:expectations/ui/home/pages/home_page.dart';
 import 'package:expectations/ui/home/pages/profile_page.dart';
 import 'package:expectations/ui/home/pages/test.dart';
-import 'package:expectations/ui/live/live_screen.dart';
 import 'package:expectations/utils/app_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     AppHelper.statusBarColor(isHome: true);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: HexColor(AppColors.defualtColor)));
-  print('HOME TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');
+  // print('HOME TOKEN: ${AppHelper.getUserToken(key: Const.KEY_USER_TOKEN)}');
     return GetBuilder<HomeController>(
         builder: (controller) => Scaffold(
               body: SafeArea(

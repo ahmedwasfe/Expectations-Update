@@ -15,12 +15,16 @@ class ExpectionsPageController extends GetxController {
     super.onInit();
   }
 
-  void fetchExpectations() {
-    ApiRequests.fetchExpectations(token: AppHelper.getCurrentUserToken())
+  Future<void> fetchExpectations() async {
+    await ApiRequests.fetchExpectations(token: AppHelper.getCurrentUserToken())
         .then((value) {
-      listExpectations.addAll(value!.data!);
-      update();
+          if(value != null){
+            listExpectations.clear();
+            listExpectations.addAll(value.data!);
+            update();
+          }
     });
+    update();
   }
 
   Icon checkIsMatchInFavorite(Match match) {

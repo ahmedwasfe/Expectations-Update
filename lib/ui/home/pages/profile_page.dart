@@ -781,9 +781,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     print('catchError: $error');
                                   });
                                 }else{
-                                  Get.offAndToNamed(Routes.login);
-                                  controller.navIndex = 0;
-                                  controller.getCurrenNavIndex(navIndex: 0);
+                                 AppHelper.goToLogin();
                                 }
                               }),
                           CustomButton(

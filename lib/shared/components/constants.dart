@@ -1,6 +1,7 @@
 class Const {
   static const String baseImagesUrl = 'https://cp.tawaq3.com/';
   static const String defaultImage = 'https://i.postimg.cc/B6GcTk8F/default-avatar2.png';
+  static const String logoDefaultImage = 'https://i.postimg.cc/KvtDkfm1/Whats-App-Image-2022-12-21-at-07-37-39.jpg';
 
   // static const String baseUrl = 'http://expectations.creativesarea.com/api';
 

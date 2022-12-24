@@ -47,7 +47,7 @@ class AppAdvantagesScreen extends StatelessWidget {
             Container(
               margin: EdgeInsetsDirectional.only(start: 18.r, end: 18.r),
               child: Text(
-                'register_with_us'.tr,
+                'apple_terms'.tr,
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Colors.black,
@@ -69,7 +69,7 @@ class AppAdvantagesScreen extends StatelessWidget {
             Container(
               margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
               child: Text(
-                'activate_your_subscription'.tr,
+                'apple_terms'.tr,
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Colors.black,
@@ -91,7 +91,7 @@ class AppAdvantagesScreen extends StatelessWidget {
             Container(
               margin: EdgeInsetsDirectional.only(start: 8.r, end: 8.r),
               child: Text(
-                'predict_the_result'.tr,
+                'apple_terms'.tr,
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Colors.black,

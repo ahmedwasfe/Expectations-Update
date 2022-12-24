@@ -339,6 +339,30 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: InkWell(
                       child: Row(
                         children: [
+                          Icon(Icons.privacy_tip_outlined, color: HexColor(AppColors.defualtColor)),
+                          SizedBox(width: 20),
+                          Text(
+                            'agreement'.tr,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: Const.appFont,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                              size: 20, color: HexColor(AppColors.defualtColor))
+                        ],
+                      ),
+                      onTap: () => Get.toNamed(Routes.userPolicy),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40, right: 24, left: 24),
+                    child: InkWell(
+                      child: Row(
+                        children: [
                           SvgPicture.asset('assets/icons/about_us.svg', color: HexColor(AppColors.defualtColor)),
                           SizedBox(width: 20),
                           Text(

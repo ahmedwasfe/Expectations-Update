@@ -64,6 +64,7 @@ class MyLocal implements Translations {
           "privacy_policy": "سياسة الخصوصية",
           "terms_conditions": "الشروط والأحكام",
           "agreement": "اتفاقية ترخيص المستخدم",
+          "read_agreement": "اقرأ اتفاقية ترخيص المستخدم النهائي",
           "privacy_policy_agreement": "هل توافق على سياسة الخصوصية",
           "please_agree_privacy_policy": "يجب أن توافق على سياسة الخصوصية",
           "About Us": "معلومات عنا",
@@ -193,6 +194,7 @@ class MyLocal implements Translations {
           'activate_your_subscription': 'قم بتفعيل اشتراكك في التطبيق لتتمتع بمميزات التطبيق',
           'predict_the_result': 'توقع نتيجة فريقك الفائز واربح العديد من الجوائز',
           'test_rules': 'يقوم المستخدم بتوقع نتيجة المباراة بين فريقين ويدخل السحب على العديد من الجوائز لكن على المستخدم التسجيل ف التطبيق ليقوم بالتوقع على المباريات',
+          'apple_terms': '  نفيدكم علما بان شركة apple غير داعمة للتطبيق لا من الناحية المالية و لا من ناحية الشراكة.',
         },
           "en": {
             "english": "English",
@@ -254,6 +256,7 @@ class MyLocal implements Translations {
             "privacy_policy": "Privacy policy",
             "terms_conditions": "Terms & Conditions",
             "agreement": "End-User License Agreement",
+            "read_agreement": "Read End-User License Agreement",
             "privacy_policy_agreement": "Do you agree to the privacy policy",
             "please_agree_privacy_policy": "You must agree to the Privacy Policy",
             "About Us": "About Us",
@@ -386,6 +389,7 @@ class MyLocal implements Translations {
             'activate_your_subscription': 'Activate your subscription to the application to enjoy the features of the application',
             'predict_the_result': 'Predict the result of your winning team and win many prizes',
             'test_rules': 'The user predicts the outcome of the match between two teams and enters the draw for many prizes, but the user must register in the application to predict the matches',
+            'apple_terms': 'We inform you that Apple is not supportive of the application, neither financially nor in terms of partnership.',
           }
       };
 }

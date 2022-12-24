@@ -22,6 +22,7 @@ import 'package:expectations/ui/settings/application_advantages.dart';
 import 'package:expectations/ui/settings/contact_us_screen.dart';
 import 'package:expectations/ui/settings/privacy_policy_screen.dart';
 import 'package:expectations/ui/settings/reset_password_screen.dart';
+import 'package:expectations/ui/settings/user_policy_screen.dart';
 import 'package:expectations/ui/splash_screen.dart';
 import 'package:expectations/ui/started_screen.dart';
 import 'package:expectations/utils/bindings/awards_binding.dart';
@@ -78,6 +79,7 @@ class AppRoutes {
     GetPage(name: Routes.contactUs, page: () => ContactUsScreen()),
     GetPage(name: Routes.aboutUs, page: () => AboutUsScreen()),
     GetPage(name: Routes.privacyPolicy, page: () => PrivacyPolicyScreen()),
+    GetPage(name: Routes.userPolicy, page: () => UserPolicyScreen()),
     GetPage(
         name: Routes.winners,
         page: () {
@@ -126,6 +128,7 @@ class Routes {
   static const contactUs = '/contact_us';
   static const aboutUs = '/about_us';
   static const privacyPolicy ='/privacy_policy';
+  static const userPolicy ='/user_policy';
   static const winners = '/winners';
   static const awards = '/awards';
   static const resetPassword = '/reset_password';
